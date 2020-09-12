@@ -1,0 +1,3 @@
+"Tipo de alteração" - Qual requisito foi trabalhado - (Plataforma)(status)
+Exemplo:
+Implementação/Correção - RF-001 Realizar Login - (WEB/Mobile)(Pronto/Incompleto/Corrigido)
