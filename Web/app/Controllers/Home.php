@@ -1,10 +1,16 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 class Home extends BaseController
 {
 	public function index()
 	{
-		return view('welcome_message');
+		if (session()->get('isLoggedIn') === true) {
+			return view('Home/home');
+		}else{
+			return view('Login');
+		}
 	}
 
 	//--------------------------------------------------------------------
