@@ -32,7 +32,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Login::index');
 $routes->get('/', 'Home::index');
-$routes->get('/', 'Professores::index');
+$routes->get('/', 'UsuarioWebController::index');
 
 
 /**

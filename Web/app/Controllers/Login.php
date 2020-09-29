@@ -57,6 +57,7 @@ class Login extends BaseController
 			'email' => $userMatch->email,
 			'cargo' => $userMatch->cargo,
 			'telefone' => $userMatch->telefone,
+			'isLoggedIn' => true
 		];
 
 		session()->set($data);

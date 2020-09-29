@@ -11,48 +11,57 @@
     <script src="http://localhost/2020.2_P3_CodSystems/Web/assets/js/testAjax.js"></script>
 
 </head>
+<!-- Container principal -->
 
-<body>
-    <!-- Container principal -->
-    <div class="d-flex" style="background-color: #006064; height: 100vh">
-        <!-- Container FLEX principal -->
-        <div style="background-color: #0D47A1;" class="d-flex p-2 m-2 flex-column flex-fill">
-            <!-- FLEX NAV -->
-            <div style="background-color: #00897B;">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a class="navbar-brand" href="#">
-                        <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoShape.png" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+<body class="d-flex flex-fill" style="background-color: #455A64;">
+    <!-- Container FLEX principal -->
+    <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1">
+        <!-- FLEX NAV -->
+        <div style="background-color: #00897B;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">
+                    <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo base_url('Home/index') ?>">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Sala de Aula</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Alunos
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo base_url('Professores/index') ?>">Professores</a>
-                            </li>
-                        </ul>
-                        <button type="button" class="btn btn-secondary">
+                <div class="collapse navbar-collapse h5" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('Home/index') ?>">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Notas</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Alunos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('UsuarioWebController/index') ?>">Professores/Coordenadores</a>
+                        </li>
+                    </ul>
+                    <div class="btn-group dropleft">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/perfilIcon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                         </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">ID: <?php echo session()->get('id') ?></a>
+                            <a class="dropdown-item" href="#">Nome: <?php echo session()->get('nome') ?></a>
+                            <a class="dropdown-item" href="#">Email: <?php echo session()->get('email') ?></a>
+                            <a class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair
+                                <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/btn-sair.png" width="17" height="17" class="d-inline-block align-middle" alt="" loading="lazy">
+                            </a>
+                        </div>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
+        </div>

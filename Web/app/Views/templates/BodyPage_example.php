@@ -10,7 +10,7 @@
     test
 </div>
 <!-- FLEX body -->
-<div style="background-color: #673AB7;" class="d-flex flex-row flex-grow-1">
+<div style="background-color: #673AB7; height: 100%;" class="d-flex flex-row flex-grow-1">
     <!-- FLEX menu lateral-->
     <div style="background-color: #2E7D32;">
         <nav class="nav flex-column" style="max-width:175px; min-width: 175px">
