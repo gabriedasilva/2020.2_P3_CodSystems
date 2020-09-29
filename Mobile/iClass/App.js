@@ -1,114 +1,98 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
+const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+    <KeyboardAvoidingView style={styles.background}>
+      <View style={styles.imgContainer}>
+        <Image
+
+          source={require('./src/assets/logo256w.png')}
+        />
+      </View>
+
+      <View style={styles.container}>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Matrícula"
+          autoCorrect={false}
+        />
+
+        <TextInput
+            style={styles.input}
+          placeholder="Senha"
+          autoCorrect={false}
+        />
+
+        <TouchableOpacity style={styles.btnSubmit}>
+          <Text style={styles.submitText}
+          onPress={() => { }}>Acessar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={styles.textWhiteL} onPress={() => { }}>Esqueci a Senha!</Text>
+        </TouchableOpacity>
+
+      </View>
+      <View style={styles.emptyContainer}></View>
+      <View>
+<Text style={styles.textWhiteL}>iClass - CodSystems 2020</Text>
+      </View>
+    </KeyboardAvoidingView>
+
+  )
+};
+const styles = StyleSheet.create({ // Estilos
+  background: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#2196f3'
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  imgContainer: {
+    justifyContent: 'center',
+    flex: 1,
   },
-  body: {
-    backgroundColor: Colors.white,
+  container: {
+    backgroundColor:'#212121',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
+    borderRadius:30,
+
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  input:{
+    backgroundColor:'#EEEEEE',
+    width:'90%',
+    borderRadius:10,
+    marginBottom:10,
+    fontSize:17,
+    padding:10,
+    color:'#222',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  textWhiteL:{
+color:'#fff'
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+  btnSubmit:{
+    backgroundColor:'#009900',
+    padding:10,
+    width:'90%',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:10
   },
-  highlight: {
-    fontWeight: '700',
+  submitText:{
+color:'#fff',
+fontSize:20
   },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  emptyContainer:{
+  height:'20%'
+  }
+  
+
 });
 
 export default App;
