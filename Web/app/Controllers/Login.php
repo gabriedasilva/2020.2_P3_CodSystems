@@ -60,6 +60,7 @@ class Login extends BaseController
 			'isLoggedIn' => true
 		];
 
+		
 		session()->set($data);
 		return true;
 	}

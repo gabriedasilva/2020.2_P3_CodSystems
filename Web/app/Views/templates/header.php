@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="http://localhost/2020.2_P3_CodSystems/Web/assets/js/testAjax.js"></script>
+
 
 </head>
 <!-- Container principal -->
@@ -32,18 +32,10 @@
                             <a class="nav-link" href="<?php echo base_url('Home/index') ?>">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Notas</a>
+                            <a class="nav-link" href="<?php echo base_url('DisciplinasController/index') ?>">Turmas/Disciplinas</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Alunos
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('UsuarioMobController/index') ?>">Alunos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo base_url('UsuarioWebController/index') ?>">Professores/Coordenadores</a>
@@ -54,7 +46,6 @@
                             <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/perfilIcon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">ID: <?php echo session()->get('id') ?></a>
                             <a class="dropdown-item" href="#">Nome: <?php echo session()->get('nome') ?></a>
                             <a class="dropdown-item" href="#">Email: <?php echo session()->get('email') ?></a>
                             <a class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair

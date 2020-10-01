@@ -11,7 +11,7 @@
 <!-- FLEX body -->
 <div style="background-color: #EEEEEE; height: 100%;" class="d-flex flex-row">
     <!-- FLEX menu lateral-->
-    <?php echo $this->include('usuarioWeb/usuarioWeb_menu') ?>
+    <?php echo $this->include('disciplinas/disciplinas_menu') ?>
     <!-- FLEX Conteudo -->
     <div class="m-1 flex-fill">
         <!-- Title of page -->
@@ -21,7 +21,7 @@
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2" style="width: 450px;">
-                <form class="p-1 m-1" action="<?php echo base_url('UsuarioWebController/atualizarCadastro') ?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('DisciplinasController/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                         <div class="p-2 bd-highlight">
@@ -29,28 +29,21 @@
                             <input class="form-control" type="text" name="nome" value="<?php echo isset($nome) ? $nome : set_value('nome') ?>"></input>
                         </div>
                         <div class="p-2 bd-highlight">
-                            <label for="cargo">Cargo:</label>
-                            <select name="cargo" class="custom-select" id="inputGroupSelect01">
-                                <?php if ($cargo === "1") : ?>
-                                    <option selected value="1">Professor</option>
-                                    <option value="2">Administrador</option>
-                                <?php else : ?>
-                                    <option value="1">Professor</option>
-                                    <option selected value="2">Administrador</option>
+                            <label for="professor">Professor:</label>
+                            <select name="professor" class="custom-select" id="inputGroupSelect01">
+                                <option selected value="<?php echo isset($professor) ? $professor : set_value('professor') ?>">
+                                    <?php echo isset($professor) ? $professor : set_value('professor') ?>
+                                </option>
+                                <?php if (!empty($professores) && is_array($professores)) : ?>
+                                    <?php foreach ($professores as $professores_item) : ?>
+                                        <?php if ($professores_item['nome'] !== $professor) : ?>
+                                            <option value="<?php echo $professores_item['nome']; ?>">
+                                                <?php echo $professores_item['nome']; ?>
+                                            </option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
                                 <?php endif; ?>
                             </select>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <label for="email">E-mail:</label>
-                            <input class="form-control" type="text" name="email" value="<?php echo isset($email) ? $email : set_value('email') ?>"></input>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <label for="senha">Senha:</label>
-                            <input class="form-control" type="password" name="senha"></input>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <label for="telefone">Telefone:</label>
-                            <input class="form-control" type="text" name="telefone" value="<?php echo isset($telefone) ? $telefone : set_value('telefone') ?>"></input>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
