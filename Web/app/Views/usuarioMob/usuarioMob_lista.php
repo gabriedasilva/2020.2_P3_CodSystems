@@ -49,10 +49,10 @@
                             <td><?php echo $usuarioMob_item['matricula']; ?></td>
                             <td><?php echo $usuarioMob_item['nomeResponsavel']; ?></td>
                             <td>
-                                <a class="btn btn-outline-warning btn-sm btn-block" href="<?php echo base_url('UsuarioMobController/detalhes/' . $usuarioMob_item['id']) ?>">Editar</a><br>
+                                <a class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('UsuarioMobController/detalhes/' . $usuarioMob_item['id']) ?>">Editar</a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-danger btn-sm btn-block" href="<?php  echo base_url('UsuarioMobController/excluirCadastro/' . $usuarioMob_item['id']) ?>" onclick="return excluirCadastro()">Excluir</a>
+                                <a class="btn btn-danger btn-sm btn-block" href="<?php  echo base_url('UsuarioMobController/excluirCadastro/' . $usuarioMob_item['id']) ?>" onclick="return excluirCadastro()">Excluir</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

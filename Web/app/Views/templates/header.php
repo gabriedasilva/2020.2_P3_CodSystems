@@ -6,9 +6,9 @@
     <title>iClass</title>
     <meta name="description" content="Sua escola em casa!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/logoShape.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <script src="https://kit.fontawesome.com/5ae82b8da4.js" crossorigin="anonymous"></script>
 
 </head>
 <!-- Container principal -->
@@ -28,17 +28,20 @@
 
                 <div class="collapse navbar-collapse h5" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('Home/index') ?>">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item pr-2">
+                            <a class="nav-link" href="<?php echo base_url('Home/index') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('DisciplinasController/index') ?>">Turmas/Disciplinas</a>
+                        <li class="nav-item pr-2">
+                            <a class="nav-link" href="#">Turmas <i class="fas fa-chalkboard"></i></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('UsuarioMobController/index') ?>">Alunos</a>
+                        <li class="nav-item pr-2">
+                            <a class="nav-link" href="<?php echo base_url('DisciplinasController/index') ?>">Disciplinas <i class="fas fa-chalkboard-teacher"></i></i></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('UsuarioWebController/index') ?>">Professores/Coordenadores</a>
+                        <li class="nav-item pr-2">
+                            <a class="nav-link" href="<?php echo base_url('UsuarioMobController/index') ?>">Alunos <i class="fas fa-user-graduate"></i></a>
+                        </li>
+                        <li class="nav-item pr-2">
+                            <a class="nav-link" href="<?php echo base_url('UsuarioWebController/index') ?>">Professores/Coordenadores <i class="fas fa-user-tie"></i></a>
                         </li>
                     </ul>
                     <div class="btn-group dropleft">
@@ -48,9 +51,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Nome: <?php echo session()->get('nome') ?></a>
                             <a class="dropdown-item" href="#">Email: <?php echo session()->get('email') ?></a>
-                            <a class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair
-                                <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/btn-sair.png" width="17" height="17" class="d-inline-block align-middle" alt="" loading="lazy">
-                            </a>
+                            <a class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair <i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </div>
                 </div>

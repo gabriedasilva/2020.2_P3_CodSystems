@@ -45,10 +45,10 @@
                             <td><?php echo $disciplinas_item['nome']; ?></td>
                             <td><?php echo $disciplinas_item['professor']; ?></td>
                             <td>
-                                <a class="btn btn-outline-warning btn-sm btn-block" href="<?php echo base_url('DisciplinasController/detalhes/' . $disciplinas_item['id']) ?>">Editar</a><br>
+                                <a class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('DisciplinasController/detalhes/' . $disciplinas_item['id']) ?>">Editar</a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-danger btn-sm btn-block" href="<?php  echo base_url('DisciplinasController/excluirCadastro/' . $disciplinas_item['id']) ?>" onclick="return excluirCadastro()">Excluir</a>
+                                <a class="btn btn-danger btn-sm btn-block" href="<?php  echo base_url('DisciplinasController/excluirCadastro/' . $disciplinas_item['id']) ?>" onclick="return excluirCadastro()">Excluir</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
