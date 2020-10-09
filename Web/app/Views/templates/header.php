@@ -29,19 +29,19 @@
                 <div class="collapse navbar-collapse h5" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="<?php echo base_url('Home/index') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
+                            <a class="nav-link" href="<?php echo base_url('Home') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
                         </li>
                         <li class="nav-item pr-2">
                             <a class="nav-link" href="#">Turmas <i class="fas fa-chalkboard"></i></a>
                         </li>
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="<?php echo base_url('DisciplinasController/index') ?>">Disciplinas <i class="fas fa-chalkboard-teacher"></i></i></a>
+                            <a class="nav-link" href="<?php echo base_url('DisciplinasController') ?>">Disciplinas <i class="fas fa-chalkboard-teacher"></i></i></a>
                         </li>
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="<?php echo base_url('UsuarioMobController/index') ?>">Alunos <i class="fas fa-user-graduate"></i></a>
+                            <a class="nav-link" href="<?php echo base_url('UsuarioMobController') ?>">Alunos <i class="fas fa-user-graduate"></i></a>
                         </li>
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="<?php echo base_url('UsuarioWebController/index') ?>">Professores/Coordenadores <i class="fas fa-user-tie"></i></a>
+                            <a class="nav-link" href="<?php echo base_url('UsuarioWebController') ?>">Professores/Coordenadores <i class="fas fa-user-tie"></i></a>
                         </li>
                     </ul>
                     <div class="btn-group dropleft">

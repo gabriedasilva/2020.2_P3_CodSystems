@@ -1,4 +1,12 @@
 <nav class="nav flex-column bg-dark h5 p-2" style="max-width:175px; min-width: 175px;">
-    <a class="nav-link" href="<?php echo base_url('DisciplinasController/') ?>">Listar</a>
-    <a class="nav-link" href="<?php echo base_url('DisciplinasController/cadastroForm') ?>">Cadastrar</a>
+    <a class="d-flex flex-row  d-flex align-items-center nav-link text-light" href="<?php echo base_url('DisciplinasController/') ?>">Listar
+        <div class="d-flex flex-fill flex-row-reverse">
+            <i class="fas fa-list-ul"></i>
+        </div>
+    </a>
+    <a class="d-flex flex-row  d-flex align-items-center nav-link text-light" href="<?php echo base_url('DisciplinasController/cadastroForm') ?>">Cadastrar
+        <div class="d-flex flex-fill flex-row-reverse">
+            <i class="fas fa-plus-circle"></i>
+        </div>
+    </a>
 </nav>
