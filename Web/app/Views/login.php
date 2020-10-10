@@ -14,24 +14,26 @@
 </head>
 
 <body style="background-color: #2196F3">
-	<div class="d-flex flex-column" style="height: 100vh">
-		<div class="d-flex align-items-center flex-column">
-			<img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="100" height="100" class="d-inline-block align-top" alt="" loading="lazy">
-			<div class="p-3" style="background-color: #212121; border-radius: 10px; min-height: 200px">
-				<form id="formLogin" class="form-signin" style="color: #fff;" action="<?php echo base_url('Login/login') ?>" method="POST">
-					<label for="inputEmail" class="sr-only">Endereço de E-mail</label>
+	<div class="d-flex flex-column" style="height: 100vh; text-align:center;">
+		<div class="d-flex" style="margin: auto;">
+			<div class="d-flex align-items-center flex-column p-3" style="background-color: #212121; border-radius: 10px; min-height: 200px; width: 250px;">
+				<img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="100" height="100" class="d-inline-block align-top" alt="" loading="lazy">
+				<form id="formLogin" class="d-flex flex-column justify-content-center" style="color: #fff;" action="<?php echo base_url('Login/login') ?>" method="POST">
+					<label for="inputEmail" class="sr-only" style="text-align: center;">Endereço de E-mail</label>
 					<input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" autofocus>
-					<label for="inputPassword" class="sr-only">Senha</label>
-					<input name="senha" type="password" id="inputPassword" class="form-control" placeholder="Senha">
-					<button id="login" class="btn btn-lg btn-success btn-block" type="submit">Entrar</button>
+					<label for="inputPassword" class="sr-only" style="text-align: center;">Senha</label>
+					<input name="senha" type="password" id="inputPassword" class="form-control mt-2" placeholder="Senha">
+					<button id="login" class="btn btn-lg btn-success btn-block mt-4 mb-2" type="submit">Entrar</button>
 					<div class="text-center">
-						<strong >Bem Vindo!</strong>
+						<strong>Bem Vindo!</strong>
 					</div>
 					<!-- <label>Problemas com login?<a href="#">clique aqui!</a><label> -->
 				</form>
 			</div>
 		</div>
+		<p class="text-light">iClass - CodSystems 2020</p>
 	</div>
+
 	<?php if (isset($resultLogin)) : ?>
 		<script language='javascript' type='text/javascript'>
 			alert('<?php echo $resultLogin ?>');
