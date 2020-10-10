@@ -1,98 +1,27 @@
-import React from 'react';
-import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import React,{Component} from 'react';
+import {StyleSheet} from 'react-native';
+import {createStackNavigator , createAppContainer} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native'
+import Home from './src/Home';
 
-const App = () => {
-  return (
+const Stack = createStackNavigator();
+import HomeScreen from './src/Home';
+import ProfileScreen from './src/Profile';
+import LoginScreen from './src/Login';
+export default function App(){
+    return(
+<NavigationContainer>
+<Stack.Navigator initialRouteName='Login'>
+<Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
+<Stack.Screen name="Home" component={HomeScreen} options={{headerStyle:styles.TopBarColor,headerTintColor:'#FFF',}}/>
+<Stack.Screen name="Profile" component={ProfileScreen}/>
+</Stack.Navigator>
+</NavigationContainer>
 
-    <KeyboardAvoidingView style={styles.background}>
-      <View style={styles.imgContainer}>
-        <Image
-
-          source={require('./src/assets/logo256w.png')}
-        />
-      </View>
-
-      <View style={styles.container}>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Matrícula"
-          autoCorrect={false}
-        />
-
-        <TextInput
-            style={styles.input}
-          placeholder="Senha"
-          autoCorrect={false}
-        />
-
-        <TouchableOpacity style={styles.btnSubmit}>
-          <Text style={styles.submitText}
-          onPress={() => { }}>Acessar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Text style={styles.textWhiteL} onPress={() => { }}>Esqueci a Senha!</Text>
-        </TouchableOpacity>
-
-      </View>
-      <View style={styles.emptyContainer}></View>
-      <View>
-<Text style={styles.textWhiteL}>iClass - CodSystems 2020</Text>
-      </View>
-    </KeyboardAvoidingView>
-
-  )
+    )
 };
-const styles = StyleSheet.create({ // Estilos
-  background: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2196f3'
-  },
-  imgContainer: {
-    justifyContent: 'center',
-    flex: 1,
-  },
-  container: {
-    backgroundColor:'#212121',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '90%',
-    borderRadius:30,
-
-  },
-  input:{
-    backgroundColor:'#EEEEEE',
-    width:'90%',
-    borderRadius:10,
-    marginBottom:10,
-    fontSize:17,
-    padding:10,
-    color:'#222',
-  },
-  textWhiteL:{
-color:'#fff'
-  },
-  btnSubmit:{
-    backgroundColor:'#009900',
-    padding:10,
-    width:'90%',
-    justifyContent:'center',
-    alignItems:'center',
-    borderRadius:10
-  },
-  submitText:{
-color:'#fff',
-fontSize:20
-  },
-  emptyContainer:{
-  height:'20%'
-  }
-  
-
+const styles = StyleSheet.create({
+TopBarColor:{
+ backgroundColor:'#2196f3',
+}
 });
-
-export default App;
