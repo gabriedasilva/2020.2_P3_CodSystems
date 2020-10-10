@@ -18,7 +18,7 @@
     <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1">
         <!-- FLEX NAV -->
         <div style="background-color: #00897B;">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1565C0;">
                 <a class="navbar-brand" href="#">
                     <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
@@ -32,7 +32,7 @@
                             <a class="nav-link" href="<?php echo base_url('Home') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
                         </li>
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="#">Turmas <i class="fas fa-chalkboard"></i></a>
+                            <a class="nav-link" href="<?php echo base_url('Turmas') ?>">Turmas <i class="fas fa-chalkboard"></i></a>
                         </li>
                         <li class="nav-item pr-2">
                             <a class="nav-link" href="<?php echo base_url('DisciplinasController') ?>">Disciplinas <i class="fas fa-chalkboard-teacher"></i></i></a>
@@ -45,13 +45,16 @@
                         </li>
                     </ul>
                     <div class="btn-group dropleft">
-                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/perfilIcon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                        <button style="font-size: 20px" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Nome: <?php echo session()->get('nome') ?></a>
-                            <a class="dropdown-item" href="#">Email: <?php echo session()->get('email') ?></a>
-                            <a class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair <i class="fas fa-sign-out-alt"></i></a>
+                            <div class="d-flex dropdown-item" style="margin: auto; font-size:50px;">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="dropdown-item" href="#">Nome: <?php echo session()->get('nome') ?></div>
+                            <div class="dropdown-item" href="#">Email: <?php echo session()->get('email') ?></div>
+                            <div class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair <i class="fas fa-sign-out-alt"></i></div>
                         </div>
                     </div>
                 </div>
