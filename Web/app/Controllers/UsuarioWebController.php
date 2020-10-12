@@ -20,7 +20,13 @@ class UsuarioWebController extends BaseController
 
     public function cadastroForm()
     {
-        return view('usuarioWeb/usuarioWeb_cadastro');
+        $data =[
+            'nome' => '',
+            'cargo' => '',
+            'email' => '',
+            'telefone' => '',
+        ];
+        return view('usuarioWeb/usuarioWeb_cadastro',$data);
     }
 
     public function realizarCadastro()
@@ -30,7 +36,7 @@ class UsuarioWebController extends BaseController
         $userWebModel = new UsuarioWeb();
         $rules = [
             'nome' => 'required',
-            'email' => 'required',
+            'email' => 'required|valid_email',
             'senha' => 'required',
             'telefone' => 'required',
             'cargo' => 'required|max_length[1]'

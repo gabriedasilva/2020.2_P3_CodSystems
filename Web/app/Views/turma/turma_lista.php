@@ -46,12 +46,12 @@
                                     </a>
                                 </div>
                                 <div class="m-2">
-                                    <a class="btn btn-warning btn-lg" href="<?php echo base_url('DisciplinasController/detalhes/' . $turmas_item['id']) ?>">
+                                    <a class="btn btn-warning btn-lg" href="<?php echo base_url('Turma/detalhes/' . $turmas_item['id']) ?>">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
                                 <div class="m-2">
-                                    <a class="btn btn-danger btn-lg" href="<?php echo base_url('DisciplinasController/excluirCadastro/' . $turmas_item['id']) ?>" onclick="return excluirCadastro()">
+                                    <a class="btn btn-danger btn-lg" href="<?php echo base_url('Turma/excluir/' . $turmas_item['id']) ?>" onclick="return excluirCadastro()">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </div>

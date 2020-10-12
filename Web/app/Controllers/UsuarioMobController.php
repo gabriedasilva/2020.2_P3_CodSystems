@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Turma;
 use App\Models\UsuarioMob;
 
 class UsuarioMobController extends BaseController
@@ -20,7 +21,12 @@ class UsuarioMobController extends BaseController
 
     public function cadastroForm()
     {
-        return view('usuarioMob/usuarioMob_cadastro');
+        $turmasModel = new Turma();
+
+        $data = [
+            'turmas' => $turmasModel->getTurmas()
+        ];
+        return view('usuarioMob/usuarioMob_cadastro',$data);
     }
 
     public function realizarCadastro()

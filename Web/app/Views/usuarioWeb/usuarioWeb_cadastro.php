@@ -30,7 +30,7 @@
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <div class="p-2 bd-highlight">
                             <label for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome"></input>
+                            <input class="form-control" type="text" name="nome" value="<?php echo isset($nome) ? $nome : set_value('nome') ?>"></input>
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="cargo">Cargo:</label>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="email">E-mail:</label>
-                            <input class="form-control" type="text" name="email"></input>
+                            <input class="form-control" type="text" name="email" value="<?php echo isset($email) ? $email : set_value('email') ?>"></input>
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="senha">Senha:</label>
@@ -50,11 +50,11 @@
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="telefone">Telefone:</label>
-                            <input class="form-control" type="text" name="telefone"></input>
+                            <input class="form-control" type="text" name="telefone" value="<?php echo isset($telefone) ? $telefone : set_value('telefone') ?>"></input>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-primary text-right">Cadastrar</button>
+                    <button type="submit" class="btn btn-success text-right">Cadastrar <i class="fas fa-plus-circle"></i></button>
                     </div>
                 </form>
             </div>

@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/png" href="/favicon.ico" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+	<script src="https://kit.fontawesome.com/5ae82b8da4.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -20,9 +20,9 @@
 				<img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="100" height="100" class="d-inline-block align-top" alt="" loading="lazy">
 				<form id="formLogin" class="d-flex flex-column justify-content-center" style="color: #fff;" action="<?php echo base_url('Login/login') ?>" method="POST">
 					<label for="inputEmail" class="sr-only" style="text-align: center;">Endereço de E-mail</label>
-					<input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" autofocus>
+					<input name="email" type="email" id="inputEmail" class="form-control" placeholder="&#xf007; Email" autofocus style="font-family: FontAwesome;">
 					<label for="inputPassword" class="sr-only" style="text-align: center;">Senha</label>
-					<input name="senha" type="password" id="inputPassword" class="form-control mt-2" placeholder="Senha">
+					<input name="senha" type="password" id="inputPassword" class="form-control mt-2" placeholder="&#xf023; Senha" style="font-family: FontAwesome;">
 					<button id="login" class="btn btn-lg btn-success btn-block mt-4 mb-2" type="submit">Entrar</button>
 					<div class="text-center">
 						<strong>Bem Vindo!</strong>

@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-primary text-right">Cadastrar</button>
+                    <button type="submit" class="btn btn-success text-right">Cadastrar <i class="fas fa-plus-circle"></i></button>
                     </div>
                 </form>
             </div>

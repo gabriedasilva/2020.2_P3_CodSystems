@@ -63,7 +63,7 @@ $routes->get('Turmas', 'TurmaController::index');
 $routes->get('Turma/formulario', 'TurmaController::cadastroForm');
 $routes->post('Turma/cadastrar', 'TurmaController::realizarCadastro');
 $routes->get('Turma/detalhes/(:num)', 'TurmaController::detalhes/$1');
-$routes->post('Turma/Atualizar', 'TurmaController::atualizarCadastro');
+$routes->post('Turma/atualizar', 'TurmaController::atualizarCadastro');
 $routes->get('Turma/excluir/(:num)', 'TurmaController::excluirCadastro/$1');
 
 

@@ -20,7 +20,7 @@
     <!-- FLEX Conteudo -->
     <div class="m-1 flex-fill">
         <!-- Title of page -->
-        <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
+        <div class="d-flex justify-content-center shadow-sm p-1 bg-white rounded">
             <h3>Cadastro de Alunos</h3>
         </div>
         <!-- Form of page -->
@@ -47,9 +47,13 @@
                         <div class="p-2 bd-highlight">
                             <label for="turma">Turma:</label>
                             <select name="turma" class="custom-select" id="inputGroupSelect01">
-                                <option selected>Selecione...</option>
-                                <option value="1">Infantil I</option>
-                                <option value="2">Alfabetização</option>
+                                <?php if (!empty($turmas) && is_array($turmas)) : ?>
+                                    <?php foreach ($turmas as $turmas_item) : ?>
+                                        <option value="<?php echo $turmas_item['nome']; ?>">
+                                            <?php echo $turmas_item['nome']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </select>
                         </div>
                         <div class="p-2 bd-highlight">
@@ -58,7 +62,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-primary text-right">Cadastrar</button>
+                        <button type="submit" class="btn btn-success text-right">Cadastrar <i class="fas fa-plus-circle"></i></button>
                     </div>
                 </form>
             </div>
