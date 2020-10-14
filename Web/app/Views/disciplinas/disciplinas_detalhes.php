@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-primary text-right">Salvar Alterações</button>
+                    <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
                     </div>
                 </form>
             </div>

@@ -12,7 +12,7 @@ class UsuarioMobController extends BaseController
         $userMobModel = new UsuarioMob();
 
         $data = [
-            'usuarioMob' => $userMobModel->getUsuarios()
+            'usuarioMob' => $userMobModel->getUsuariosTurma()
         ];
         return view('usuarioMob/usuarioMob_lista', $data);
     }
@@ -74,6 +74,7 @@ class UsuarioMobController extends BaseController
     {
 
         $userMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
         $userData = $userMobModel->find($id);
 
         $data = [
@@ -82,6 +83,7 @@ class UsuarioMobController extends BaseController
             'matricula' => $userData['matricula'],
             'nomeResponsavel' => $userData['nomeResponsavel'],
             'turma' => $userData['turma'],
+            'turmas' => $turmaModel->getTurmas(),
             'telefone' => $userData['telefone'],
         ];
         return view('usuarioMob/usuarioMob_detalhes', $data);
@@ -91,6 +93,7 @@ class UsuarioMobController extends BaseController
     {
         helper('form');
         $userMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
 
         $data = [
             'id' => $this->request->getPost('id'),
@@ -110,6 +113,7 @@ class UsuarioMobController extends BaseController
             'senha' => md5($this->request->getPost('senha')),
             'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
             'turma' => $this->request->getPost('turma'),
+            'turmas' => $turmaModel->getTurmas(),
             'telefone' => $this->request->getPost('telefone'),
         ];
         return view('usuarioMob/usuarioMob_detalhes', $data);

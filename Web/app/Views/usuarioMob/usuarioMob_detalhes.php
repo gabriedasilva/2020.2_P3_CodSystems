@@ -42,13 +42,19 @@
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="turma">Turma:</label>
-                            <select name="turma" class="custom-select" id="inputGroupSelect01">
-                                <?php if ($turma === "1") : ?>
-                                    <option selected value="1">Infantil I</option>
-                                    <option value="2">Alfabetização</option>
-                                <?php else : ?>
-                                    <option value="1">Infantil I</option>
-                                    <option selected value="2">Alfabetização</option>
+                            <select name="turma" class="custom-select" id="inputGroupSelect01">                        
+                                <?php if (!empty($turmas) && is_array($turmas)) : ?>
+                                    <?php foreach ($turmas as $turmas_item) : ?>
+                                        <?php if ($turmas_item['id'] !== $turma) : ?>
+                                            <option value="<?php echo $turmas_item['id']; ?>">
+                                                <?php echo $turmas_item['nome']; ?>
+                                            </option>
+                                        <?php else: ?>
+                                            <option selected value="<?php echo $turma?>">
+                                                <?php echo $turmas_item['nome']; ?>
+                                            </option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
                                 <?php endif; ?>
                             </select>
                         </div>
@@ -58,7 +64,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-primary text-right">Salvar Alterações</button>
+                        <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
                     </div>
                 </form>
             </div>

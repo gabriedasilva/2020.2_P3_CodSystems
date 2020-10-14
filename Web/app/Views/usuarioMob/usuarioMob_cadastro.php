@@ -49,7 +49,7 @@
                             <select name="turma" class="custom-select" id="inputGroupSelect01">
                                 <?php if (!empty($turmas) && is_array($turmas)) : ?>
                                     <?php foreach ($turmas as $turmas_item) : ?>
-                                        <option value="<?php echo $turmas_item['nome']; ?>">
+                                        <option value="<?php echo $turmas_item['id']; ?>">
                                             <?php echo $turmas_item['nome']; ?>
                                         </option>
                                     <?php endforeach; ?>

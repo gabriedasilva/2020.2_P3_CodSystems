@@ -27,38 +27,40 @@
         <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
             <h3>Lista de Disciplinas</h3>
         </div>
-        <table class="table table-sm table-hover table-light">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Professor</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Remover</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
-                    <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                        <tr class="">
-                            <td><?php echo $disciplinas_item['id']; ?></td>
-                            <td><?php echo $disciplinas_item['nome']; ?></td>
-                            <td><?php echo $disciplinas_item['professor']; ?></td>
-                            <td>
-                                <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('DisciplinasController/detalhes/' . $disciplinas_item['id']) ?>">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a style="max-width: 50px;" class="btn btn-danger btn-sm btn-block" href="<?php echo base_url('DisciplinasController/excluirCadastro/' . $disciplinas_item['id']) ?>" onclick="return excluirCadastro()">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
+        <div class="m-2">
+            <table class="table table-sm table-hover table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Professor</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Remover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                        <?php foreach ($disciplinas as $disciplinas_item) : ?>
+                            <tr class="">
+                                <td><?php echo $disciplinas_item['id']; ?></td>
+                                <td><?php echo $disciplinas_item['nome']; ?></td>
+                                <td><?php echo $disciplinas_item['professor']; ?></td>
+                                <td>
+                                    <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('DisciplinasController/detalhes/' . $disciplinas_item['id']) ?>">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a style="max-width: 50px;" class="btn btn-danger btn-sm btn-block" href="<?php echo base_url('DisciplinasController/excluirCadastro/' . $disciplinas_item['id']) ?>" onclick="return excluirCadastro()">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!-- FLEX footer -->
