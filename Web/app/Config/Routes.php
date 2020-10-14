@@ -65,6 +65,8 @@ $routes->post('Turma/cadastrar', 'TurmaController::realizarCadastro');
 $routes->get('Turma/detalhes/(:num)', 'TurmaController::detalhes/$1');
 $routes->post('Turma/atualizar', 'TurmaController::atualizarCadastro');
 $routes->get('Turma/excluir/(:num)', 'TurmaController::excluirCadastro/$1');
+$routes->get('Turma/alunos/(:num)', 'TurmaController::turmaAlunos/$1');
+$routes->get('Turma/perfil/(:num)', 'TurmaController::perfilEscolar/$1');
 
 
 /**

@@ -54,7 +54,7 @@
                             </div>
                             <div class="dropdown-item" href="#">Nome: <?php echo session()->get('nome') ?></div>
                             <div class="dropdown-item" href="#">Email: <?php echo session()->get('email') ?></div>
-                            <div class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair <i class="fas fa-sign-out-alt"></i></div>
+                            <a class="dropdown-item text-danger" href="<?php echo base_url('Login/logOut') ?>">Sair <i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </div>
                 </div>

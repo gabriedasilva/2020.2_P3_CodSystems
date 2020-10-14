@@ -41,7 +41,7 @@
                             </div>
                             <div class="d-flex" style="margin: auto;">
                                 <div class="m-2">
-                                    <a class="btn btn-info btn-lg" href="<?php echo base_url('DisciplinasController/detalhes/' . $turmas_item['id']) ?>">
+                                    <a class="btn btn-info btn-lg" href="<?php echo base_url('Turma/alunos/' . $turmas_item['id']) ?>">
                                         <i class="fas fa-user-graduate"></i>
                                     </a>
                                 </div>

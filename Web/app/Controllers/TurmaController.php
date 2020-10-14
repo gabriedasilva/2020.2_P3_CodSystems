@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Disciplinas;
 use App\Models\Turma;
+use App\Models\UsuarioMob;
 
 class TurmaController extends BaseController
 {
@@ -27,6 +28,58 @@ class TurmaController extends BaseController
             'disciplinas' => $disciplinasModel->getDisciplinas()
         ];
         return view('turma/turma_cadastro', $data);
+    }
+
+    public function turmaAlunos($idTurma)
+    {
+
+        $usuarioMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
+
+        /* $db = db_connect();
+        $usuarioMobModel = new UsuarioMob();
+
+        $builder = $db->table('usuariomob');
+        $builder->select('usuariomob.id, usuariomob.nomeAluno, usuariomob.matricula, turma.nome');
+        $builder->join('turma', 'usuariomob.turma = turma.id');
+
+        $query = $builder->get(); */
+
+
+        $data = [
+            'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
+                ->findAll(),
+            'turma' => $turmaModel->where('id', $idTurma)
+                ->first(),
+        ];
+        return view('turma/turma_alunos', $data);
+    }
+
+    public function perfilEscolar($id)
+    {
+
+        $userMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
+        $userData = $userMobModel->find($id);
+        $turmaNome = $turmaModel->where('id', $userData['turma'])
+            ->first();
+
+        $data = [
+            'id' => $userData['id'],
+            'nomeAluno' => $userData['nomeAluno'],
+            'matricula' => $userData['matricula'],
+            'nomeResponsavel' => $userData['nomeResponsavel'],
+            'turma' => $turmaNome,
+            'telefone' => $userData['telefone'],
+            'faltas' => $userData['faltas'],
+            'notaParcial' => $userData['notaParcial'],
+            'notaProva' => $userData['notaProva'],
+            'notaMedia' => $userData['notaMedia'],
+            'notaParcial2bm' => $userData['notaParcial2bm'],
+            'notaProva2bm' => $userData['notaProva2bm'],
+            'notaMedia2bm' => $userData['notaMedia2bm'],
+        ];
+        return view('turma/turma_alunoPerfil', $data);
     }
 
     public function realizarCadastro()
