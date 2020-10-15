@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Turma;
+
 class Login extends BaseController
 {
 	public function index()
@@ -26,17 +28,26 @@ class Login extends BaseController
 		if ($this->validate($rules)) {
 
 			$userFound = $loginModel->find($email);
-									
+
 			if ($userFound !== null) {
 				if ($userFound->email === $email) {
-					
+
 					if ($userFound->senha !== $senha) {
 						$data['resultLogin'] = 'Senha incorreta! Tente novamente.';
 						return view('Login', $data);
 					} else {
-						
+
 						$this->setSession($userFound);
-						return view('Home/home');
+
+						if (session()->get('cargo') === "1") {
+							return view('Home/home');
+						} else {
+							$turmaModel = new Turma();
+							$data = [
+								'turmas' => $turmaModel->turmasProfessor(),
+							];
+							return view('Home/homeProfessor',$data);
+						}
 					}
 				}
 			} else {
@@ -60,7 +71,7 @@ class Login extends BaseController
 			'isLoggedIn' => true
 		];
 
-		
+
 		session()->set($data);
 		return true;
 	}
