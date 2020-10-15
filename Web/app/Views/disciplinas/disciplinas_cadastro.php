@@ -37,7 +37,7 @@
                             <select name="professor" class="custom-select" id="inputGroupSelect01">
                                 <?php if (!empty($professores) && is_array($professores)) : ?>
                                     <?php foreach ($professores as $professores_item) : ?>
-                                        <option value="<?php echo $professores_item['nome']; ?>">
+                                        <option value="<?php echo $professores_item['id']; ?>">
                                             <?php echo $professores_item['nome']; ?>
                                         </option>
                                     <?php endforeach; ?>

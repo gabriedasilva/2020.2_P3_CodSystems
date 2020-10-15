@@ -32,11 +32,11 @@
                             <label for="cargo">Cargo:</label>
                             <select name="cargo" class="custom-select" id="inputGroupSelect01">
                                 <?php if ($cargo === "1") : ?>
-                                    <option selected value="1">Professor</option>
-                                    <option value="2">Administrador</option>
+                                    <option selected value="0">Professor</option>
+                                    <option value="1">Administrador</option>
                                 <?php else : ?>
-                                    <option value="1">Professor</option>
-                                    <option selected value="2">Administrador</option>
+                                    <option value="0">Professor</option>
+                                    <option selected value="1">Administrador</option>
                                 <?php endif; ?>
                             </select>
                         </div>

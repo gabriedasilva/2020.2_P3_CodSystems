@@ -36,8 +36,8 @@
                             <label for="cargo">Cargo:</label>
                             <select name="cargo" class="custom-select" id="inputGroupSelect01">
                                 <option selected>Selecione...</option>
-                                <option value="1">Professor</option>
-                                <option value="2">Administrador</option>
+                                <option value="0">Professor</option>
+                                <option value="1">Administrador</option>
                             </select>
                         </div>
                         <div class="p-2 bd-highlight">

@@ -47,7 +47,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -60,7 +60,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -73,7 +73,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -86,7 +86,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -102,7 +102,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -115,7 +115,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -128,7 +128,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -141,7 +141,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -157,7 +157,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -170,7 +170,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -183,7 +183,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -196,7 +196,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -212,7 +212,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -225,7 +225,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -238,7 +238,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -251,7 +251,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -267,7 +267,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -280,7 +280,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -293,7 +293,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -306,7 +306,7 @@
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['nome']; ?>">
+                                            <option value="<?php echo $disciplinas_item['id']; ?>">
                                                 <?php echo $disciplinas_item['nome']; ?>
                                             </option>
                                         <?php endforeach; ?>

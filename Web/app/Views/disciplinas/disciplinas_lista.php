@@ -44,7 +44,7 @@
                             <tr class="">
                                 <td><?php echo $disciplinas_item['id']; ?></td>
                                 <td><?php echo $disciplinas_item['nome']; ?></td>
-                                <td><?php echo $disciplinas_item['professor']; ?></td>
+                                <td><?php echo $disciplinas_item['nomeP']; ?></td>
                                 <td>
                                     <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('DisciplinasController/detalhes/' . $disciplinas_item['id']) ?>">
                                         <i class="fas fa-edit"></i>

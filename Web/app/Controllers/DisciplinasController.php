@@ -9,10 +9,17 @@ class DisciplinasController extends BaseController
 {
     public function index()
     {
-        $disciplinasModel = new Disciplinas();
+
+        $db = db_connect();
+
+        $builder = $db->table('disciplinas d');
+        $builder->select('d.id, d.nome, u.nome as nomeP');
+        $builder->join('usuarioweb u', 'd.professor = u.id');
+
+        $query = $builder->get();
 
         $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas()
+            'disciplinas' => $query->getResultArray(),
         ];
         return view('disciplinas/disciplinas_lista', $data);
     }
@@ -95,8 +102,16 @@ class DisciplinasController extends BaseController
         $disciplinasModel = new Disciplinas();
         $disciplinasModel->delete($id);
 
+        $db = db_connect();
+
+        $builder = $db->table('disciplinas d');
+        $builder->select('d.id, d.nome, u.nome as nomeP');
+        $builder->join('usuarioweb u', 'd.professor = u.id');
+
+        $query = $builder->get();
+
         $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas(),
+            'disciplinas' => $query->getResultArray(),
             'success' => "Cadastro excluído com sucesso!",
         ];
         return view('disciplinas/disciplinas_lista', $data);

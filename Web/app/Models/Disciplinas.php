@@ -9,6 +9,7 @@ class Disciplinas extends Model {
     protected $allowedFields = [
         'nome',
         'professor',
+        'professorid',
     ];
     /* protected $returnType = 'object'; */
 

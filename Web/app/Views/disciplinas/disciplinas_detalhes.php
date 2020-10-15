@@ -31,14 +31,15 @@
                         <div class="p-2 bd-highlight">
                             <label for="professor">Professor:</label>
                             <select name="professor" class="custom-select" id="inputGroupSelect01">
-                                <option selected value="<?php echo isset($professor) ? $professor : set_value('professor') ?>">
-                                    <?php echo isset($professor) ? $professor : set_value('professor') ?>
-                                </option>
                                 <?php if (!empty($professores) && is_array($professores)) : ?>
                                     <?php foreach ($professores as $professores_item) : ?>
-                                        <?php if ($professores_item['nome'] !== $professor) : ?>
-                                            <option value="<?php echo $professores_item['nome']; ?>">
+                                        <?php if ($professores_item['id'] !== $professor) : ?>
+                                            <option value="<?php echo $professores_item['id']; ?>">
                                                 <?php echo $professores_item['nome']; ?>
+                                            </option>
+                                        <?php else : ?>
+                                            <option selected value="<?php echo isset($professor) ? $professor : set_value('professor') ?>">
+                                                <?php echo isset($professores_item['nome']) ? $professores_item['nome'] : set_value('professor') ?>
                                             </option>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -47,7 +48,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
+                        <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
                     </div>
                 </form>
             </div>

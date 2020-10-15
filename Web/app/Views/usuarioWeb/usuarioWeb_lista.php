@@ -49,7 +49,7 @@
                                 <td><?php echo $usuarioWeb_item['email']; ?></td>
                                 <td><?php echo $usuarioWeb_item['telefone']; ?></td>
                                 <td>
-                                    <?php if ($usuarioWeb_item['cargo'] === "1") : ?>
+                                    <?php if ($usuarioWeb_item['cargo'] === "0") : ?>
                                         <?php echo "Professor" ?>
                                     <?php else : ?>
                                         <?php echo "Administrador" ?>

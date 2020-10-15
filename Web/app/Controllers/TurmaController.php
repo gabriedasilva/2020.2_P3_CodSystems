@@ -20,6 +20,18 @@ class TurmaController extends BaseController
 
     //--------------------------------------------------------------------
 
+    public function turmasProfessor()
+    {
+        $turmaModel = new Turma();
+
+        
+
+        $data = [
+            'turmas' => $turmaModel->turmasProfessor(),
+        ];
+        return view('home/homeProfessor', $data);
+    }
+    
     public function cadastroForm()
     {
         $disciplinasModel = new Disciplinas();
@@ -161,33 +173,33 @@ class TurmaController extends BaseController
     {
 
         $turmaModel = new Turma();
-        $userData = $turmaModel->find($id);
+        $turmaData = $turmaModel->find($id);
         $disciplinasModel = new Disciplinas();
 
         $data = [
             'disciplinas' => $disciplinasModel->getDisciplinas(),
-            'id' => $userData['id'],
-            'nome' => $userData['nome'],
-            'segA' => $userData['segA'],
-            'segB' => $userData['segB'],
-            'segC' => $userData['segC'],
-            'segD' => $userData['segD'],
-            'terA' => $userData['terA'],
-            'terB' => $userData['terB'],
-            'terC' => $userData['terC'],
-            'terD' => $userData['terD'],
-            'quaA' => $userData['quaA'],
-            'quaB' => $userData['quaB'],
-            'quaC' => $userData['quaC'],
-            'quaD' => $userData['quaD'],
-            'quiA' => $userData['quiA'],
-            'quiB' => $userData['quiB'],
-            'quiC' => $userData['quiC'],
-            'quiD' => $userData['quiD'],
-            'sexA' => $userData['sexA'],
-            'sexB' => $userData['sexB'],
-            'sexC' => $userData['sexC'],
-            'sexD' => $userData['sexD'],
+            'id' => $turmaData['id'],
+            'nome' => $turmaData['nome'],
+            'segA' => $turmaData['segA'],
+            'segB' => $turmaData['segB'],
+            'segC' => $turmaData['segC'],
+            'segD' => $turmaData['segD'],
+            'terA' => $turmaData['terA'],
+            'terB' => $turmaData['terB'],
+            'terC' => $turmaData['terC'],
+            'terD' => $turmaData['terD'],
+            'quaA' => $turmaData['quaA'],
+            'quaB' => $turmaData['quaB'],
+            'quaC' => $turmaData['quaC'],
+            'quaD' => $turmaData['quaD'],
+            'quiA' => $turmaData['quiA'],
+            'quiB' => $turmaData['quiB'],
+            'quiC' => $turmaData['quiC'],
+            'quiD' => $turmaData['quiD'],
+            'sexA' => $turmaData['sexA'],
+            'sexB' => $turmaData['sexB'],
+            'sexC' => $turmaData['sexC'],
+            'sexD' => $turmaData['sexD'],
         ];
         return view('turma/turma_detalhes', $data);
     }

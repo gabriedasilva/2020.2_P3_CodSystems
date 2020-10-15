@@ -42,4 +42,10 @@ class Turma extends Model
         return $this->asArray()->where(['id' => $id])->first();
     }
 
+    public function turmasProfessor($id = null)
+    {
+
+       return $this->findAll();
+
+    }
 }
