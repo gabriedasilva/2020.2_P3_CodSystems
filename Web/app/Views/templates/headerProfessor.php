@@ -32,7 +32,7 @@
                             <a class="nav-link" href="<?php echo base_url('MinhasTurmas') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
                         </li>
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="<?php echo base_url('Turmas') ?>">Turmas <i class="fas fa-chalkboard"></i></a>
+                            <a class="nav-link" href="#">Turmas <i class="fas fa-chalkboard"></i></a>
                         </li>
                     </ul>
                     <div class="btn-group dropleft">

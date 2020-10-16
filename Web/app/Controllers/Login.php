@@ -44,7 +44,7 @@ class Login extends BaseController
 						} else {
 							$turmaModel = new Turma();
 							$data = [
-								'turmas' => $turmaModel->turmasProfessor(),
+								'turmas' => $turmaModel->turmasProfessor(session()->get('id')),
 							];
 							return view('Home/homeProfessor',$data);
 						}

@@ -27,7 +27,7 @@ class TurmaController extends BaseController
         
 
         $data = [
-            'turmas' => $turmaModel->turmasProfessor(),
+            'turmas' => $turmaModel->turmasProfessor(session()->get('id')),
         ];
         return view('home/homeProfessor', $data);
     }

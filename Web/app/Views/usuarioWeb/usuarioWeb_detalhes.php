@@ -31,7 +31,7 @@
                         <div class="p-2 bd-highlight">
                             <label for="cargo">Cargo:</label>
                             <select name="cargo" class="custom-select" id="inputGroupSelect01">
-                                <?php if ($cargo === "1") : ?>
+                                <?php if ($cargo === "0") : ?>
                                     <option selected value="0">Professor</option>
                                     <option value="1">Administrador</option>
                                 <?php else : ?>
