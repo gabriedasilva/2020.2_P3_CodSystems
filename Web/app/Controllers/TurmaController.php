@@ -24,14 +24,14 @@ class TurmaController extends BaseController
     {
         $turmaModel = new Turma();
 
-        
+
 
         $data = [
             'turmas' => $turmaModel->turmasProfessor(session()->get('id')),
         ];
-        return view('home/homeProfessor', $data);
+        return view('professor_panel/professor_turmas', $data);
     }
-    
+
     public function cadastroForm()
     {
         $disciplinasModel = new Disciplinas();
@@ -48,23 +48,18 @@ class TurmaController extends BaseController
         $usuarioMobModel = new UsuarioMob();
         $turmaModel = new Turma();
 
-        /* $db = db_connect();
-        $usuarioMobModel = new UsuarioMob();
-
-        $builder = $db->table('usuariomob');
-        $builder->select('usuariomob.id, usuariomob.nomeAluno, usuariomob.matricula, turma.nome');
-        $builder->join('turma', 'usuariomob.turma = turma.id');
-
-        $query = $builder->get(); */
-
-
         $data = [
             'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
                 ->findAll(),
             'turma' => $turmaModel->where('id', $idTurma)
                 ->first(),
         ];
-        return view('turma/turma_alunos', $data);
+
+        if ((session()->get('cargo')) === "1") {
+            return view('turma/turma_alunos', $data);
+        } else {
+            return view('professor_panel/professor_turmaAlunos', $data);
+        }
     }
 
     public function perfilEscolar($id)
@@ -91,7 +86,12 @@ class TurmaController extends BaseController
             'notaProva2bm' => $userData['notaProva2bm'],
             'notaMedia2bm' => $userData['notaMedia2bm'],
         ];
-        return view('turma/turma_alunoPerfil', $data);
+
+        if ((session()->get('cargo')) === "1") {
+            return view('turma/turma_alunoPerfil', $data);
+        } else {
+            return view('professor_panel/alunoPerfil', $data);
+        }
     }
 
     public function realizarCadastro()
@@ -201,6 +201,7 @@ class TurmaController extends BaseController
             'sexC' => $turmaData['sexC'],
             'sexD' => $turmaData['sexD'],
         ];
+
         return view('turma/turma_detalhes', $data);
     }
 
@@ -276,5 +277,68 @@ class TurmaController extends BaseController
             'success' => "Cadastro excluído com sucesso!",
         ];
         return view('turma/turma_lista', $data);
+    }
+
+    public function horarioProfessor()
+    {
+        $turmaModel = new Turma();
+
+        $data = [
+            'horarioSeg' => $turmaModel->horarioSeg(session()->get('id')),
+            'horarioTer' => $turmaModel->horarioTer(session()->get('id')),
+            'horarioQua' => $turmaModel->horarioQua(session()->get('id')),
+        ];
+        return view('home/homeProfessor', $data);
+    }
+
+    //--------------------------------------------------------------------
+
+    public function detalhesTurma($idTurma)
+    {
+        $turmaModel = new Turma();
+        $usuarioMobModel = new UsuarioMob();
+        $disciplinasModel = new Disciplinas();
+
+        $data = [
+            'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
+                ->findAll(),
+            'turma' => $turmaModel->getTurmas($idTurma),
+        ];
+        return view('professor_panel/detalhes_turma', $data);
+    }
+
+    public function detalhesTurmaProfessor($id)
+    {
+
+        $turmaModel = new Turma();
+        $turmaData = $turmaModel->find($id);
+        $disciplinasModel = new Disciplinas();
+
+        $data = [
+            'disciplinas' => $disciplinasModel->getDisciplinas(),
+            'id' => $turmaData['id'],
+            'nome' => $turmaData['nome'],
+            'segA' => $turmaData['segA'],
+            'segB' => $turmaData['segB'],
+            'segC' => $turmaData['segC'],
+            'segD' => $turmaData['segD'],
+            'terA' => $turmaData['terA'],
+            'terB' => $turmaData['terB'],
+            'terC' => $turmaData['terC'],
+            'terD' => $turmaData['terD'],
+            'quaA' => $turmaData['quaA'],
+            'quaB' => $turmaData['quaB'],
+            'quaC' => $turmaData['quaC'],
+            'quaD' => $turmaData['quaD'],
+            'quiA' => $turmaData['quiA'],
+            'quiB' => $turmaData['quiB'],
+            'quiC' => $turmaData['quiC'],
+            'quiD' => $turmaData['quiD'],
+            'sexA' => $turmaData['sexA'],
+            'sexB' => $turmaData['sexB'],
+            'sexC' => $turmaData['sexC'],
+            'sexD' => $turmaData['sexD'],
+        ];
+        return view('professor_panel/horarios_turma', $data);
     }
 }

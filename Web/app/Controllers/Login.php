@@ -43,10 +43,13 @@ class Login extends BaseController
 							return view('Home/home');
 						} else {
 							$turmaModel = new Turma();
+
 							$data = [
-								'turmas' => $turmaModel->turmasProfessor(session()->get('id')),
+								'horarioSeg' => $turmaModel->horarioSeg(session()->get('id')),
+								'horarioTer' => $turmaModel->horarioTer(session()->get('id')),
+								'horarioQua' => $turmaModel->horarioQua(session()->get('id')),
 							];
-							return view('Home/homeProfessor',$data);
+							return view('Home/homeProfessor', $data);
 						}
 					}
 				}
