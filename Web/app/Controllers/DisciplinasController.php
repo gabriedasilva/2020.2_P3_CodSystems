@@ -52,10 +52,18 @@ class DisciplinasController extends BaseController
                 'professor' => $this->request->getPost('professor'),
             ]);
 
-            $data['success'] = "Cadastro realizado com sucesso!";
+            $professorModel = new UsuarioWeb();
+            $data = [
+                'success' => "Cadastro realizado com sucesso!",
+                'professores' => $professorModel->getUsuarios(),
+            ];
             return view('disciplinas/disciplinas_cadastro', $data);
         } else {
-            $data['fail'] = "Preencha os dados corretamente e tente de novo!";
+            $professorModel = new UsuarioWeb();
+            $data = [
+                'fail' => "Preencha os dados corretamente e tente de novo!",
+                'professores' => $professorModel->getUsuarios(),
+            ];
             return view('disciplinas/disciplinas_cadastro', $data);
         }
     }

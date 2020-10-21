@@ -29,10 +29,10 @@
                 <div class="collapse navbar-collapse h5" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="<?php echo base_url('MinhasTurmas') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
+                            <a class="nav-link" href="<?php echo base_url('Home/professor') ?>">Home <span class="sr-only">(current)</span> <i class="fas fa-home"></i></a>
                         </li>
                         <li class="nav-item pr-2">
-                            <a class="nav-link" href="#">Turmas <i class="fas fa-chalkboard"></i></a>
+                            <a class="nav-link" href="<?php echo base_url('MinhasTurmas') ?>">Turmas <i class="fas fa-chalkboard"></i></a>
                         </li>
                     </ul>
                     <div class="btn-group dropleft">
