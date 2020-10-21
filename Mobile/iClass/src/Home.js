@@ -1,15 +1,19 @@
 import React from 'react';
 import { View, Text,StyleSheet } from 'react-native';
+import { FAB } from 'react-native-paper';
+
 
 export default function Home() {
   return (
     <View
     style={styles.bgHome}
     >
-      <View style={styles.div1}>
-    <Text>aqui</Text>
-      </View>
-      <Text>Home</Text>
+     <FAB
+    style={styles.fab}
+    medium
+    icon='icon'
+    onPress={() => console.log('Pressed')}
+  />
      </View>
   );
 
@@ -22,7 +26,14 @@ bgHome:{
 },
 div1:{
   backgroundColor:'#2196f3',
-}
+},
+fab: {
+  position: 'absolute',
+  margin: 20,
+  right: 0,
+  bottom: 10,
+  backgroundColor:'#2196f3'
+},
 
 
 });
