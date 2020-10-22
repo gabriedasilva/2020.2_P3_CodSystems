@@ -102,26 +102,26 @@ class TurmaController extends BaseController
 
         $rules = [
             'nome' => 'required',
-            'segA' => 'required',
-            'segB' => 'required',
-            'segC' => 'required',
-            'segD' => 'required',
-            'terA' => 'required',
-            'terB' => 'required',
-            'terC' => 'required',
-            'terD' => 'required',
-            'quaA' => 'required',
-            'quaB' => 'required',
-            'quaC' => 'required',
-            'quaD' => 'required',
-            'quiA' => 'required',
-            'quiB' => 'required',
-            'quiC' => 'required',
-            'quiD' => 'required',
-            'sexA' => 'required',
-            'sexB' => 'required',
-            'sexC' => 'required',
-            'sexD' => 'required',
+            'segA' => 'required|unico_entre_turmas[segA]',
+            'segB' => 'required|unico_entre_turmas[segB]',
+            'segC' => 'required|unico_entre_turmas[segC]',
+            'segD' => 'required|unico_entre_turmas[segD]',
+            'terA' => 'required|unico_entre_turmas[terA]',
+            'terB' => 'required|unico_entre_turmas[terB]',
+            'terC' => 'required|unico_entre_turmas[terC]',
+            'terD' => 'required|unico_entre_turmas[terD]',
+            'quaA' => 'required|unico_entre_turmas[quaA]',
+            'quaB' => 'required|unico_entre_turmas[quaB]',
+            'quaC' => 'required|unico_entre_turmas[quaC]',
+            'quaD' => 'required|unico_entre_turmas[quaD]',
+            'quiA' => 'required|unico_entre_turmas[quiA]',
+            'quiB' => 'required|unico_entre_turmas[quiB]',
+            'quiC' => 'required|unico_entre_turmas[quiC]',
+            'quiD' => 'required|unico_entre_turmas[quiD]',
+            'sexA' => 'required|unico_entre_turmas[sexA]',
+            'sexB' => 'required|unico_entre_turmas[sexB]',
+            'sexC' => 'required|unico_entre_turmas[sexC]',
+            'sexD' => 'required|unico_entre_turmas[sexD]',
         ];
 
         if ($this->validate($rules)) {
@@ -308,39 +308,5 @@ class TurmaController extends BaseController
         ];
         return view('professor_panel/detalhes_turma', $data);
     }
-
-    public function detalhesTurmaProfessor($id)
-    {
-
-        $turmaModel = new Turma();
-        $turmaData = $turmaModel->find($id);
-        $disciplinasModel = new Disciplinas();
-
-        $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas(),
-            'id' => $turmaData['id'],
-            'nome' => $turmaData['nome'],
-            'segA' => $turmaData['segA'],
-            'segB' => $turmaData['segB'],
-            'segC' => $turmaData['segC'],
-            'segD' => $turmaData['segD'],
-            'terA' => $turmaData['terA'],
-            'terB' => $turmaData['terB'],
-            'terC' => $turmaData['terC'],
-            'terD' => $turmaData['terD'],
-            'quaA' => $turmaData['quaA'],
-            'quaB' => $turmaData['quaB'],
-            'quaC' => $turmaData['quaC'],
-            'quaD' => $turmaData['quaD'],
-            'quiA' => $turmaData['quiA'],
-            'quiB' => $turmaData['quiB'],
-            'quiC' => $turmaData['quiC'],
-            'quiD' => $turmaData['quiD'],
-            'sexA' => $turmaData['sexA'],
-            'sexB' => $turmaData['sexB'],
-            'sexC' => $turmaData['sexC'],
-            'sexD' => $turmaData['sexD'],
-        ];
-        return view('professor_panel/horarios_turma', $data);
-    }
+  
 }

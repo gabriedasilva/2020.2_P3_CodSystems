@@ -146,7 +146,11 @@ class Turma extends Model
                 }
             }
 
-            return $result;
+            if (isset($result)) {
+                return $result;
+            } else {
+                return $result = null;
+            }
         } else {
             return;
         }
@@ -191,7 +195,11 @@ class Turma extends Model
                 }
             }
 
-            return $result;
+            if (isset($result)) {
+                return $result;
+            } else {
+                return $result = null;
+            }
         } else {
             return;
         }
@@ -236,7 +244,11 @@ class Turma extends Model
                 }
             }
 
-            return $result;
+            if (isset($result)) {
+                return $result;
+            } else {
+                return $result = null;
+            }
         } else {
             return;
         }
@@ -280,7 +292,11 @@ class Turma extends Model
                 }
             }
 
-            return $result;
+            if (isset($result)) {
+                return $result;
+            } else {
+                return $result = null;
+            }
         } else {
             return;
         }
@@ -324,7 +340,11 @@ class Turma extends Model
                 }
             }
 
-            return $result;
+            if (isset($result)) {
+                return $result;
+            } else {
+                return $result = null;
+            }
         } else {
             return;
         }
