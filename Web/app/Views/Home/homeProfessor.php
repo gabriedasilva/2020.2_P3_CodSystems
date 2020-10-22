@@ -133,9 +133,77 @@
                 </div>
                 <div class="border m-1 p-1" style="background-color: #EEEEEE; width:220px;">
                     <h5 class="mt-3">Quinta-Feira</h5>
+                    <?php if (isset($horarioQui)) : ?>
+                        <div class="m-1 mt-4">
+                            <label for="quiA">Horário A:</label>
+                            <a name="quiA" <?php isset($horarioQui['quiA']) ? print "href=" . base_url('Detalhes/turma/' . $horarioQui['idA']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioQui['quiA']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioQui['quiA']) ? print $horarioQui['quiA'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioQui['nomeDisA']) ? print " - " . $horarioQui['nomeDisA'] : print ""; ?>
+                            </a>
+                        </div>
+                        <div class="m-1">
+                            <label for="quiB">Horário B:</label>
+                            <a name="quiB" <?php isset($horarioQui['quiB']) ? print "href=" . base_url('Detalhes/turma/' . $horarioQui['idB']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioQui['quiB']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioQui['quiB']) ? print $horarioQui['quiB'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioQui['nomeDisB']) ? print " - " . $horarioQui['nomeDisB'] : print ""; ?>
+                            </a>
+                        </div>
+                        <div class="m-1">
+                            <label for="quiC">Horário C:</label>
+                            <a name="quiC" <?php isset($horarioQui['quiC']) ? print "href=" . base_url('Detalhes/turma/' . $horarioQui['idC']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioQui['quiC']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioQui['quiC']) ? print $horarioQui['quiC'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioQui['nomeDisC']) ? print " - " . $horarioQui['nomeDisC'] : print ""; ?>
+                            </a>
+                        </div>
+                        <div class="m-1">
+                            <label for="quiD">Horário D:</label>
+                            <a name="quiA" <?php isset($horarioQui['quiD']) ? print "href=" . base_url('Detalhes/turma/' . $horarioQui['idD']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioQui['quiD']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioQui['quiD']) ? print $horarioQui['quiD'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioQui['nomeDisD']) ? print " - " . $horarioQui['nomeDisD'] : print ""; ?>
+                            </a>
+                        </div>
+                    <?php else : ?>
+                        <div class="d-flex justify-content-center" style="height:80%; margin: auto;">
+                            <strong class="align-self-center mb-6">Não há aulas para esse dia.</strong>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="border m-1 p-1" style="background-color: #EEEEEE; width:220px;">
                     <h5 class="mt-3">Sexta-Feira</h5>
+                    <?php if (isset($horarioSex)) : ?>
+                        <div class="m-1 mt-4">
+                            <label for="sexA">Horário A:</label>
+                            <a name="sexA" <?php isset($horarioSex['sexA']) ? print "href=" . base_url('Detalhes/turma/' . $horarioSex['idA']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioSex['sexA']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioSex['sexA']) ? print $horarioSex['sexA'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioSex['nomeDisA']) ? print " - " . $horarioSex['nomeDisA'] : print ""; ?>
+                            </a>
+                        </div>
+                        <div class="m-1">
+                            <label for="sexB">Horário B:</label>
+                            <a name="sexB" <?php isset($horarioSex['sexB']) ? print "href=" . base_url('Detalhes/turma/' . $horarioSex['idB']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioSex['sexB']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioSex['sexB']) ? print $horarioSex['sexB'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioSex['nomeDisB']) ? print " - " . $horarioSex['nomeDisB'] : print ""; ?>
+                            </a>
+                        </div>
+                        <div class="m-1">
+                            <label for="sexC">Horário C:</label>
+                            <a name="sexC" <?php isset($horarioSex['sexC']) ? print "href=" . base_url('Detalhes/turma/' . $horarioSex['idC']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioSex['sexC']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioSex['sexC']) ? print $horarioSex['sexC'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioSex['nomeDisC']) ? print " - " . $horarioSex['nomeDisC'] : print ""; ?>
+                            </a>
+                        </div>
+                        <div class="m-1">
+                            <label for="sexD">Horário D:</label>
+                            <a name="sexA" <?php isset($horarioSex['sexD']) ? print "href=" . base_url('Detalhes/turma/' . $horarioSex['idD']) : print "#" ?> class="btn btn-outline-primary btn-block <?php !isset($horarioSex['sexD']) ? print " disabled" : print ""; ?>" style="min-height: 38px;">
+                                <?php isset($horarioSex['sexD']) ? print $horarioSex['sexD'] : print "Nenhuma Turma"; ?>
+                                <?php isset($horarioSex['nomeDisD']) ? print " - " . $horarioSex['nomeDisD'] : print ""; ?>
+                            </a>
+                        </div>
+                    <?php else : ?>
+                        <div class="d-flex justify-content-center" style="height:80%; margin: auto;">
+                            <strong class="align-self-center mb-6">Não há aulas para esse dia.</strong>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

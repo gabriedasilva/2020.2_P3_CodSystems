@@ -287,6 +287,8 @@ class TurmaController extends BaseController
             'horarioSeg' => $turmaModel->horarioSeg(session()->get('id')),
             'horarioTer' => $turmaModel->horarioTer(session()->get('id')),
             'horarioQua' => $turmaModel->horarioQua(session()->get('id')),
+            'horarioQui' => $turmaModel->horarioQui(session()->get('id')),
+            'horarioSex' => $turmaModel->horarioSex(session()->get('id')),
         ];
         return view('home/homeProfessor', $data);
     }
