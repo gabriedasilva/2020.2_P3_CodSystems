@@ -12,7 +12,7 @@
 <div style="background-color: #EEEEEE; height: 100%;" class="d-flex flex-row">
     <!-- FLEX menu lateral-->
     <nav class="nav flex-column bg-dark h5 p-2" style="max-width:175px; min-width: 175px;">
-        <a class="d-flex align-items-center nav-link text-light mt-1" href="#">
+        <a class="d-flex align-items-center nav-link text-light mt-1" href="<?php echo base_url('Detalhes/turma/' . $turmaId . '/' . $idDisciplina) ?>">
             <div class="d-flex flex-fill">
                 <i class="fas fa-arrow-circle-left"></i>
             </div>
@@ -33,7 +33,7 @@
                 <form class="p-1 m-1" action="<?php echo base_url('UsuarioMobController/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-rowbd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
-                        <div class="p-2 bd-highlight mt-3"  style="margin: auto;">
+                        <div class="p-2 bd-highlight mt-3" style="margin: auto;">
                             <i class="fas fa-user-circle fa-5x"></i>
                         </div>
                         <div class="d-flex flex-column" style="margin: auto;">

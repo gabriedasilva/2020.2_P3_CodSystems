@@ -77,6 +77,7 @@ class TurmaController extends BaseController
             'matricula' => $userData['matricula'],
             'nomeResponsavel' => $userData['nomeResponsavel'],
             'turma' => $turmaNome,
+            'turmaId' => $userData['turma'],
             'telefone' => $userData['telefone'],
             'faltas' => $userData['faltas'],
             'notaParcial' => $userData['notaParcial'],
@@ -85,6 +86,40 @@ class TurmaController extends BaseController
             'notaParcial2bm' => $userData['notaParcial2bm'],
             'notaProva2bm' => $userData['notaProva2bm'],
             'notaMedia2bm' => $userData['notaMedia2bm'],
+        ];
+
+        if ((session()->get('cargo')) === "1") {
+            return view('turma/turma_alunoPerfil', $data);
+        } else {
+            return view('professor_panel/alunoPerfil', $data);
+        }
+    }
+
+    public function fichaEscolar($id, $idDisciplina)
+    {
+
+        $userMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
+        $userData = $userMobModel->find($id);
+        $turmaNome = $turmaModel->where('id', $userData['turma'])
+            ->first();
+
+        $data = [
+            'id' => $userData['id'],
+            'nomeAluno' => $userData['nomeAluno'],
+            'matricula' => $userData['matricula'],
+            'nomeResponsavel' => $userData['nomeResponsavel'],
+            'turma' => $turmaNome,
+            'turmaId' => $userData['turma'],
+            'telefone' => $userData['telefone'],
+            'faltas' => $userData['faltas'],
+            'notaParcial' => $userData['notaParcial'],
+            'notaProva' => $userData['notaProva'],
+            'notaMedia' => $userData['notaMedia'],
+            'notaParcial2bm' => $userData['notaParcial2bm'],
+            'notaProva2bm' => $userData['notaProva2bm'],
+            'notaMedia2bm' => $userData['notaMedia2bm'],
+            'idDisciplina' => $idDisciplina,
         ];
 
         if ((session()->get('cargo')) === "1") {
@@ -295,7 +330,7 @@ class TurmaController extends BaseController
 
     //--------------------------------------------------------------------
 
-    public function detalhesTurma($idTurma)
+    public function detalhesTurma($idTurma, $idDisciplina)
     {
         $turmaModel = new Turma();
         $usuarioMobModel = new UsuarioMob();
@@ -305,6 +340,7 @@ class TurmaController extends BaseController
             'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
                 ->findAll(),
             'turma' => $turmaModel->getTurmas($idTurma),
+            'idDisciplina' => $idDisciplina,
         ];
         return view('professor_panel/detalhes_turma', $data);
     }
