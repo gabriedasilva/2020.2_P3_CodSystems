@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Models\Atividade;
 use App\Models\Disciplinas;
+use App\Models\Turma;
 use App\Models\UsuarioWeb;
+use CodeIgniter\I18n\Time;
 
 class AtividadeController extends BaseController
 {
@@ -12,11 +14,13 @@ class AtividadeController extends BaseController
     {
 
         $atividadeModel = new Atividade();
+        $turmaModel = new Turma();
+        $disciplinasModel = new Disciplinas();
 
         $data = [
             'atividades' => $atividadeModel->getAtividadesTurma($idTurma, $idDisciplina),
-            'idTurma' => $idTurma,
-            'idDisciplina' => $idDisciplina,
+            'turma' => $turmaModel->getTurmas($idTurma),
+            'disciplina' => $disciplinasModel->getDisciplinas($idDisciplina),
         ];
 
         return view('professor_panel/atividades/atividades_lista', $data);
@@ -26,10 +30,12 @@ class AtividadeController extends BaseController
 
     public function cadastroForm($idTurma, $idDisciplina)
     {
+        $turmaModel = new Turma();
+        $disciplinasModel = new Disciplinas();
+
         $data = [
-            'professor' => session()->get('id'),
-            'idTurma' => $idTurma,
-            'idDisciplina' => $idDisciplina,
+            'turma' => $turmaModel->getTurmas($idTurma),
+            'disciplina' => $disciplinasModel->getDisciplinas($idDisciplina),
         ];
 
         return view('professor_panel/atividades/atividades_cadastro', $data);
@@ -39,31 +45,57 @@ class AtividadeController extends BaseController
     {
 
         helper('form');
-        $disciplinasModel = new Disciplinas();
+        $atividadeModel = new Atividade();
         $rules = [
-            'nome' => 'required',
-            'professor' => 'required',
+            'titulo' => 'required|max_length[40]',
+            'descricao' => 'required|max_length[400]',
+            'entrega' => 'required|valid_date',
+            'idTurma' => 'required|integer',
+            'idDisciplina' => 'required|integer',
         ];
 
         if ($this->validate($rules)) {
-            $disciplinasModel->save([
-                'nome' => $this->request->getPost('nome'),
-                'professor' => $this->request->getPost('professor'),
-            ]);
+            $horarioAtual = new Time('now');
+            $turmaModel = new Turma();
+            $disciplinasModel = new Disciplinas();
 
-            $professorModel = new UsuarioWeb();
-            $data = [
-                'success' => "Cadastro realizado com sucesso!",
-                'professores' => $professorModel->getUsuarios(),
-            ];
-            return view('disciplinas/disciplinas_cadastro', $data);
+            if ($horarioAtual->isBefore($this->request->getPost('entrega'))) {
+                $atividadeModel->save([
+                    'titulo' => $this->request->getPost('titulo'),
+                    'descricao' => $this->request->getPost('descricao'),
+                    'entrega' => $this->request->getPost('entrega'),
+                    'idTurma' => $this->request->getPost('idTurma'),
+                    'idDisciplina' => $this->request->getPost('idDisciplina'),
+                ]);
+
+
+                $data = [
+                    'success' => "Cadastro realizado com sucesso!",
+                    'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
+                    'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
+                    'atividades' => $atividadeModel->getAtividadesTurma($this->request->getPost('idTurma'), $this->request->getPost('idDisciplina')),
+                ];
+
+                return view('professor_panel/atividades/atividades_lista', $data);
+            } else {
+                $data = [
+                    'fail' => "A data/hora de entrega da atividade deve ser posterior a data/hora atual!",
+                    'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
+                    'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
+                ];
+
+                return view('professor_panel/atividades/atividades_cadastro', $data);
+            }
         } else {
-            $professorModel = new UsuarioWeb();
+            $turmaModel = new Turma();
+            $disciplinasModel = new Disciplinas();
+
             $data = [
                 'fail' => "Preencha os dados corretamente e tente de novo!",
-                'professores' => $professorModel->getUsuarios(),
+                'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
+                'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
             ];
-            return view('disciplinas/disciplinas_cadastro', $data);
+            return view('professor_panel/atividades/atividades_cadastro', $data);
         }
     }
 

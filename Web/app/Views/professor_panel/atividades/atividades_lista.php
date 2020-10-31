@@ -1,10 +1,19 @@
 <?php echo $this->include('templates/headerProfessor') ?>
 
+<script>
+    function excluirCadastro() {
+        if (confirm('Deseja realmente exluir essa atividade?')) {
+            return true;
+        }
+        return false;
+    }
+</script>
+
 <!-- FLEX for Errors -->
-<div style="background-color: #FBC02D;">
+<div >
     <?php if (isset($success)) : ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo \Config\Services::validation()->listErrors(); ?>
+        <div class="alert alert-success text-center mb-0" role="alert">
+            <?php echo $success ?>
         </div>
     <?php endif ?>
 </div>
@@ -16,7 +25,7 @@
     <div style="background-color: #EEEEEE; overflow: auto;" class="flex-fill flex-grow-1">
         <!-- Title of page -->
         <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
-            <h3>Atividades da turma: <"Nome da turma">
+            <h3>Atividades da turma <?php echo $turma['nome']?> da disciplina <?php echo $disciplina['nome']?>
             </h3>
         </div>
         <?php if (!empty($atividades) && is_array($atividades)) : ?>
@@ -39,7 +48,7 @@
                                         </a>
                                     </div>
                                     <div class="m-2">
-                                        <a class="btn btn-danger btn-lg" href="#">Excluir
+                                        <a class="btn btn-danger btn-lg" href="<?php echo base_url('Atividades/excluir')?>">Excluir
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
