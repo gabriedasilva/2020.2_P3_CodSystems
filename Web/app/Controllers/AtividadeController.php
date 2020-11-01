@@ -136,23 +136,19 @@ class AtividadeController extends BaseController
         return view('disciplinas/disciplinas_detalhes', $data);
     }
 
-    public function excluirCadastro($id)
+    public function excluirCadastro($idAtividade, $idTurma, $idDisciplina)
     {
+        $turmaModel = new Turma();
         $disciplinasModel = new Disciplinas();
-        $disciplinasModel->delete($id);
-
-        $db = db_connect();
-
-        $builder = $db->table('disciplinas d');
-        $builder->select('d.id, d.nome, u.nome as nomeP');
-        $builder->join('usuarioweb u', 'd.professor = u.id');
-
-        $query = $builder->get();
+        $atividadeModel = new Atividade();
+        $atividadeModel->delete($idAtividade);
 
         $data = [
-            'disciplinas' => $query->getResultArray(),
-            'success' => "Cadastro excluído com sucesso!",
+            'atividades' => $atividadeModel->getAtividadesTurma($idTurma, $idDisciplina),
+            'turma' => $turmaModel->getTurmas($idTurma),
+            'disciplina' => $disciplinasModel->getDisciplinas($idDisciplina),
+            'success' => "Atividade excluída com sucesso!",
         ];
-        return view('disciplinas/disciplinas_lista', $data);
+        return view('professor_panel/atividades/atividades_lista', $data);
     }
 }

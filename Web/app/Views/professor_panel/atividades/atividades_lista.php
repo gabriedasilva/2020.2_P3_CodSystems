@@ -10,7 +10,7 @@
 </script>
 
 <!-- FLEX for Errors -->
-<div >
+<div>
     <?php if (isset($success)) : ?>
         <div class="alert alert-success text-center mb-0" role="alert">
             <?php echo $success ?>
@@ -25,7 +25,7 @@
     <div style="background-color: #EEEEEE; overflow: auto;" class="flex-fill flex-grow-1">
         <!-- Title of page -->
         <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
-            <h3>Atividades da turma <?php echo $turma['nome']?> da disciplina <?php echo $disciplina['nome']?>
+            <h3>Atividades da turma <?php echo $turma['nome'] ?> da disciplina <?php echo $disciplina['nome'] ?>
             </h3>
         </div>
         <?php if (!empty($atividades) && is_array($atividades)) : ?>
@@ -48,7 +48,7 @@
                                         </a>
                                     </div>
                                     <div class="m-2">
-                                        <a class="btn btn-danger btn-lg" href="<?php echo base_url('Atividades/excluir')?>">Excluir
+                                        <a class="btn btn-danger btn-lg" href="<?php echo base_url('Atividades/excluir/' . $atividades_item['id'] . '/' . $turma['id'] . '/' . $disciplina['id']) ?>" onclick="return excluirCadastro()">Excluir
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -74,5 +74,7 @@
 <div style="background-color: #2196F3;" class="d-flex">
 
 </div>
+
+<script src="http://localhost/2020.2_P3_CodSystems/Web/assets/js/atividade_excluir.js"></script>
 
 <?php echo $this->include('templates/footer') ?>

@@ -76,6 +76,7 @@ $routes->get('Detalhes/turma/(:num)/(:num)', 'TurmaController::detalhesTurma/$1/
 $routes->get('Atividades/(:num)/(:num)', 'AtividadeController::index/$1/$2');
 $routes->get('Atividades/cadastro/(:num)/(:num)', 'AtividadeController::cadastroForm/$1/$2');
 $routes->post('Atividades/cadastrar', 'AtividadeController::realizarCadastro');
+$routes->get('Atividades/excluir/(:num)/(:num)/(:num)', 'AtividadeController::excluirCadastro/$1/$2/$3');
 
 
 /**
