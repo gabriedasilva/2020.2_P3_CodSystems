@@ -12,7 +12,7 @@
 <div style="background-color: #EEEEEE; height: 100%;" class="d-flex flex-row">
     <!-- FLEX menu lateral-->
     <nav class="nav flex-column bg-dark h5 p-2" style="max-width:175px; min-width: 175px;">
-        <a class="d-flex align-items-center nav-link text-light mt-1" href="#">
+        <a class="d-flex align-items-center nav-link text-light mt-1" href="<?php echo base_url('Home/professor') ?>">
             <div class="d-flex flex-fill">
                 <i class="fas fa-arrow-circle-left"></i>
             </div>
@@ -52,7 +52,7 @@
                                         <td><?php echo $alunosTurma_item['nomeAluno']; ?></td>
                                         <td><?php echo $alunosTurma_item['matricula']; ?></td>
                                         <td class="d-flex justify-content-center">
-                                            <a style="max-width: 50px;" class="btn btn-info btn-block" href="<?php echo base_url('Turma/perfil/' . $alunosTurma_item['id']) ?>">
+                                            <a style="max-width: 50px;" class="btn btn-info btn-block" href="<?php echo base_url('Turma/ficha/' . $alunosTurma_item['id']) . '/' . $idDisciplina ?>">
                                                 <i class="fas fa-address-card fa-lg"></i>
                                             </a>
                                         </td>
@@ -77,7 +77,8 @@
                         <h3 class="d-flex justify-content-center align-items-center w-100 h-25">Detalhes:</h3>
                         <div class="d-flex justify-content-center align-items-center w-100 h-75 ">
                             <div class="mb-5">
-                                <span>Disciplina: </span>
+                                <label for="disciplina">Disciplina: <?php isset($idDisciplina) ? print $idDisciplina : print "" ?></label>
+                                <span name="disciplina"> </span>
                             </div>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
                         <div class="d-flex justify-content-center align-items-center w-100 h-75 ">
                             <div class="d-flex justify-content-center mb-5">
                                 <div class="m-2">
-                                    <a class="btn btn-info btn-lg shadow-sm" href="#">
+                                    <a class="btn btn-info btn-lg shadow-sm" href="<?php echo base_url('Atividades/' . $turma['id']) . '/' . $idDisciplina ?>">
                                         <span>Atividades</span>
                                         <i class="fas fa-pencil-ruler"></i>
                                     </a>

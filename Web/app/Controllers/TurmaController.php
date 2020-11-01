@@ -77,6 +77,7 @@ class TurmaController extends BaseController
             'matricula' => $userData['matricula'],
             'nomeResponsavel' => $userData['nomeResponsavel'],
             'turma' => $turmaNome,
+            'turmaId' => $userData['turma'],
             'telefone' => $userData['telefone'],
             'faltas' => $userData['faltas'],
             'notaParcial' => $userData['notaParcial'],
@@ -94,6 +95,40 @@ class TurmaController extends BaseController
         }
     }
 
+    public function fichaEscolar($id, $idDisciplina)
+    {
+
+        $userMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
+        $userData = $userMobModel->find($id);
+        $turmaNome = $turmaModel->where('id', $userData['turma'])
+            ->first();
+
+        $data = [
+            'id' => $userData['id'],
+            'nomeAluno' => $userData['nomeAluno'],
+            'matricula' => $userData['matricula'],
+            'nomeResponsavel' => $userData['nomeResponsavel'],
+            'turma' => $turmaNome,
+            'turmaId' => $userData['turma'],
+            'telefone' => $userData['telefone'],
+            'faltas' => $userData['faltas'],
+            'notaParcial' => $userData['notaParcial'],
+            'notaProva' => $userData['notaProva'],
+            'notaMedia' => $userData['notaMedia'],
+            'notaParcial2bm' => $userData['notaParcial2bm'],
+            'notaProva2bm' => $userData['notaProva2bm'],
+            'notaMedia2bm' => $userData['notaMedia2bm'],
+            'idDisciplina' => $idDisciplina,
+        ];
+
+        if ((session()->get('cargo')) === "1") {
+            return view('turma/turma_alunoPerfil', $data);
+        } else {
+            return view('professor_panel/alunoPerfil', $data);
+        }
+    }
+
     public function realizarCadastro()
     {
 
@@ -102,26 +137,26 @@ class TurmaController extends BaseController
 
         $rules = [
             'nome' => 'required',
-            'segA' => 'required',
-            'segB' => 'required',
-            'segC' => 'required',
-            'segD' => 'required',
-            'terA' => 'required',
-            'terB' => 'required',
-            'terC' => 'required',
-            'terD' => 'required',
-            'quaA' => 'required',
-            'quaB' => 'required',
-            'quaC' => 'required',
-            'quaD' => 'required',
-            'quiA' => 'required',
-            'quiB' => 'required',
-            'quiC' => 'required',
-            'quiD' => 'required',
-            'sexA' => 'required',
-            'sexB' => 'required',
-            'sexC' => 'required',
-            'sexD' => 'required',
+            'segA' => 'required|unico_entre_turmas[segA]',
+            'segB' => 'required|unico_entre_turmas[segB]',
+            'segC' => 'required|unico_entre_turmas[segC]',
+            'segD' => 'required|unico_entre_turmas[segD]',
+            'terA' => 'required|unico_entre_turmas[terA]',
+            'terB' => 'required|unico_entre_turmas[terB]',
+            'terC' => 'required|unico_entre_turmas[terC]',
+            'terD' => 'required|unico_entre_turmas[terD]',
+            'quaA' => 'required|unico_entre_turmas[quaA]',
+            'quaB' => 'required|unico_entre_turmas[quaB]',
+            'quaC' => 'required|unico_entre_turmas[quaC]',
+            'quaD' => 'required|unico_entre_turmas[quaD]',
+            'quiA' => 'required|unico_entre_turmas[quiA]',
+            'quiB' => 'required|unico_entre_turmas[quiB]',
+            'quiC' => 'required|unico_entre_turmas[quiC]',
+            'quiD' => 'required|unico_entre_turmas[quiD]',
+            'sexA' => 'required|unico_entre_turmas[sexA]',
+            'sexB' => 'required|unico_entre_turmas[sexB]',
+            'sexC' => 'required|unico_entre_turmas[sexC]',
+            'sexD' => 'required|unico_entre_turmas[sexD]',
         ];
 
         if ($this->validate($rules)) {
@@ -287,13 +322,15 @@ class TurmaController extends BaseController
             'horarioSeg' => $turmaModel->horarioSeg(session()->get('id')),
             'horarioTer' => $turmaModel->horarioTer(session()->get('id')),
             'horarioQua' => $turmaModel->horarioQua(session()->get('id')),
+            'horarioQui' => $turmaModel->horarioQui(session()->get('id')),
+            'horarioSex' => $turmaModel->horarioSex(session()->get('id')),
         ];
         return view('home/homeProfessor', $data);
     }
 
     //--------------------------------------------------------------------
 
-    public function detalhesTurma($idTurma)
+    public function detalhesTurma($idTurma, $idDisciplina)
     {
         $turmaModel = new Turma();
         $usuarioMobModel = new UsuarioMob();
@@ -303,42 +340,9 @@ class TurmaController extends BaseController
             'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
                 ->findAll(),
             'turma' => $turmaModel->getTurmas($idTurma),
+            'idDisciplina' => $idDisciplina,
         ];
         return view('professor_panel/detalhes_turma', $data);
     }
-
-    public function detalhesTurmaProfessor($id)
-    {
-
-        $turmaModel = new Turma();
-        $turmaData = $turmaModel->find($id);
-        $disciplinasModel = new Disciplinas();
-
-        $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas(),
-            'id' => $turmaData['id'],
-            'nome' => $turmaData['nome'],
-            'segA' => $turmaData['segA'],
-            'segB' => $turmaData['segB'],
-            'segC' => $turmaData['segC'],
-            'segD' => $turmaData['segD'],
-            'terA' => $turmaData['terA'],
-            'terB' => $turmaData['terB'],
-            'terC' => $turmaData['terC'],
-            'terD' => $turmaData['terD'],
-            'quaA' => $turmaData['quaA'],
-            'quaB' => $turmaData['quaB'],
-            'quaC' => $turmaData['quaC'],
-            'quaD' => $turmaData['quaD'],
-            'quiA' => $turmaData['quiA'],
-            'quiB' => $turmaData['quiB'],
-            'quiC' => $turmaData['quiC'],
-            'quiD' => $turmaData['quiD'],
-            'sexA' => $turmaData['sexA'],
-            'sexB' => $turmaData['sexB'],
-            'sexC' => $turmaData['sexC'],
-            'sexD' => $turmaData['sexD'],
-        ];
-        return view('professor_panel/horarios_turma', $data);
-    }
+  
 }
