@@ -94,7 +94,7 @@
                                     </a>
                                 </div>
                                 <div class="m-2">
-                                    <a class="btn btn-info btn-lg shadow-sm" href="#">
+                                    <a class="btn btn-info btn-lg shadow-sm" href="<?php echo base_url('Frequencia/formulario/' . $turma['id']) ?>">
                                         <span>Frequência</span>
                                         <i class="fas fa-calendar-alt"></i>
                                     </a>

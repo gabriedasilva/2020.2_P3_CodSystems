@@ -48,7 +48,7 @@
                         <input type="hidden" type="text" name="idDisciplina" value="<?php echo $disciplina['id'] ?>"></input>
 
                         <div class="d-flex justify-content-end flex-fill">
-                            <button type="submit" class="btn btn-success text-right mr-3">Cadastrar <i class="fas fa-plus-circle"></i></button>
+                            <button type="submit" class="btn btn-success text-right mr-3">Salvar Alterações <i class="fas fa-save"></i></button>
                         </div>
                 </form>
             </div>

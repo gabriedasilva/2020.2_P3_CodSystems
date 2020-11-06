@@ -34,7 +34,7 @@
                         </div>
                         <div class="p-2 h-50 bd-highlight">
                             <label class="h5" for="descricao">Descrição da Atividade:</label>
-                            <textarea class="form-control" aria-label="With textarea" style="resize:none;" maxlength="400" name="descricao" rows="8" cols="33" required>
+                            <textarea wrap="soft" class="form-control" aria-label="With textarea" style="resize:none;" maxlength="400" name="descricao" rows="8" cols="33" required>
                             </textarea>
                         </div>
                         <div class="p-2 bd-highlight">
