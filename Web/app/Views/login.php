@@ -17,7 +17,7 @@
 	<div class="d-flex flex-column" style="height: 100vh; text-align:center;">
 		<div class="d-flex" style="margin: auto;">
 			<div class="d-flex align-items-center flex-column p-3" style="background-color: #212121; border-radius: 10px; min-height: 200px; width: 250px;">
-				<img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="100" height="100" class="d-inline-block align-top" alt="" loading="lazy">
+				<img src="<?php echo base_url('assets/imgs/logoshapewhite.png')?>" width="100" height="100" class="d-inline-block align-top" alt="" loading="lazy">
 				<form id="formLogin" class="d-flex flex-column justify-content-center" style="color: #fff;" action="<?php echo base_url('Login/login') ?>" method="POST">
 					<label for="inputEmail" class="sr-only" style="text-align: center;">Endereço de E-mail</label>
 					<input name="email" type="email" id="inputEmail" class="form-control" placeholder="&#xf007; Email" autofocus style="font-family: FontAwesome;">

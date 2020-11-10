@@ -80,7 +80,7 @@ $routes->get('Atividades/excluir/(:num)/(:num)/(:num)', 'AtividadeController::ex
 $routes->get('Atividades/detalhes/(:num)', 'AtividadeController::detalhes/$1');
 $routes->post('Atividades/atualizar', 'AtividadeController::saveCadastro');
 
-$routes->get('Frequencia/formulario/(:num)', 'FrequenciaController::index/$1');
+$routes->get('Frequencia/formulario/(:num)/(:num)', 'FrequenciaController::index/$1/$2');
 $routes->post('Frequencia/salvar', 'FrequenciaController::saveFrequencia');
 
 /**

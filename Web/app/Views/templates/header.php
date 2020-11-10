@@ -15,12 +15,12 @@
 
 <body class="d-flex flex-fill" style="background-color: #455A64;">
     <!-- Container FLEX principal -->
-    <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1 fixed-top">
+    <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1 ">
         <!-- FLEX NAV -->
         <div style="background-color: #00897B;">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1565C0;">
                 <a class="navbar-brand" href="#">
-                    <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="<?php echo base_url('assets/imgs/logoshapewhite.png')?>" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

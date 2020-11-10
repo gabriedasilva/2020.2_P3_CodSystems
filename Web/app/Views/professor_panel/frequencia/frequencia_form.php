@@ -26,7 +26,7 @@
 <div style="background-color: #673AB7; height: 100%; max-height: 100%" class="d-flex flex-row flex-grow-1">
     <!-- FLEX menu lateral-->
     <nav class="nav flex-column bg-dark h5 p-2" style="max-width:175px; min-width: 175px;">
-        <a class="d-flex align-items-center nav-link text-light mt-1 mb-2" href="#">
+        <a class="d-flex align-items-center nav-link text-light mt-1 mb-2" href="<?php echo base_url('Detalhes/turma/' . $turma['id'] . '/' . $idDisciplina) ?>">
             <div class="d-flex flex-fill">
                 Voltar
             </div>
@@ -50,6 +50,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Aluno</th>
+                                <th scope="col">Faltas</th>
                                 <th scope="col" class="text-center">Faltou</th>
                             </tr>
                         </thead>
@@ -59,6 +60,7 @@
                                     <tr class="">
                                         <td><?php echo $alunos_item['id']; ?></td>
                                         <td><?php echo $alunos_item['nomeAluno']; ?></td>
+                                        <td><?php echo $alunos_item['faltas']; ?></td>
                                         <td class="d-flex justify-content-center">
                                             <div class="input-group-text">
                                                 <input type="checkbox" value="<?php echo $alunos_item['id']; ?>" aria-label="Checkbox for following text input" name="frequencia<?php echo $alunos_item['id']; ?>">
@@ -78,6 +80,7 @@
                             <?php endif; ?>
                         </tbody>
                     </table>
+                    <input type="hidden" name="idDisciplina" id="idDisciplina" value="<?php echo isset($idDisciplina) ? $idDisciplina : set_value('idDisciplina') ?>" />
                     <?php if (!empty($alunos) && is_array($alunos)) : ?>
                         <div class="d-flex justify-content-end flex-fill">
                             <button type="submit" onclick="return confirmFrequencia()" class="btn btn-success text-right mr-3">Realizar Frequência <i class="fas fa-check-circle"></i></button>

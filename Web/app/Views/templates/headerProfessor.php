@@ -21,7 +21,7 @@
         <div  style="background-color: #00897B;">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1565C0;">
                 <a class="navbar-brand" href="#">
-                    <img src="http://localhost/2020.2_P3_CodSystems/Web/assets/imgs/logoshapewhite.png" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="<?php echo base_url('assets/imgs/logoshapewhite.png')?>" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
