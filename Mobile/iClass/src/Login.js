@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, StyleSheet, Text,Alert } from 'react-native';
+import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
 
 const logar = (user, senha) => {        //Metodo Login
- if(user == 'admin' && senha ==''){
-    Alert.alert('Admin:',user);
- }else{
-     Alert.alert("Usuário:","Matricula:"+user+"\nSenha:"+senha);
- }
+    if (user == 'admin' && senha == '') {
+        Alert.alert('Admin:', user);
+    } else {
+        Alert.alert("Usuário:", "Matricula:" + user + "\nSenha:" + senha);
+    }
 }
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
     const [user, setUser] = useState(''); // GANCHO
     const [senha, setSenha] = useState('');
-    return (
+        return (
         <KeyboardAvoidingView style={styles.background}>
             <View style={styles.container}>
                 <View style={styles.imgContainer}>
@@ -35,11 +35,11 @@ const Login = ({navigation}) => {
                     autoCorrect={false}
                 />
 
-                <TouchableOpacity style={styles.btnSubmit} onPress={() => console.log(user, senha),() => logar(user,senha)}>
+                <TouchableOpacity style={styles.btnSubmit} onPress={() => console.log(user, senha), () => logar(user, senha)}>
                     <Text style={styles.submitText}>Acessar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Horario')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <Text style={styles.textWhiteS}>Esqueci a Senha!</Text>
                 </TouchableOpacity>
             </View>
@@ -98,6 +98,5 @@ const styles = StyleSheet.create({ // Estilos
         height: '20%'
     }
 });
-
 
 export default Login;

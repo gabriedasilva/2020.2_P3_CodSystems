@@ -4,8 +4,10 @@ const mysql = require('mysql');
 
 const connection = mysql.createPool({ // CONNECTOR MYSQL
   host     : 'localhost',
-  user     : 'root',
-  password : '',
+  user     : 'root', //<<<<<<<
+  password : '',  //<<<<<<<
+
+
   database : 'iclassbd'
 });
 
@@ -15,20 +17,20 @@ const app = express();
 app.get('/users', function (req, res) {
     //Conectando ao Banco
     connection.getConnection(function (err, connection) {
-
+     console.log(err)
     //Executando a query MySQL (select * from the 'users').
-    connection.query('SELECT matricula FROM usuariomob', function (error, results, fields) {
+    connection.query('SELECT * FROM usuariomob', function (error, results, fields) {
       // Caso Aconteça Erros.
       if (error) throw error;
 
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       res.send(results)
+      console.log(results)
     });
   });
 });
 
-// Iniciando o servidor.
 app.listen(3000, () => {
- console.log('Vá para http://localhost e você ve os Dados.');
+ console.log('Vá para dominio:3306/users e você ve os Dados.');
 
-});
+})
