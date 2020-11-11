@@ -41,7 +41,7 @@ class AtividadeController extends BaseController
         return view('professor_panel/atividades/atividades_cadastro', $data);
     }
 
-    public function realizarCadastro()
+    public function saveCadastro()
     {
 
         helper('form');
@@ -61,6 +61,7 @@ class AtividadeController extends BaseController
 
             if ($horarioAtual->isBefore($this->request->getPost('entrega'))) {
                 $atividadeModel->save([
+                    'id' => $this->request->getPost('id'),
                     'titulo' => $this->request->getPost('titulo'),
                     'descricao' => $this->request->getPost('descricao'),
                     'entrega' => $this->request->getPost('entrega'),
@@ -68,14 +69,18 @@ class AtividadeController extends BaseController
                     'idDisciplina' => $this->request->getPost('idDisciplina'),
                 ]);
 
-
+                if($this->request->getPost('id') !== null){
+                    $msgSuccess = "Atividade atualizada com sucesso!";
+                }else{
+                    $msgSuccess = "Cadastro realizado com sucesso!";
+                }
                 $data = [
-                    'success' => "Cadastro realizado com sucesso!",
+                    'success' => $msgSuccess,
                     'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
                     'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
                     'atividades' => $atividadeModel->getAtividadesTurma($this->request->getPost('idTurma'), $this->request->getPost('idDisciplina')),
                 ];
-
+               
                 return view('professor_panel/atividades/atividades_lista', $data);
             } else {
                 $data = [
@@ -84,7 +89,11 @@ class AtividadeController extends BaseController
                     'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
                 ];
 
-                return view('professor_panel/atividades/atividades_cadastro', $data);
+                if($this->request->getPost('id') !== null){
+                    return view('professor_panel/atividades/atividades_detalhes', $data);
+                }else{
+                    return view('professor_panel/atividades/atividades_cadastro', $data);
+                }
             }
         } else {
             $turmaModel = new Turma();
@@ -95,46 +104,33 @@ class AtividadeController extends BaseController
                 'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
                 'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
             ];
-            return view('professor_panel/atividades/atividades_cadastro', $data);
+
+            if($this->request->getPost('id') !== null){
+                return view('professor_panel/atividades/atividades_detalhes', $data);
+            }else{
+                return view('professor_panel/atividades/atividades_cadastro', $data);
+            }
         }
     }
 
     public function detalhes($id)
     {
-        $professorModel = new UsuarioWeb();
         $disciplinasModel = new Disciplinas();
-        $disciplinasData = $disciplinasModel->find($id);
+        $atividadeModel = new Atividade();
+        $turmaModel = new Turma();
+        $atividadeData = $atividadeModel->find($id);
 
         $data = [
-            'id' => $disciplinasData['id'],
-            'nome' => $disciplinasData['nome'],
-            'professor' => $disciplinasData['professor'],
-            'professores' => $professorModel->getUsuarios(),
+            'id' => $atividadeData['id'],
+            'titulo' => $atividadeData['titulo'],
+            'descricao' => $atividadeData['descricao'],
+            'entrega' => $atividadeData['entrega'],
+            'turma' => $turmaModel->getTurmas($atividadeData['idTurma']),
+            'disciplina' => $disciplinasModel->getDisciplinas($atividadeData['idDisciplina']),
         ];
-        return view('disciplinas/disciplinas_detalhes', $data);
+        return view('professor_panel/atividades/atividades_detalhes', $data);
     }
 
-    public function atualizarCadastro()
-    {
-        helper('form');
-        $disciplinasModel = new Disciplinas();
-        $professorModel = new UsuarioWeb();
-
-        $data = [
-            'id' => $this->request->getPost('id'),
-            'nome' => $this->request->getPost('nome'),
-            'professor' => $this->request->getPost('professor'),
-        ];
-        $disciplinasModel->save($data);
-
-        $data = [
-            'success' => "Dados atualizados com sucesso!",
-            'nome' => $this->request->getPost('nome'),
-            'professor' => $this->request->getPost('professor'),
-            'professores' => $professorModel->getUsuarios(),
-        ];
-        return view('disciplinas/disciplinas_detalhes', $data);
-    }
 
     public function excluirCadastro($idAtividade, $idTurma, $idDisciplina)
     {

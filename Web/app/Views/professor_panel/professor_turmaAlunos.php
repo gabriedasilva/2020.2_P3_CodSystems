@@ -20,7 +20,16 @@
 <!-- FLEX body -->
 <div style="background-color: #673AB7; height: 100%; max-height: 100%" class="d-flex flex-row flex-grow-1">
     <!-- FLEX menu lateral-->
-    <?php echo $this->include('turma/turma_menu') ?>
+    <nav class="nav flex-column bg-dark h5 p-2" style="max-width:175px; min-width: 175px;">
+        <a class="d-flex align-items-center nav-link text-light mt-1 mb-2" href="<?php echo base_url('MinhasTurmas') ?>">
+            <div class="d-flex flex-fill">
+                Voltar
+            </div>
+            <div>
+                <i class="fas fa-arrow-circle-left"></i>
+            </div>
+        </a>
+    </nav>
     <!-- FLEX Conteudo -->
     <div style="background-color: #EEEEEE; overflow: auto;" class="flex-fill flex-grow-1">
         <!-- Title of page -->

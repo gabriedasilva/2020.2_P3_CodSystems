@@ -21,32 +21,34 @@
     <div class="m-1 flex-fill">
         <!-- Title of page -->
         <div class="d-flex justify-content-center shadow-sm p-1 bg-white rounded">
-            <h3>Cadastro de Atividades</h3>
+            <h3>Detalhes da Atividade</h3>
         </div>
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2 m-1 w-100">
-                <form class="p-1 m-1" action="<?php echo base_url('Atividades/cadastrar')?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('Atividades/atualizar') ?>" method="POST">
                     <div class="d-flex flex-column bd-highlight mb-3">
+                        <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                         <div class="p-2 bd-highlight">
                             <label class="h5" for="titulo">Titulo da Atividade:</label>
-                            <input class="form-control" type="text" name="titulo" required></input>
+                            <input class="form-control" type="text" name="titulo" required value="<?php echo isset($titulo) ? $titulo : set_value('titulo') ?>"></input>
                         </div>
                         <div class="p-2 h-50 bd-highlight">
                             <label class="h5" for="descricao">Descrição da Atividade:</label>
-                            <textarea wrap="soft" class="form-control" aria-label="With textarea" style="resize:none;" maxlength="400" name="descricao" rows="8" cols="33" required>
+                            <textarea class="form-control" aria-label="With textarea" style="resize:none;" maxlength="400" name="descricao" rows="8" cols="33" required>
+                            <?php echo isset($descricao) ? $descricao : set_value('descricao') ?>
                             </textarea>
                         </div>
                         <div class="p-2 bd-highlight">
                             <label class="h5" for="entrega">Data de entrega:</label>
-                            <input class="form-control w-25" type="datetime-local" name="entrega" required></input>
+                            <input class="form-control w-25" type="datetime-local" name="entrega" value="<?php echo (str_replace(' ', 'T', $entrega)); ?>"></input>
                         </div>
 
                         <input type="hidden" type="text" name="idTurma" value="<?php echo $turma['id'] ?>"></input>
                         <input type="hidden" type="text" name="idDisciplina" value="<?php echo $disciplina['id'] ?>"></input>
 
                         <div class="d-flex justify-content-end flex-fill">
-                            <button type="submit" class="btn btn-success text-right mr-3">Cadastrar <i class="fas fa-plus-circle"></i></button>
+                            <button type="submit" class="btn btn-success text-right mr-3">Salvar Alterações <i class="fas fa-save"></i></button>
                         </div>
                 </form>
             </div>

@@ -39,16 +39,20 @@
                                     Titulo:
                                     <h3> <?php echo $atividades_item['titulo']; ?></h3>
                                 </div>
+                                <div class="m-1 ml-4 d-flex flex-column">
+                                    <label for="entrega">Entrega:</label>
+                                    <input class="h5" type="datetime-local" name="entrega" disabled value="<?php echo (str_replace(' ', 'T', $atividades_item['entrega'])); ?>"></input>                                                                                                  
+                                </div>
                             </div>
                             <div class="d-flex w-25">
                                 <div class="d-flex flex-row" style="margin: auto;">
                                     <div class="m-2">
-                                        <a class="btn btn-info btn-lg" href="#">Detalhes
+                                        <a class="btn btn-info" href="<?php echo base_url('Atividades/detalhes/' . $atividades_item['id'])?>">Detalhes
                                             <i class="fas fa-info-circle"></i>
                                         </a>
                                     </div>
                                     <div class="m-2">
-                                        <a class="btn btn-danger btn-lg" href="<?php echo base_url('Atividades/excluir/' . $atividades_item['id'] . '/' . $turma['id'] . '/' . $disciplina['id']) ?>" onclick="return excluirCadastro()">Excluir
+                                        <a class="btn btn-danger" href="<?php echo base_url('Atividades/excluir/' . $atividades_item['id'] . '/' . $turma['id'] . '/' . $disciplina['id']) ?>" onclick="return excluirCadastro()">Excluir
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
