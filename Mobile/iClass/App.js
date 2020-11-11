@@ -9,6 +9,7 @@ import LoginScreen from './src/Login';
 import ProfileScreen from './src/Profile';
 import HomeScreen from './src/Home';
 import NotasScreen from './src/Notas';
+import HoraDiaScreen from './src/HorarioDia';
 export default function App() {
     return (
         <NavigationContainer>
@@ -17,6 +18,7 @@ export default function App() {
                 <Stack.Screen name="Profile" component={ProfileScreen}/>
                 <Stack.Screen name ="Horario" component={HorarioScreen}/>
                 <Stack.Screen name ="Home" component={HomeScreen}/>
+                <Stack.Screen name ="HoraDia" component={HoraDiaScreen} options={{ headerShown: false }}/>
                 <Stack.Screen name="Notas" component={NotasScreen} options={{ headerShown: false }}/>
             </Stack.Navigator>
         </NavigationContainer>

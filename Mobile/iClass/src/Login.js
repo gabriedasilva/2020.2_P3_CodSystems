@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
 
-const logar = (user, senha) => {        //Metodo Login
-    if (user == 'admin' && senha == '') {
-        Alert.alert('Admin:', user);
-    } else {
-        Alert.alert("Usuário:", "Matricula:" + user + "\nSenha:" + senha);
-    }
+const logar = ({navigation}) => {        //Metodo Login
+    
 }
 
 const Login = ({ navigation }) => {
@@ -35,11 +31,11 @@ const Login = ({ navigation }) => {
                     autoCorrect={false}
                 />
 
-                <TouchableOpacity style={styles.btnSubmit} onPress={() => console.log(user, senha), () => logar(user, senha)}>
+                <TouchableOpacity style={styles.btnSubmit} onPress={() => console.log(user, senha), () => navigation.navigate('Home')}>
                     <Text style={styles.submitText}>Acessar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => navigation.navigate('HoraDia')}>
                     <Text style={styles.textWhiteS}>Esqueci a Senha!</Text>
                 </TouchableOpacity>
             </View>
