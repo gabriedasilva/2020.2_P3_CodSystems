@@ -6,7 +6,7 @@ import { SafeAreaView,View,Text,FlatList } from 'react-native';
 
 const Atividades = () => {
   return (
-    <View>
+
        <Agenda
   // The list of items that have to be displayed in agenda. If you want to render item as empty date
   // the value of date key has to be an empty array []. If there exists no value for date key it is
@@ -65,7 +65,7 @@ const Atividades = () => {
   refreshControl={null}
   // Agenda theme
   theme={{
-    ...calendarTheme,
+
     agendaDayTextColor: 'yellow',
     agendaDayNumColor: 'green',
     agendaTodayColor: 'red',
@@ -75,7 +75,7 @@ const Atividades = () => {
   style={{}}
 />
 
-    </View>
+ 
   )
 }
 
