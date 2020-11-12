@@ -16,7 +16,7 @@
 
 <body class="d-flex flex-fill" style="background-color: #455A64;">
     <!-- Container FLEX principal -->
-    <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1 fixed-top">
+    <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1">
         <!-- FLEX NAV -->
         <div  style="background-color: #00897B;">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1565C0;">

@@ -94,6 +94,12 @@
                                     </a>
                                 </div>
                                 <div class="m-2">
+                                    <a class="btn btn-info btn-lg shadow-sm" href="<?php echo base_url('Notas/form/' . $turma['id']) . '/' . $idDisciplina ?>">
+                                        <span>Lançar Notas</span>
+                                        <i class="fas fa-award"></i>
+                                    </a>
+                                </div>
+                                <div class="m-2">
                                     <a class="btn btn-info btn-lg shadow-sm" href="<?php echo base_url('Frequencia/formulario/' . $turma['id'] . '/' . $idDisciplina) ?>">
                                         <span>Frequência</span>
                                         <i class="fas fa-calendar-alt"></i>

@@ -83,6 +83,9 @@ $routes->post('Atividades/atualizar', 'AtividadeController::saveCadastro');
 $routes->get('Frequencia/formulario/(:num)/(:num)', 'FrequenciaController::index/$1/$2');
 $routes->post('Frequencia/salvar', 'FrequenciaController::saveFrequencia');
 
+$routes->get('Notas/form/(:num)/(:num)', 'NotasController::index/$1/$2');
+$routes->post('Notas/salvar', 'NotasController::saveNotas');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
