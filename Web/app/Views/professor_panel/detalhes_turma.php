@@ -44,7 +44,7 @@
                                 <th scope="col" class="text-center">Perfil Escolar</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="overflow-auto">
                             <?php if (!empty($alunosTurma) && is_array($alunosTurma)) : ?>
                                 <?php foreach ($alunosTurma as $alunosTurma_item) : ?>
                                     <tr class="">
@@ -74,11 +74,11 @@
                 <div class="border d-flex w-50 m-1 flex-column" style="background-color: #ECEFF1;">
                     <div class="d-flex flex-column shadow-sm justify-content-center w-100 h-50 bg-light mb-1" style="text-align:center;">
                         <!-- Detalhes da turma -->
-                        <h3 class="d-flex justify-content-center align-items-center w-100 h-25">Detalhes:</h3>
+                        <!-- <h3 class="d-flex justify-content-center align-items-center w-100 h-25">Detalhes:</h3> -->
                         <div class="d-flex justify-content-center align-items-center w-100 h-75 ">
-                            <div class="mb-5">
-                                <label for="disciplina">Disciplina: <?php isset($idDisciplina) ? print $idDisciplina : print "" ?></label>
-                                <span name="disciplina"> </span>
+                            <div >
+                                <label for="nomeDisciplina">Disciplina:</label>
+                                <h2 name="nomeDisciplina" class="d-flex justify-content-center align-items-center w-100 h-25"><?php isset($idDisciplina) ? print $nomeDisciplina['nome'] : print "" ?></h2>
                             </div>
                         </div>
                     </div>

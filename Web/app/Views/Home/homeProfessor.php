@@ -11,11 +11,11 @@
 <!-- FLEX body -->
 <div style="background-color: #EEEEEE; height: 100%; max-height: 100%;" class="d-flex flex-row flex-grow-1">
     <!-- FLEX menu lateral-->
-    <?php echo $this->include('Home/Home_menu') ?>
+    <?php //echo $this->include('Home/Home_menu') ?>
     <!-- FLEX Conteudo -->
     <div style="background-color: #EEEEEE; overflow: auto;" class="flex-fill flex-grow-1">
         <!-- Title of page -->
-        <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
+        <div class="d-flex justify-content-center shadow-sm p-1 m-2 bg-white rounded">
             <h3>Meu Horário</h3>
         </div>
         <div class="m-1">

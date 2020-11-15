@@ -340,6 +340,7 @@ class TurmaController extends BaseController
                 ->findAll(),
             'turma' => $turmaModel->getTurmas($idTurma),
             'idDisciplina' => $idDisciplina,
+            'nomeDisciplina' => $disciplinasModel->select('nome')->where('id',$idDisciplina)->first(),
         ];
         return view('professor_panel/detalhes_turma', $data);
     }

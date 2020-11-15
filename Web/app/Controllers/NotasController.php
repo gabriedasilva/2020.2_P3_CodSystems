@@ -64,10 +64,34 @@ class NotasController extends BaseController
             'prova3bm' => 'decimal|less_than_equal_to[10]',
             'prova4bm' => 'decimal|less_than_equal_to[10]',
         ];
+        $validationMessages = [
+            'idTurma'        => [
+                'required' => 'A identificação da turma é necessária.'
+            ],
+            'idDisciplina'        => [
+                'required' => 'A identificação da disciplina é necessária.'
+            ],
+            'prova1bm'        => [
+                'decimal' => 'A nota do 1º bimestre deve conter um número decimal nesse formato: "00.00".',
+                'less_than_equal_to' => 'A nota do 1º bimestre deve ser menor ou igual a 10.'
+            ],
+            'prova2bm'        => [
+                'decimal' => 'A nota do 2º bimestre deve conter um número decimal nesse formato: "00.00".',
+                'less_than_equal_to' => 'A nota do 2º bimestre deve ser menor ou igual a 10.'
+            ],
+            'prova3bm'        => [
+                'decimal' => 'A nota do 3º bimestre deve conter um número decimal nesse formato: "00.00".',
+                'less_than_equal_to' => 'A nota do 3º bimestre deve ser menor ou igual a 10.'
+            ],
+            'prova4bm'        => [
+                'decimal' => 'A nota do 3º bimestre deve conter um número decimal nesse formato: "00.00".',
+                'less_than_equal_to' => 'A nota do 3º bimestre deve ser menor ou igual a 10.'
+            ],        
+        ];
 
         foreach ($dados_estruturados as $dados_aluno) { //executo o processo de validação e atualização/inserção dos dados no banco
             $validation->reset();
-            $validation->setRules($rules);
+            $validation->setRules($rules,$validationMessages);
             if (!sizeof($dados_aluno) < 5) { //teste se os sub-arrays estruturados possuem a quantidade de campos necessária
                 if ($validation->run($dados_aluno)) { //valida os dados de cada sub-array
                     if ($notasModel->where('idAluno', $dados_aluno['idAluno'])->where('idDisciplina', $dados_aluno['idDisciplina'])->first() === null) {
