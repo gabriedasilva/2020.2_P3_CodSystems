@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Disciplinas;
+use App\Models\Notas;
 use App\Models\Turma;
 use App\Models\UsuarioMob;
 
@@ -19,18 +20,6 @@ class TurmaController extends BaseController
     }
 
     //--------------------------------------------------------------------
-
-    public function turmasProfessor()
-    {
-        $turmaModel = new Turma();
-
-
-
-        $data = [
-            'turmas' => $turmaModel->turmasProfessor(session()->get('id')),
-        ];
-        return view('professor_panel/professor_turmas', $data);
-    }
 
     public function cadastroForm()
     {
@@ -62,71 +51,81 @@ class TurmaController extends BaseController
         }
     }
 
-    public function perfilEscolar($id)
+    public function perfilEscolar($idAluno)
     {
 
         $userMobModel = new UsuarioMob();
         $turmaModel = new Turma();
-        $userData = $userMobModel->find($id);
-        $turmaNome = $turmaModel->where('id', $userData['turma'])
+        $notasModel = new Notas();
+        $userData = $userMobModel->find($idAluno);
+        $turmainfo = $turmaModel->where('id', $userData['turma'])
             ->first();
 
+        $infoNotas = $notasModel->getNotas($idAluno);
+
+        if (sizeof($infoNotas) > 0) {
+            foreach ($infoNotas as $key => $infoNotas_item) {
+                $infoNotas[$key]['media1periodo'] = ($infoNotas_item['prova1bm'] + $infoNotas_item['prova2bm']) / 2;
+                $infoNotas[$key]['mediaFinal'] = ($infoNotas_item['prova1bm'] + $infoNotas_item['prova2bm'] + $infoNotas_item['prova3bm'] + $infoNotas_item['prova4bm']) / 4;
+            }
+        }
         $data = [
             'id' => $userData['id'],
             'nomeAluno' => $userData['nomeAluno'],
             'matricula' => $userData['matricula'],
             'nomeResponsavel' => $userData['nomeResponsavel'],
-            'turma' => $turmaNome,
+            'turma' => $turmainfo['nome'],
             'turmaId' => $userData['turma'],
             'telefone' => $userData['telefone'],
             'faltas' => $userData['faltas'],
-            'notaParcial' => $userData['notaParcial'],
-            'notaProva' => $userData['notaProva'],
-            'notaMedia' => $userData['notaMedia'],
-            'notaParcial2bm' => $userData['notaParcial2bm'],
-            'notaProva2bm' => $userData['notaProva2bm'],
-            'notaMedia2bm' => $userData['notaMedia2bm'],
+            'notasAluno' => $infoNotas,
         ];
 
-        if ((session()->get('cargo')) === "1") {
-            return view('turma/turma_alunoPerfil', $data);
-        } else {
-            return view('professor_panel/alunoPerfil', $data);
-        }
+        return view('turma/turma_alunoPerfil', $data);
     }
 
-    public function fichaEscolar($id, $idDisciplina)
+    public function fichaEscolar($idAluno, $idDisciplina)
     {
 
         $userMobModel = new UsuarioMob();
         $turmaModel = new Turma();
-        $userData = $userMobModel->find($id);
-        $turmaNome = $turmaModel->where('id', $userData['turma'])
+        $notasModel = new Notas();
+        $userData = $userMobModel->find($idAluno);
+        $turmainfo = $turmaModel->where('id', $userData['turma'])
             ->first();
+
+        $infoNotas = $notasModel->getNotas($idAluno, $idDisciplina);
+
+        if (sizeof($infoNotas) > 0) {
+            $notas['prova1bm'] = $infoNotas[0]['prova1bm'];
+            $notas['prova2bm'] = $infoNotas[0]['prova2bm'];
+            $notas['prova3bm'] = $infoNotas[0]['prova3bm'];
+            $notas['prova4bm'] = $infoNotas[0]['prova4bm'];
+            $notas['media1periodo'] = ($infoNotas[0]['prova1bm'] + $infoNotas[0]['prova2bm']) / 2;
+            $notas['mediaFinal'] = ($infoNotas[0]['prova1bm'] + $infoNotas[0]['prova2bm'] + $infoNotas[0]['prova3bm'] + $infoNotas[0]['prova4bm']) / 4;
+        } else {
+            $notas['prova1bm'] = 0;
+            $notas['prova2bm'] = 0;
+            $notas['prova3bm'] = 0;
+            $notas['prova4bm'] = 0;
+            $notas['media1periodo'] = 0;
+            $notas['mediaFinal'] = 0;
+        }
 
         $data = [
             'id' => $userData['id'],
             'nomeAluno' => $userData['nomeAluno'],
             'matricula' => $userData['matricula'],
             'nomeResponsavel' => $userData['nomeResponsavel'],
-            'turma' => $turmaNome,
+            'turma' => $turmainfo['nome'],
             'turmaId' => $userData['turma'],
             'telefone' => $userData['telefone'],
             'faltas' => $userData['faltas'],
-            'notaParcial' => $userData['notaParcial'],
-            'notaProva' => $userData['notaProva'],
-            'notaMedia' => $userData['notaMedia'],
-            'notaParcial2bm' => $userData['notaParcial2bm'],
-            'notaProva2bm' => $userData['notaProva2bm'],
-            'notaMedia2bm' => $userData['notaMedia2bm'],
             'idDisciplina' => $idDisciplina,
+            'notas' => $notas,
         ];
 
-        if ((session()->get('cargo')) === "1") {
-            return view('turma/turma_alunoPerfil', $data);
-        } else {
-            return view('professor_panel/alunoPerfil', $data);
-        }
+        return view('professor_panel/alunoPerfil', $data);
     }
 
     public function realizarCadastro()
@@ -344,5 +343,4 @@ class TurmaController extends BaseController
         ];
         return view('professor_panel/detalhes_turma', $data);
     }
-  
 }

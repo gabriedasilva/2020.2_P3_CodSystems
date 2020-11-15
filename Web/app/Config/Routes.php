@@ -60,7 +60,6 @@ $routes->post('DisciplinasController/atualizarCadastro', 'DisciplinasController:
 $routes->get('DisciplinasController/excluirCadastro/(:num)', 'DisciplinasController::excluirCadastro/$1');
 
 $routes->get('Turmas', 'TurmaController::index');
-$routes->get('MinhasTurmas', 'TurmaController::turmasProfessor');
 $routes->get('Turma/formulario', 'TurmaController::cadastroForm');
 $routes->post('Turma/cadastrar', 'TurmaController::realizarCadastro');
 $routes->get('Turma/detalhes/(:num)', 'TurmaController::detalhes/$1');

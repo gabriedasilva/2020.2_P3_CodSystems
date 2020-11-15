@@ -17,12 +17,6 @@ class UsuarioMob extends Model
         'nomeResponsavel',
         'telefone',
         'faltas',
-        'notaParcial',
-        'notaProva',
-        'notaMedia',
-        'notaParcial2bm',
-        'notaProva2bm',
-        'notaMedia2bm'
     ];
     /* protected $returnType = 'object'; */
 
@@ -47,9 +41,6 @@ class UsuarioMob extends Model
             usuariomob.nomeAluno,
             usuariomob.nomeResponsavel,
             usuariomob.telefone,
-            usuariomob.notaParcial,
-            usuariomob.notaProva,
-            usuariomob.notaMedia,
             turma.nome'
         );
         $builder->join('turma', 'turma.id = usuariomob.turma');

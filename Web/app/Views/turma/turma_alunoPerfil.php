@@ -12,7 +12,7 @@
 <div style="background-color: #EEEEEE; height: 100%;" class="d-flex flex-row">
     <!-- FLEX menu lateral-->
     <nav class="nav flex-column bg-dark h5 p-2" style="max-width:175px; min-width: 175px;">
-        <a class="d-flex align-items-center nav-link text-light mt-1" href="<?php echo base_url('Turma/alunos/' . $turma['id']) ?>">
+        <a class="d-flex align-items-center nav-link text-light mt-1" href="<?php echo base_url('Turma/alunos/' . $turmaId) ?>">
             <div class="d-flex flex-fill">
                 <i class="fas fa-arrow-circle-left"></i>
             </div>
@@ -33,7 +33,7 @@
                 <form class="p-1 m-1" action="<?php echo base_url('UsuarioMobController/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-rowbd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
-                        <div class="p-2 bd-highlight mt-3"  style="margin: auto;">
+                        <div class="p-2 bd-highlight mt-3" style="margin: auto;">
                             <i class="fas fa-user-circle fa-5x"></i>
                         </div>
                         <div class="d-flex flex-column" style="margin: auto;">
@@ -54,50 +54,46 @@
                             <div class="d-flex flex-row">
                                 <div class="p-2 bd-highlight">
                                     <label for="turma">Turma:</label>
-                                    <?php if (!empty($turma) && is_array($turma)) : ?>
-                                        <input disabled class="form-control" type="text" name="turma" value="<?php echo isset($turma['nome']) ? $turma['nome'] : set_value('turma') ?>"></input>
-                                    <?php else : ?>
-                                        <input disabled class="form-control" type="text" name="turma" value="Turma Não encontrada!"></input>
-                                    <?php endif; ?>
+                                    <input disabled class="form-control" type="text" name="turma" value="<?php echo ($turma) ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
                                     <label for="telefone">Telefone:</label>
                                     <input disabled class="form-control" type="text" name="telefone" value="<?php echo isset($telefone) ? $telefone : set_value('telefone') ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <label for="faltas">% de faltas:</label>
+                                    <label for="faltas">faltas:</label>
                                     <input disabled class="form-control" type="text" name="faltas" value="<?php echo isset($faltas) ? $faltas : set_value('faltas') ?>"></input>
                                 </div>
                             </div>
-                            <h5 class="mt-5">Notas 1° Bimestre</h5>
-                            <div class="d-flex flex-row">
-                                <div class="p-2 bd-highlight">
-                                    <label for="notaParcial">Parcial:</label>
-                                    <input disabled class="form-control" type="text" name="notaParcial" value="<?php echo isset($notaParcial) ? $notaParcial : set_value('notaParcial') ?>"></input>
-                                </div>
-                                <div class="p-2 bd-highlight">
-                                    <label for="notaProva">Prova:</label>
-                                    <input disabled class="form-control" type="text" name="notaProva" value="<?php echo isset($notaProva) ? $notaProva : set_value('notaProva') ?>"></input>
-                                </div>
-                                <div class="p-2 bd-highlight">
-                                    <label for="notaMedia">Média:</label>
-                                    <input disabled class="form-control" type="text" name="notaMedia" value="<?php echo isset($notaMedia) ? $notaMedia : set_value('notaMedia') ?>"></input>
-                                </div>
-                            </div>
-                            <h5>Notas 2° Bimestre</h5>
-                            <div class="d-flex flex-row">
-                                <div class="p-2 bd-highlight">
-                                    <label for="notaParcial2bm">Parcial:</label>
-                                    <input disabled class="form-control" type="text" name="notaParcial2bm" value="<?php echo isset($notaParcial2bm) ? $notaParcial2bm : set_value('notaParcial2bm') ?>"></input>
-                                </div>
-                                <div class="p-2 bd-highlight">
-                                    <label for="notaProva2bm">Prova:</label>
-                                    <input disabled class="form-control" type="text" name="notaProva2bm" value="<?php echo isset($notaProva2bm) ? $notaProva2bm : set_value('notaProva2bm') ?>"></input>
-                                </div>
-                                <div class="p-2 bd-highlight">
-                                    <label for="notaMedia2bm">Média:</label>
-                                    <input disabled class="form-control" type="text" name="notaMedia2bm" value="<?php echo isset($notaMedia2bm) ? $notaMedia2bm : set_value('notaMedia2bm') ?>"></input>
-                                </div>
+                            <div class="d-flex flex-row" style="overflow:scroll; height:290px;">
+                                <?php if (!empty($notasAluno) && is_array($notasAluno)) : ?>
+                                    <table class="table table-sm table-hover table-light">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Disciplina</th>
+                                                <th scope="col">Prova 1ºBM</th>
+                                                <th scope="col">Prova 1ºBM</th>
+                                                <th scope="col">Media 1º Período</th>
+                                                <th scope="col">Prova 1ºBM</th>
+                                                <th scope="col">Prova 1ºBM</th>
+                                                <th scope="col">Média Final</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($notasAluno as $notasAluno_item) : ?>
+                                                <tr class="text-center">
+                                                    <td><?php echo $notasAluno_item['nomeDisciplina']; ?></td>
+                                                    <td><?php echo $notasAluno_item['prova1bm']; ?></td>
+                                                    <td><?php echo $notasAluno_item['prova2bm']; ?></td>
+                                                    <td <?php echo ($notasAluno_item['media1periodo']>=7) ? print 'class="text-success"' : print 'class="text-danger"'; ?>><?php echo $notasAluno_item['media1periodo']; ?></td>
+                                                    <td><?php echo $notasAluno_item['prova3bm']; ?></td>
+                                                    <td><?php echo $notasAluno_item['prova4bm']; ?></td>
+                                                    <td <?php echo ($notasAluno_item['mediaFinal']>=7) ? print 'class="text-success"' : print 'class="text-danger"'; ?> ><?php echo $notasAluno_item['mediaFinal']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

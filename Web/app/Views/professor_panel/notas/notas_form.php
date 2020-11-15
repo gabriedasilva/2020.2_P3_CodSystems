@@ -52,9 +52,10 @@
                                 <th class="text-center" scope="col">Aluno</th>
                                 <th class="text-center" scope="col">Prova 1-bm</th>
                                 <th class="text-center" scope="col">Prova 2-bm</th>
+                                <th class="text-center" scope="col">Media 1° Periodo</th>
                                 <th class="text-center" scope="col">Prova 3-bm</th>
                                 <th class="text-center" scope="col">Prova 4-bm</th>
-                                <th class="text-center" scope="col">media</th>
+                                <th class="text-center" scope="col">Media Final</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,40 +67,52 @@
                                         <td><?php echo $alunos_item['nomeAluno']; ?></td>
                                         <td>
                                             <div class="d-flex flex-column align-items-center">
-                                                <input style="max-width: 60px" class="form-control" type="text" name="prova1bm<?php echo $alunos_item['id']; ?>" value="<?php echo $alunos_item['prova1bm']; ?>"></input>
+                                                <input style="max-width: 60px" class="prova1bm form-control" type="text" name="prova1bm<?php echo $alunos_item['id']; ?>" value="<?php echo isset($alunos_item['prova1bm']) ? $alunos_item['prova1bm'] : "0"; ?>"></input>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column align-items-center">
-                                                <input style="max-width: 60px" class="form-control" type="text" name="prova2bm<?php echo $alunos_item['id']; ?>" value="<?php echo $alunos_item['prova2bm']; ?>"></input>
+                                                <input style="max-width: 60px" class="prova2bm form-control" type="text" name="prova2bm<?php echo $alunos_item['id']; ?>" value="<?php echo isset($alunos_item['prova2bm']) ? $alunos_item['prova2bm'] : "0"; ?>"></input>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column align-items-center">
-                                                <input style="max-width: 60px" class="form-control" type="text" name="prova3bm<?php echo $alunos_item['id']; ?>" value="<?php echo $alunos_item['prova3bm']; ?>"></input>
+                                                <?php if (isset($alunos_item['prova1bm'])) : ?>
+                                                    <?php if ((($alunos_item['prova1bm'] + $alunos_item['prova2bm']) / 2) >= 7) : ?>
+                                                        <div disabled style="max-width: 60px" class="bg-success text-light form-control" type="text"><?php echo (($alunos_item['prova1bm'] + $alunos_item['prova2bm']) / 2); ?></div>
+                                                    <?php else : ?>
+                                                        <div disabled style="max-width: 60px" class="bg-danger text-light form-control" type="text"><?php echo (($alunos_item['prova1bm'] + $alunos_item['prova2bm']) / 2); ?></div>
+                                                    <?php endif ?>
+                                                <?php else : ?>
+                                                    <div disabled style="max-width: 60px" class="form-control" type="text"> </div>
+                                                <?php endif ?>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column align-items-center">
-                                                <input style="max-width: 60px" class="form-control" type="text" name="prova4bm<?php echo $alunos_item['id']; ?>" value="<?php echo $alunos_item['prova4bm']; ?>"></input>
+                                                <input style="max-width: 60px" class="prova3bm form-control" type="text" name="prova3bm<?php echo $alunos_item['id']; ?>" value="<?php echo isset($alunos_item['prova3bm']) ? $alunos_item['prova3bm'] : "0"; ?>"></input>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column align-items-center">
-                                                <input style="max-width: 60px" class="form-control" type="text" name="media<?php echo $alunos_item['id']; ?>" value="<?php echo $alunos_item['media']; ?>"></input>
+                                                <input style="max-width: 60px" class="prova4bm form-control" type="text" name="prova4bm<?php echo $alunos_item['id']; ?>" value="<?php echo isset($alunos_item['prova4bm']) ? $alunos_item['prova4bm'] : "0"; ?>"></input>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column align-items-center">
+                                                <?php if (isset($alunos_item['prova1bm'])) : ?>
+                                                    <?php if ((($alunos_item['prova1bm'] + $alunos_item['prova2bm'] + $alunos_item['prova3bm'] + $alunos_item['prova4bm']) / 4) >= 7) : ?>
+                                                        <div disabled style="max-width: 60px" class="bg-success text-light form-control" type="text"><?php echo (($alunos_item['prova1bm'] + $alunos_item['prova2bm'] + $alunos_item['prova3bm'] + $alunos_item['prova4bm']) / 4); ?></div>
+                                                    <?php else : ?>
+                                                        <div disabled style="max-width: 60px" class="bg-danger text-light form-control" type="text"><?php echo (($alunos_item['prova1bm'] + $alunos_item['prova2bm'] + $alunos_item['prova3bm'] + $alunos_item['prova4bm']) / 4); ?></div>
+                                                    <?php endif ?>
+                                                <?php else : ?>
+                                                    <div disabled style="max-width: 60px" class="form-control" type="text"> </div>
+                                                <?php endif ?>
                                             </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-                            <?php else : ?>
-                                <tr>
-                                    <td COLSPAN="4">
-                                        <div class="d-flex flex-column justify-content-center" style="width: 700px; height: 450px; margin: auto; text-align:center;">
-                                            <h3>Ops...</h3>
-                                            <p>Por enquanto não há nenhum aluno cadastrado nessa turma.</p>
-                                        </div>
-                                    </td>
-                                </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
@@ -118,5 +131,21 @@
 <div style="background-color: #2196F3;" class="d-flex">
 
 </div>
-
+<!-- scripts -->
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+<script>
+    $('.prova1bm').mask('00.00', {
+        reverse: true
+    });
+    $('.prova2bm').mask('00.00', {
+        reverse: true
+    });
+    $('.prova3bm').mask('00.00', {
+        reverse: true
+    });
+    $('.prova4bm').mask('00.00', {
+        reverse: true
+    });
+</script>
+<!--  -->
 <?php echo $this->include('templates/footer') ?>

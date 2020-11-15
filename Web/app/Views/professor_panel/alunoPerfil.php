@@ -54,49 +54,45 @@
                             <div class="d-flex flex-row">
                                 <div class="p-2 bd-highlight">
                                     <label for="turma">Turma:</label>
-                                    <?php if (!empty($turma) && is_array($turma)) : ?>
-                                        <input disabled class="form-control" type="text" name="turma" value="<?php echo isset($turma['nome']) ? $turma['nome'] : set_value('turma') ?>"></input>
-                                    <?php else : ?>
-                                        <input disabled class="form-control" type="text" name="turma" value="Turma Não encontrada!"></input>
-                                    <?php endif; ?>
+                                    <input disabled class="form-control" type="text" name="turma" value="<?php echo isset($turma) ? $turma : set_value('turma') ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
                                     <label for="telefone">Telefone:</label>
                                     <input disabled class="form-control" type="text" name="telefone" value="<?php echo isset($telefone) ? $telefone : set_value('telefone') ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <label for="faltas">% de faltas:</label>
+                                    <label for="faltas">faltas:</label>
                                     <input disabled class="form-control" type="text" name="faltas" value="<?php echo isset($faltas) ? $faltas : set_value('faltas') ?>"></input>
                                 </div>
                             </div>
-                            <h5 class="mt-5">Notas 1° Bimestre</h5>
+                            <h5 class="mt-5">Notas 1° Periodo</h5>
                             <div class="d-flex flex-row">
                                 <div class="p-2 bd-highlight">
-                                    <label for="notaParcial">Parcial:</label>
-                                    <input disabled class="form-control" type="text" name="notaParcial" value="<?php echo isset($notaParcial) ? $notaParcial : set_value('notaParcial') ?>"></input>
+                                    <label for="prova1bm">Prova 1 Bimestre:</label>
+                                    <input disabled class="form-control" type="text" name="prova1bm" value="<?php echo $notas['prova1bm'] ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <label for="notaProva">Prova:</label>
-                                    <input disabled class="form-control" type="text" name="notaProva" value="<?php echo isset($notaProva) ? $notaProva : set_value('notaProva') ?>"></input>
+                                    <label for="prova2bm">Prova 2 Bimestre:</label>
+                                    <input disabled class="form-control" type="text" name="prova2bm" value="<?php echo $notas['prova2bm'] ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <label for="notaMedia">Média:</label>
-                                    <input disabled class="form-control" type="text" name="notaMedia" value="<?php echo isset($notaMedia) ? $notaMedia : set_value('notaMedia') ?>"></input>
+                                    <label for="media1periodo">Média 1° Periodo:</label>
+                                    <input disabled <?php echo ($notas['media1periodo']>=7) ? print 'class="form-control bg-success text-light"' : print 'class="form-control bg-danger text-light"'; ?> type="text" name="media1periodo" value="<?php echo $notas['media1periodo'] ?>"></input>
                                 </div>
                             </div>
-                            <h5>Notas 2° Bimestre</h5>
+                            <h5>Notas 2° Periodo</h5>
                             <div class="d-flex flex-row">
                                 <div class="p-2 bd-highlight">
-                                    <label for="notaParcial2bm">Parcial:</label>
-                                    <input disabled class="form-control" type="text" name="notaParcial2bm" value="<?php echo isset($notaParcial2bm) ? $notaParcial2bm : set_value('notaParcial2bm') ?>"></input>
+                                    <label for="prova3bm">Prova 3 Bimestre:</label>
+                                    <input disabled class="form-control" type="text" name="prova3bm" value="<?php echo $notas['prova3bm'] ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <label for="notaProva2bm">Prova:</label>
-                                    <input disabled class="form-control" type="text" name="notaProva2bm" value="<?php echo isset($notaProva2bm) ? $notaProva2bm : set_value('notaProva2bm') ?>"></input>
+                                    <label for="prova4bm">Prova 4 Bimestre:</label>
+                                    <input disabled class="form-control" type="text" name="prova4bm" value="<?php echo $notas['prova4bm'] ?>"></input>
                                 </div>
                                 <div class="p-2 bd-highlight">
-                                    <label for="notaMedia2bm">Média:</label>
-                                    <input disabled class="form-control" type="text" name="notaMedia2bm" value="<?php echo isset($notaMedia2bm) ? $notaMedia2bm : set_value('notaMedia2bm') ?>"></input>
+                                    <label for="mediaFinal">Média Final:</label>
+                                    <input disabled <?php echo ($notas['mediaFinal']>=7) ? print 'class="form-control bg-success text-light"' : print 'class="form-control bg-danger text-light"'; ?> type="text" name="mediaFinal" value="<?php echo $notas['mediaFinal'] ?>"></input>
                                 </div>
                             </div>
                         </div>
