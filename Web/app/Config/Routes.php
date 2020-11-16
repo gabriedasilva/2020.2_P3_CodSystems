@@ -85,6 +85,9 @@ $routes->post('Frequencia/salvar', 'FrequenciaController::saveFrequencia');
 $routes->get('Notas/form/(:num)/(:num)', 'NotasController::index/$1/$2');
 $routes->post('Notas/salvar', 'NotasController::saveNotas');
 
+//Rotas para requisições MOBILE
+$routes->post('mob', 'ApiMobile::login');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

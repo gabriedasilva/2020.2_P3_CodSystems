@@ -21,7 +21,9 @@ class Filters extends BaseConfig
 			'authFilter' => [
 				'except' => [
 					'Login',
-					'Login/*'
+					'Login/*',
+					'mob',
+					'mob/*',
 				]
 			]
 			//'honeypot'

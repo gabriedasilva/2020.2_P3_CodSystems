@@ -34,7 +34,7 @@ class Login extends BaseController
 
 					if ($userFound->senha !== $senha) {
 						$data['resultLogin'] = 'Senha incorreta! Tente novamente.';
-						return view('Login', $data);
+						return view('login', $data);
 					} else {
 
 						$this->setSession($userFound);
@@ -57,11 +57,11 @@ class Login extends BaseController
 				}
 			} else {
 				$data['resultLogin'] = 'Conta não encontrada! Tente novamente.';
-				return view('Login', $data);
+				return view('login', $data);
 			}
 		} else {
 			$data['resultLogin'] = 'Preencha todos os campos corretamente!';
-			return view('Login', $data);
+			return view('login', $data);
 		}
 	}
 
