@@ -11,6 +11,7 @@ class Turma extends Model
     protected $primaryKey = "id";
     protected $allowedFields = [
         'nome',
+        'ultima_frequencia',
         'segA',
         'segB',
         'segC',
