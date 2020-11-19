@@ -6,6 +6,11 @@
         <div class="alert alert-success text-center mb-0" role="alert">
             <?php echo $success ?>
         </div>
+    <?php elseif (isset($fail)) : ?>
+        <div class="alert alert-danger text-center mb-0" role="alert">
+            <?php echo $fail ?>
+        </div>
+    <?php else : ?>
     <?php endif ?>
 </div>
 <!-- FLEX body -->

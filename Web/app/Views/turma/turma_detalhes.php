@@ -9,6 +9,7 @@
     <?php elseif (isset($fail)) : ?>
         <div class="alert alert-danger text-center mb-0" role="alert">
             <?php echo $fail ?>
+            <?php echo \Config\Services::validation()->listErrors(); ?>
         </div>
     <?php else : ?>
     <?php endif ?>

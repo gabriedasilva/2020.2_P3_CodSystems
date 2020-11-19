@@ -26,45 +26,83 @@ class UsuarioMobController extends BaseController
         $data = [
             'turmas' => $turmasModel->getTurmas()
         ];
-        return view('usuarioMob/usuarioMob_cadastro',$data);
+        return view('usuarioMob/usuarioMob_cadastro', $data);
     }
 
-    public function realizarCadastro()
+    public function saveCadastro()
     {
 
         helper('form');
         $userMobModel = new UsuarioMob();
+        $turmaModel = new Turma();
+
         $rules = [
             'nomeAluno' => 'required',
-            'matricula' => 'required',
-            'senha' => 'required',
+            'matricula' => 'required|is_natural',
             'nomeResponsavel' => 'required',
-            'turma' => 'required',
-            'telefone' => 'required'
+            'turma' => 'required|is_natural_no_zero',
+            'telefone' => 'required|max_length [14]'
         ];
+        if ($this->request->getPost('id') === null) {
+            $rules['senha'] = 'required';
+        }
 
         if ($this->validate($rules)) {
-            $matriculaNovo = $this->request->getPost('matricula');
-            $matriculaExistente = $userMobModel->where('matricula', $matriculaNovo)
-                ->first();
-            if (isset($matriculaExistente)) {
+            if ($this->request->getPost('id') === null) {
+                $matriculaNovo = $this->request->getPost('matricula');
+                $matriculaExistente = $userMobModel->where('matricula', $matriculaNovo)
+                    ->first();
+                if (isset($matriculaExistente)) {
 
-                $data['fail'] = "Matrícula já cadastrada, tente outra!";
-                return view('usuarioMob/usuarioMob_cadastro', $data);
+                    $data['fail'] = "Matrícula já cadastrada, tente outra!";
+                    return view('usuarioMob/usuarioMob_cadastro', $data);
+                } else {
+                    $userMobModel->save([
+                        'nomeAluno' => $this->request->getPost('nomeAluno'),
+                        'matricula' => $this->request->getPost('matricula'),
+                        'senha' => md5($this->request->getPost('senha')),
+                        'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
+                        'turma' => $this->request->getPost('turma'),
+                        'telefone' => $this->request->getPost('telefone'),
+                    ]);
+
+                    $data['success'] = "Cadastro realizado com sucesso!";
+                    return view('usuarioMob/usuarioMob_cadastro', $data);
+                }
             } else {
-                $userMobModel->save([
+                $data = [
+                    'id' => $this->request->getPost('id'),
                     'nomeAluno' => $this->request->getPost('nomeAluno'),
                     'matricula' => $this->request->getPost('matricula'),
                     'senha' => md5($this->request->getPost('senha')),
                     'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
                     'turma' => $this->request->getPost('turma'),
                     'telefone' => $this->request->getPost('telefone'),
-                ]);
+                ];
+                $userMobModel->save($data);
 
-                $data['success'] = "Cadastro realizado com sucesso!";
-                return view('usuarioMob/usuarioMob_cadastro', $data);
+                unset($data['senha']);
+                $data['success'] = "Dados atualizados com sucesso!";
+                $data['turmas'] = $turmaModel->getTurmas();
+
+                return view('usuarioMob/usuarioMob_detalhes', $data);
             }
         } else {
+
+            if ($this->request->getPost('id') !== null) {
+                $data = [
+                    'fail' => "Preencha os dados corretamente e tente de novo!",
+                    'id' => $this->request->getPost('id'),
+                    'nomeAluno' => $this->request->getPost('nomeAluno'),
+                    'matricula' => $this->request->getPost('matricula'),
+                    'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
+                    'turma' => $this->request->getPost('turma'),
+                    'telefone' => $this->request->getPost('telefone'),
+                ];
+                return view('usuarioMob/usuarioMob_detalhes', $data);
+            }
+
+            $data['turmas'] = $turmaModel->getTurmas();
             $data['fail'] = "Preencha os dados corretamente e tente de novo!";
             return view('usuarioMob/usuarioMob_cadastro', $data);
         }
@@ -85,36 +123,6 @@ class UsuarioMobController extends BaseController
             'turma' => $userData['turma'],
             'turmas' => $turmaModel->getTurmas(),
             'telefone' => $userData['telefone'],
-        ];
-        return view('usuarioMob/usuarioMob_detalhes', $data);
-    }
-
-    public function atualizarCadastro()
-    {
-        helper('form');
-        $userMobModel = new UsuarioMob();
-        $turmaModel = new Turma();
-
-        $data = [
-            'id' => $this->request->getPost('id'),
-            'nomeAluno' => $this->request->getPost('nomeAluno'),
-            'matricula' => $this->request->getPost('matricula'),
-            'senha' => md5($this->request->getPost('senha')),
-            'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
-            'turma' => $this->request->getPost('turma'),
-            'telefone' => $this->request->getPost('telefone'),
-        ];
-        $userMobModel->save($data);
-
-        $data = [
-            'success' => "Dados atualizados com sucesso!",
-            'nomeAluno' => $this->request->getPost('nomeAluno'),
-            'matricula' => $this->request->getPost('matricula'),
-            'senha' => md5($this->request->getPost('senha')),
-            'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
-            'turma' => $this->request->getPost('turma'),
-            'turmas' => $turmaModel->getTurmas(),
-            'telefone' => $this->request->getPost('telefone'),
         ];
         return view('usuarioMob/usuarioMob_detalhes', $data);
     }

@@ -57,8 +57,8 @@ class NotasController extends BaseController
         $validation =  \Config\Services::validation();
         //abaixo defino o conjunto de regras para atualização/inserção no banco
         $rules = [
-            'idTurma' => 'required',
-            'idDisciplina' => 'required',
+            'idTurma' => 'required|is_natural_no_zero',
+            'idDisciplina' => 'required|is_natural_no_zero',
             'prova1bm' => 'decimal|less_than_equal_to[10]',
             'prova2bm' => 'decimal|less_than_equal_to[10]',
             'prova3bm' => 'decimal|less_than_equal_to[10]',
