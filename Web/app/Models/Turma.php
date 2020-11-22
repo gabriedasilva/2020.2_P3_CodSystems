@@ -11,6 +11,7 @@ class Turma extends Model
     protected $primaryKey = "id";
     protected $allowedFields = [
         'nome',
+        'ultima_frequencia',
         'segA',
         'segB',
         'segC',
@@ -50,7 +51,9 @@ class Turma extends Model
         $builder->select('id,nome');
         $builder->where('professor', $idProfessor);
         $query = $builder->get();
-
+        $ids = [];
+        $nomes = [];
+        
         foreach ($query->getResultArray() as $row) {
 
             $ids[] = $row['id']; //crio um array com os ids das disciplinas do professor

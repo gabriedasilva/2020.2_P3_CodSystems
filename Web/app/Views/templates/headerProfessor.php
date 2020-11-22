@@ -7,6 +7,7 @@
     <meta name="description" content="Sua escola em casa!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/logoShape.png" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5ae82b8da4.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,7 +21,7 @@
         <!-- FLEX NAV -->
         <div  style="background-color: #00897B;">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1565C0;">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="<?php echo base_url('Home/professor') ?>">
                     <img src="<?php echo base_url('assets/imgs/logoshapewhite.png')?>" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

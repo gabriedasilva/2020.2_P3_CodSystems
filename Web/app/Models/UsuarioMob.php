@@ -30,10 +30,7 @@ class UsuarioMob extends Model
 
     public function getUsuariosTurma()
     {
-        $db = db_connect();
-
-        $builder = $db->table('usuariomob');
-        $builder->select(
+        return  $this->select(
             'usuariomob.id,
             usuariomob.matricula,
             usuariomob.senha,
@@ -42,10 +39,8 @@ class UsuarioMob extends Model
             usuariomob.nomeResponsavel,
             usuariomob.telefone,
             turma.nome'
-        );
-        $builder->join('turma', 'turma.id = usuariomob.turma');
-
-        $query = $builder->get();
-        return $query->getResultArray();
+        )->join('turma', 'turma.id = usuariomob.turma')->paginate(10);
+         
     }
+
 }
