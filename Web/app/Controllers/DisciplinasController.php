@@ -10,16 +10,13 @@ class DisciplinasController extends BaseController
     public function index()
     {
 
-        $db = db_connect();
-
-        $builder = $db->table('disciplinas d');
-        $builder->select('d.id, d.nome, u.nome as nomeP');
-        $builder->join('usuarioweb u', 'd.professor = u.id','left');
-
-        $query = $builder->get();
+        $disciplinasModel = new Disciplinas();
 
         $data = [
-            'disciplinas' => $query->getResultArray(),
+            'disciplinas' => $disciplinasModel->select('disciplinas.id, disciplinas.nome, u.nome as nomeP')
+                ->join('usuarioweb u', 'disciplinas.professor = u.id', 'left')
+                ->paginate(10),
+            'pager' => $disciplinasModel->pager
         ];
         return view('disciplinas/disciplinas_lista', $data);
     }
@@ -50,7 +47,7 @@ class DisciplinasController extends BaseController
 
         if ($this->validate($rules)) {
             $disciplinasModel->save([ //esse metodo realiza tanto insert como update dependendo se ele receber o id
-                'id' => $this->request->getPost('id'), 
+                'id' => $this->request->getPost('id'),
                 'nome' => $this->request->getPost('nome'),
                 'professor' => $this->request->getPost('professor'),
             ]);
@@ -100,28 +97,6 @@ class DisciplinasController extends BaseController
             'id' => $disciplinasData['id'],
             'nome' => $disciplinasData['nome'],
             'professor' => $disciplinasData['professor'],
-            'professores' => $professorModel->getUsuarios(),
-        ];
-        return view('disciplinas/disciplinas_detalhes', $data);
-    }
-
-    public function atualizarCadastro()
-    {
-        helper('form');
-        $disciplinasModel = new Disciplinas();
-        $professorModel = new UsuarioWeb();
-
-        $data = [
-            'id' => $this->request->getPost('id'),
-            'nome' => $this->request->getPost('nome'),
-            'professor' => $this->request->getPost('professor'),
-        ];
-        $disciplinasModel->save($data);
-
-        $data = [
-            'success' => "Dados atualizados com sucesso!",
-            'nome' => $this->request->getPost('nome'),
-            'professor' => $this->request->getPost('professor'),
             'professores' => $professorModel->getUsuarios(),
         ];
         return view('disciplinas/disciplinas_detalhes', $data);

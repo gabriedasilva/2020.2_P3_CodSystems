@@ -38,7 +38,7 @@ class Turma extends Model
     public function getTurmas($id = null)
     {
         if ($id === null) {
-            return $this->findAll();
+            return $this->paginate(4);
         }
         return $this->asArray()->where(['id' => $id])->first();
     }

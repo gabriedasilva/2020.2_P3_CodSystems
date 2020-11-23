@@ -36,13 +36,13 @@
         </a>
     </nav>
     <!-- FLEX Conteudo -->
-    <div style="background-color: #EEEEEE; overflow: auto;" class="flex-fill flex-grow-1">
+    <div style="background-color: #EEEEEE; overflow: auto; max-height: 100%;" class="flex-fill flex-grow-1">
         <!-- Title of page -->
         <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
             <h3>Notas da turma: <?php echo $turma['nome'] ?></h3>
         </div>
         <div class="d-flex justify-content-center">
-            <div class="m-2 w-75">
+            <div class="m-1 w-75" style="max-height:500px;">
                 <form action="<?php echo base_url('Notas/salvar') ?>" method="POST">
                     <input type="hidden" name="idTurma" id="idTurma" value="<?php echo isset($turma['id']) ? $turma['id'] : set_value('idTurma') ?>" />
                     <table class="table table-sm table-hover table-light">
@@ -118,7 +118,7 @@
                     </table>
                     <input type="hidden" name="idDisciplina" id="idDisciplina" value="<?php echo isset($idDisciplina) ? $idDisciplina : set_value('idDisciplina') ?>" />
                     <?php if (!empty($alunos) && is_array($alunos)) : ?>
-                        <div class="d-flex justify-content-end flex-fill">
+                        <div class="d-flex justify-content-end flex-fill m-2">
                             <button type="submit" onclick="return confirmFrequencia()" class="btn btn-success text-right mr-3">Lançar Notas <i class="fas fa-check-circle"></i></button>
                         </div>
                     <?php endif; ?>
@@ -132,7 +132,7 @@
 
 </div>
 <!-- scripts -->
-<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 <script>
     $('.prova1bm').mask('00.00', {
         reverse: true

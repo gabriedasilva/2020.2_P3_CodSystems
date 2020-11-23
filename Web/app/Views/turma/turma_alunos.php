@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
             <h3>Alunos da Turma <?php echo $turma['nome'] ?></h3>
         </div>
-        <div class="m-2">
+        <div class="m-1">
             <table class="table table-sm table-hover table-light">
                 <thead>
                     <tr>
@@ -45,7 +45,7 @@
                                 <td><?php echo $alunosTurma_item['nomeAluno']; ?></td>
                                 <td><?php echo $alunosTurma_item['matricula']; ?></td>
                                 <td class="d-flex justify-content-center">
-                                    <a style="max-width: 50px;" class="btn btn-info btn-block" href="<?php echo base_url('Turma/perfil/' . $alunosTurma_item['id']) ?>">
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('Turma/perfil/' . $alunosTurma_item['id']) ?>">
                                         <i class="fas fa-address-card fa-lg"></i>
                                     </a>
                                 </td>
@@ -63,6 +63,11 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-center" style="margin: -10px auto;">
+            <?php if ($pager) : ?>
+                <?= $pager->links() ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

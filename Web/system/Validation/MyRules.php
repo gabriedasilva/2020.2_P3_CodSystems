@@ -14,7 +14,10 @@ use App\Models\Turma;
 class MyRules
 {
     public function unico_entre_turmas(string $str, string $fields, array $data, string &$error = null): bool
-    {
+    {   
+        //$str vem o id da disciplina
+        //$fields vem o campo que contem o id e o id da turma caso esteja fazendo update
+
         $fields = explode(',', $fields); // separo os dados chegados como paramentros
 
         $disciplinasModel = new Disciplinas();
@@ -28,7 +31,7 @@ class MyRules
             $builder = $db->table('turma');
             if (sizeof($fields) > 1) { //testo se o id da turma foi passado, para saber se é update ou insert 
                 $where = "id != '" . $fields[1]."'";
-                $builder->where($where); //caso sim adiciono exceção na busca da turma que está sendo atualizada
+                $builder->where($where); //caso sim(update) adiciono exceção na busca da turma que está sendo atualizada
             }
             $builder->select($fields[0]);
             $builder->whereIn($fields[0],  $disciplinasProfessor['ids']);

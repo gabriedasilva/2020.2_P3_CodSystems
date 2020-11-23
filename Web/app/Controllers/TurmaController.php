@@ -16,7 +16,8 @@ class TurmaController extends BaseController
         $turmaModel = new Turma();
 
         $data = [
-            'turmas' => $turmaModel->getTurmas()
+            'turmas' => $turmaModel->getTurmas(),
+            'pager' => $turmaModel->pager
         ];
         return view('turma/turma_lista', $data);
     }
@@ -41,9 +42,10 @@ class TurmaController extends BaseController
 
         $data = [
             'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
-                ->findAll(),
+                ->paginate(10),
             'turma' => $turmaModel->where('id', $idTurma)
                 ->first(),
+            'pager' => $usuarioMobModel->pager
         ];
 
         if ((session()->get('cargo')) === "1") {
@@ -137,30 +139,30 @@ class TurmaController extends BaseController
         $turmaModel = new Turma();
         $disciplinasModel = new Disciplinas();
         $turma_id = $this->request->getPost('id');
-        
+
 
         $rules = [
             'nome' => 'required',
-            'segA' => 'required|unico_entre_turmas[segA,'.$turma_id.']',
-            'segB' => 'required|unico_entre_turmas[segB,'.$turma_id.']',
-            'segC' => 'required|unico_entre_turmas[segC,'.$turma_id.']',
-            'segD' => 'required|unico_entre_turmas[segD,'.$turma_id.']',
-            'terA' => 'required|unico_entre_turmas[terA,'.$turma_id.']',
-            'terB' => 'required|unico_entre_turmas[terB,'.$turma_id.']',
-            'terC' => 'required|unico_entre_turmas[terC,'.$turma_id.']',
-            'terD' => 'required|unico_entre_turmas[terD,'.$turma_id.']',
-            'quaA' => 'required|unico_entre_turmas[quaA,'.$turma_id.']',
-            'quaB' => 'required|unico_entre_turmas[quaB,'.$turma_id.']',
-            'quaC' => 'required|unico_entre_turmas[quaC,'.$turma_id.']',
-            'quaD' => 'required|unico_entre_turmas[quaD,'.$turma_id.']',
-            'quiA' => 'required|unico_entre_turmas[quiA,'.$turma_id.']',
-            'quiB' => 'required|unico_entre_turmas[quiB,'.$turma_id.']',
-            'quiC' => 'required|unico_entre_turmas[quiC,'.$turma_id.']',
-            'quiD' => 'required|unico_entre_turmas[quiD,'.$turma_id.']',
-            'sexA' => 'required|unico_entre_turmas[sexA,'.$turma_id.']',
-            'sexB' => 'required|unico_entre_turmas[sexB,'.$turma_id.']',
-            'sexC' => 'required|unico_entre_turmas[sexC,'.$turma_id.']',
-            'sexD' => 'required|unico_entre_turmas[sexD,'.$turma_id.']',
+            'segA' => 'required|unico_entre_turmas[segA,' . $turma_id . ']',
+            'segB' => 'required|unico_entre_turmas[segB,' . $turma_id . ']',
+            'segC' => 'required|unico_entre_turmas[segC,' . $turma_id . ']',
+            'segD' => 'required|unico_entre_turmas[segD,' . $turma_id . ']',
+            'terA' => 'required|unico_entre_turmas[terA,' . $turma_id . ']',
+            'terB' => 'required|unico_entre_turmas[terB,' . $turma_id . ']',
+            'terC' => 'required|unico_entre_turmas[terC,' . $turma_id . ']',
+            'terD' => 'required|unico_entre_turmas[terD,' . $turma_id . ']',
+            'quaA' => 'required|unico_entre_turmas[quaA,' . $turma_id . ']',
+            'quaB' => 'required|unico_entre_turmas[quaB,' . $turma_id . ']',
+            'quaC' => 'required|unico_entre_turmas[quaC,' . $turma_id . ']',
+            'quaD' => 'required|unico_entre_turmas[quaD,' . $turma_id . ']',
+            'quiA' => 'required|unico_entre_turmas[quiA,' . $turma_id . ']',
+            'quiB' => 'required|unico_entre_turmas[quiB,' . $turma_id . ']',
+            'quiC' => 'required|unico_entre_turmas[quiC,' . $turma_id . ']',
+            'quiD' => 'required|unico_entre_turmas[quiD,' . $turma_id . ']',
+            'sexA' => 'required|unico_entre_turmas[sexA,' . $turma_id . ']',
+            'sexB' => 'required|unico_entre_turmas[sexB,' . $turma_id . ']',
+            'sexC' => 'required|unico_entre_turmas[sexC,' . $turma_id . ']',
+            'sexD' => 'required|unico_entre_turmas[sexD,' . $turma_id . ']',
         ];
 
         if ($this->validate($rules)) {

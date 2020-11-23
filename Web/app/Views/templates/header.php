@@ -12,8 +12,6 @@
     <script src="https://kit.fontawesome.com/5ae82b8da4.js" crossorigin="anonymous"></script>
 
 </head>
-<!-- Container principal -->
-
 <body class="d-flex flex-fill" style="background-color: #455A64;">
     <!-- Container FLEX principal -->
     <div style="background-color: #1E88E5; height: 100vh;" class="d-flex flex-column flex-grow-1 ">

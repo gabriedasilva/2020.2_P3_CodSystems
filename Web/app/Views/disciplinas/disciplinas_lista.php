@@ -61,6 +61,11 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-center m-1">
+            <?php if ($pager) : ?>
+                <?= $pager->links() ?>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 <!-- FLEX footer -->

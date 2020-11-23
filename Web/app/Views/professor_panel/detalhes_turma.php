@@ -33,7 +33,7 @@
         </div>
         <div class="m-1">
             <div class="d-flex flex-row justify-content-center shadow-sm p-3 bg-white rounded" style="width: auto; height: 510px; margin: auto; text-align:center;">
-                <div class="border d-flex w-50 m-1" style="background-color: #ECEFF1;">
+                <div style="overflow: auto" class="border d-flex w-50 m-1" style="background-color: #ECEFF1;">
                     <!-- Alunos -->
                     <table class="table table-sm table-hover table-light">
                         <thead>

@@ -21,6 +21,7 @@ class AtividadeController extends BaseController
             'atividades' => $atividadeModel->getAtividadesTurma($idTurma, $idDisciplina),
             'turma' => $turmaModel->getTurmas($idTurma),
             'disciplina' => $disciplinasModel->getDisciplinas($idDisciplina),
+            'pager' => $atividadeModel->pager
         ];
 
         return view('professor_panel/atividades/atividades_lista', $data);

@@ -28,50 +28,57 @@
             <h3>Atividades da turma <?php echo $turma['nome'] ?> da disciplina <?php echo $disciplina['nome'] ?>
             </h3>
         </div>
-        <?php if (!empty($atividades) && is_array($atividades)) : ?>
-            <?php foreach ($atividades as $atividades_item) : ?>
+        <div>
+            <?php if (!empty($atividades) && is_array($atividades)) : ?>
+                <?php foreach ($atividades as $atividades_item) : ?>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="d-flex flex-row border flex-fill shadow-sm rounded p-2" style="max-height: 85px; background-color: #EEEEEE;">
+                                <div class="d-flex flex-fill border-right">
+                                    <div class="m-1 mr-4"> # <?php echo $atividades_item['id']; ?></div>
+                                    <div class="m-1">
+                                        Titulo:
+                                        <h3> <?php echo $atividades_item['titulo']; ?></h3>
+                                    </div>
+                                    <div class="m-1 ml-4 d-flex flex-column">
+                                        <label for="entrega">Entrega:</label>
+                                        <input class="h5" type="datetime-local" name="entrega" disabled value="<?php echo (str_replace(' ', 'T', $atividades_item['entrega'])); ?>"></input>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-25">
+                                    <div class="d-flex flex-row" style="margin: auto;">
+                                        <div class="m-2">
+                                            <a class="btn btn-info" href="<?php echo base_url('Atividades/detalhes/' . $atividades_item['id']) ?>">Detalhes
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                        </div>
+                                        <div class="m-2">
+                                            <a class="btn btn-danger" href="<?php echo base_url('Atividades/excluir/' . $atividades_item['id'] . '/' . $turma['id'] . '/' . $disciplina['id']) ?>" onclick="return excluirCadastro()">Excluir
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+            <?php else : ?>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <div class="d-flex flex-row border flex-fill shadow-sm rounded p-2" style="min-height: 100px; background-color: #EEEEEE;">
-                            <div class="d-flex flex-fill border-right">
-                                <div class="m-1 mr-4"> # <?php echo $atividades_item['id']; ?></div>
-                                <div class="m-1">
-                                    Titulo:
-                                    <h3> <?php echo $atividades_item['titulo']; ?></h3>
-                                </div>
-                                <div class="m-1 ml-4 d-flex flex-column">
-                                    <label for="entrega">Entrega:</label>
-                                    <input class="h5" type="datetime-local" name="entrega" disabled value="<?php echo (str_replace(' ', 'T', $atividades_item['entrega'])); ?>"></input>                                                                                                  
-                                </div>
-                            </div>
-                            <div class="d-flex w-25">
-                                <div class="d-flex flex-row" style="margin: auto;">
-                                    <div class="m-2">
-                                        <a class="btn btn-info" href="<?php echo base_url('Atividades/detalhes/' . $atividades_item['id'])?>">Detalhes
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="m-2">
-                                        <a class="btn btn-danger" href="<?php echo base_url('Atividades/excluir/' . $atividades_item['id'] . '/' . $turma['id'] . '/' . $disciplina['id']) ?>" onclick="return excluirCadastro()">Excluir
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="d-flex flex-column justify-content-center" style="width: 700px; height: 450px; margin: auto; text-align:center;">
+                            <h3>Ops...</h3>
+                            <p>Por enquanto não há nenhuma atividade.</p>
                         </div>
                     </li>
                 </ul>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <div class="d-flex flex-column justify-content-center" style="width: 700px; height: 450px; margin: auto; text-align:center;">
-                        <h3>Ops...</h3>
-                        <p>Por enquanto não há nenhuma atividade.</p>
-                    </div>
-                </li>
-            </ul>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
+        <div class="d-flex justify-content-center m-1">
+            <?php if ($pager) : ?>
+                <?= $pager->links() ?>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 <!-- FLEX footer -->

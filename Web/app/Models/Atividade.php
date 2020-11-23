@@ -31,7 +31,7 @@ class Atividade extends Model
 
         $result = $this->asArray()->where('idTurma', $idTurma)
             ->where('idDisciplina', $idDisciplina)
-            ->findAll();
+            ->paginate(4);
 
         return $result;
     }
