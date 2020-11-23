@@ -88,6 +88,7 @@ $routes->post('Notas/salvar', 'NotasController::saveNotas');
 //Rotas para requisições MOBILE
 $routes->post('mob/signin', 'ApiMobile::login');
 $routes->post('mob/homeAcc', 'ApiMobile::home');
+$routes->post('mob/notas', 'ApiMobile::notas');
 
 /**
  * --------------------------------------------------------------------
