@@ -6,6 +6,11 @@
         <div class="alert alert-success text-center mb-0" role="alert">
             <?php echo $success ?>
         </div>
+    <?php elseif (isset($fail)) : ?>
+        <div class="alert alert-danger text-center mb-0" role="alert">
+            <?php echo $fail ?>
+        </div>
+    <?php else : ?>
     <?php endif ?>
 </div>
 <!-- FLEX body -->
@@ -21,7 +26,7 @@
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2" style="width: 450px;">
-                <form class="p-1 m-1" action="<?php echo base_url('UsuarioMobController/atualizarCadastro') ?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('Alunos/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                         <div class="p-2 bd-highlight">
@@ -47,15 +52,15 @@
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="turma">Turma:</label>
-                            <select required name="turma" class="custom-select" id="inputGroupSelect01">                        
+                            <select required name="turma" class="custom-select" id="inputGroupSelect01">
                                 <?php if (!empty($turmas) && is_array($turmas)) : ?>
                                     <?php foreach ($turmas as $turmas_item) : ?>
                                         <?php if ($turmas_item['id'] !== $turma) : ?>
                                             <option value="<?php echo $turmas_item['id']; ?>">
                                                 <?php echo $turmas_item['nome']; ?>
                                             </option>
-                                        <?php else: ?>
-                                            <option selected value="<?php echo $turma?>">
+                                        <?php else : ?>
+                                            <option selected value="<?php echo $turma ?>">
                                                 <?php echo $turmas_item['nome']; ?>
                                             </option>
                                         <?php endif; ?>
@@ -83,7 +88,7 @@
 
 <!-- SCRIPTS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-<script src="<?php echo base_url('assets/js/usuarioWeb/cadastro.js') ?>"></script>
+<script src="<?php echo base_url('iclassweb.life/assets/js/usuarioWeb/cadastro.js') ?>"></script>
 <!-- FIM -->
 
 <?php echo $this->include('templates/footer') ?>

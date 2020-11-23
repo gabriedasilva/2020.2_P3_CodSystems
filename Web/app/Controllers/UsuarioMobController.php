@@ -75,14 +75,16 @@ class UsuarioMobController extends BaseController
                     'id' => $this->request->getPost('id'),
                     'nomeAluno' => $this->request->getPost('nomeAluno'),
                     'matricula' => $this->request->getPost('matricula'),
-                    'senha' => md5($this->request->getPost('senha')),
                     'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
                     'turma' => $this->request->getPost('turma'),
                     'telefone' => $this->request->getPost('telefone'),
                 ];
+                if($this->request->getPost('senha') !== null && $this->request->getPost('senha') !== "")
+                {
+                  $data['senha'] = md5($this->request->getPost('senha'));
+                }
                 $userMobModel->save($data);
 
-                unset($data['senha']);
                 $data['success'] = "Dados atualizados com sucesso!";
                 $data['turmas'] = $turmaModel->getTurmas();
 

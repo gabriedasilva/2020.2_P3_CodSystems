@@ -73,13 +73,16 @@ class UsuarioWebController extends BaseController
                     'id' => $this->request->getPost('id'),
                     'nome' => $this->request->getPost('nome'),
                     'email' => $this->request->getPost('email'),
-                    'senha' => md5($this->request->getPost('senha')),
                     'telefone' => $this->request->getPost('telefone'),
                     'cargo' => $this->request->getPost('cargo')
                 ];
+                if($this->request->getPost('senha') !== null && $this->request->getPost('senha') !== "")
+                {
+                  $data['senha'] = md5($this->request->getPost('senha'));
+                }
                 $userWebModel->save($data);
 
-                unset($data['senha']);
+
                 $data['success'] = "Dados atualizados com sucesso!";
 
                 return view('usuarioWeb/usuarioWeb_detalhes', $data);

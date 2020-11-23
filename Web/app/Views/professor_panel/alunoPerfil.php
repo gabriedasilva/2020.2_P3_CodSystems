@@ -30,7 +30,7 @@
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2 shadow-sm bg-light " style="width: 80%; height:490px">
-                <form class="p-1 m-1" action="<?php echo base_url('UsuarioMobController/atualizarCadastro') ?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('Alunos/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-rowbd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                         <div class="p-2 bd-highlight mt-3" style="margin: auto;">

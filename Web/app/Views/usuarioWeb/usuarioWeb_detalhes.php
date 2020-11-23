@@ -6,6 +6,11 @@
         <div class="alert alert-success text-center mb-0" role="alert">
             <?php echo $success ?>
         </div>
+    <?php elseif (isset($fail)) : ?>
+        <div class="alert alert-danger text-center mb-0" role="alert">
+            <?php echo $fail ?>
+        </div>
+    <?php else : ?>
     <?php endif ?>
 </div>
 <!-- FLEX body -->
@@ -21,7 +26,7 @@
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2" style="width: 450px;">
-                <form class="p-1 m-1" action="<?php echo base_url('UsuarioWebController/atualizarCadastro') ?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('ProfessoresECoordenadores/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                         <div class="p-2 bd-highlight">
@@ -59,7 +64,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
+                        <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
                     </div>
                 </form>
             </div>
@@ -72,7 +77,7 @@
 </div>
 <!-- SCRIPTS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-<script src="<?php echo base_url('assets/js/usuarioWeb/cadastro.js') ?>"></script>
+<script src="<?php echo base_url('iclassweb.life/assets/js/usuarioWeb/cadastro.js') ?>"></script>
 <!-- FIM -->
 
 <?php echo $this->include('templates/footer') ?>

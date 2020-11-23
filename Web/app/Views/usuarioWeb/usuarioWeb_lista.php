@@ -56,12 +56,12 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('UsuarioWebController/detalhes/' . $usuarioWeb_item['id']) ?>">
+                                    <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('ProfessoresECoordenadores/detalhes/' . $usuarioWeb_item['id']) ?>">
                                         <i class="fas fa-user-edit fa-lg"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a style="max-width: 50px;" class="btn btn-danger btn-sm btn-block" href="<?php echo base_url('UsuarioWebController/excluirCadastro/' . $usuarioWeb_item['id']) ?>" onclick="return excluirCadastro()">
+                                    <a style="max-width: 50px;" class="btn btn-danger btn-sm btn-block" href="<?php echo base_url('ProfessoresECoordenadores/excluirCadastro/' . $usuarioWeb_item['id']) ?>" onclick="return excluirCadastro()">
                                         <i class="fas fa-user-times fa-lg"></i>
                                     </a>
                                 </td>

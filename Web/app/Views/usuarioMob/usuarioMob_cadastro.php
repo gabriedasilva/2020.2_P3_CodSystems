@@ -26,7 +26,7 @@
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2" style="width: 450px;">
-                <form class="p-1 m-1" action="<?php echo base_url('UsuarioMobController/realizarCadastro') ?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('Alunos/realizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <div class="p-2 bd-highlight">
                             <label for="nomeAluno">Nome:</label>
@@ -81,7 +81,7 @@
 
 <!-- SCRIPTS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-<script src="<?php echo base_url('assets/js/usuarioWeb/cadastro.js') ?>"></script>
+<script src="<?php echo base_url('iclassweb.life/assets/js/usuarioWeb/cadastro.js') ?>"></script>
 <!-- FIM -->
 
 <?php echo $this->include('templates/footer') ?>
