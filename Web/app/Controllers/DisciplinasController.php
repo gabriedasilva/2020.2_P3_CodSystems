@@ -107,16 +107,11 @@ class DisciplinasController extends BaseController
         $disciplinasModel = new Disciplinas();
         $disciplinasModel->delete($id);
 
-        $db = db_connect();
-
-        $builder = $db->table('disciplinas d');
-        $builder->select('d.id, d.nome, u.nome as nomeP');
-        $builder->join('usuarioweb u', 'd.professor = u.id');
-
-        $query = $builder->get();
-
         $data = [
-            'disciplinas' => $query->getResultArray(),
+            'disciplinas' => $disciplinasModel->select('disciplinas.id, disciplinas.nome, u.nome as nomeP')
+                ->join('usuarioweb u', 'disciplinas.professor = u.id', 'left')
+                ->paginate(10),
+            'pager' => $disciplinasModel->pager,
             'success' => "Cadastro excluído com sucesso!",
         ];
         return view('disciplinas/disciplinas_lista', $data);

@@ -42,7 +42,7 @@ class UsuarioMobController extends BaseController
             'matricula' => 'required|is_natural',
             'nomeResponsavel' => 'required',
             'turma' => 'required|is_natural_no_zero',
-            'telefone' => 'required|max_length [14]'
+            'telefone' => 'required|max_length[14]'
         ];
         if ($this->request->getPost('id') === null) {
             $rules['senha'] = 'required';
@@ -136,6 +136,7 @@ class UsuarioMobController extends BaseController
         $data = [
             'usuarioMob' => $userMobModel->getUsuarios(),
             'success' => "Cadastro excluído com sucesso!",
+            'pager' => $userMobModel->pager
         ];
         return view('usuarioMob/usuarioMob_lista', $data);
     }

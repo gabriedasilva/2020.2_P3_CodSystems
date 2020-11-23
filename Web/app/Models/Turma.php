@@ -53,7 +53,7 @@ class Turma extends Model
         $query = $builder->get();
         $ids = [];
         $nomes = [];
-        
+
         foreach ($query->getResultArray() as $row) {
 
             $ids[] = $row['id']; //crio um array com os ids das disciplinas do professor

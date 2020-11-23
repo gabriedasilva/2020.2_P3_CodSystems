@@ -33,7 +33,7 @@
                             <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                             <div class="p-2 bd-highlight" style="width: 250px;">
                                 <label class="h5" for="nome">Nome:</label>
-                                <input class="form-control" type="text" name="nome" value="<?php echo isset($nome) ? $nome : set_value('nome') ?>"></input>
+                                <input class="form-control" type="text" placeholder="Nome da Turma" name="nome" value="<?php echo isset($nome) ? $nome : set_value('nome') ?>"></input>
                             </div>
                             <div class="align-self-center mr-2">
                                 <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
@@ -47,12 +47,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $segA) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segA'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($segA) ? $segA : set_value('segA') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('segA') ?>
@@ -66,12 +68,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $segB) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segB'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($segB) ? $segB : set_value('segB') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('segB') ?>
@@ -85,12 +89,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $segC) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segC'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($segC) ? $segC : set_value('segC') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('segC') ?>
@@ -104,12 +110,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $segD) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segD'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($segD) ? $segD : set_value('segD') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('segD') ?>
@@ -126,12 +134,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $terA) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terA'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($terA) ? $terA : set_value('terA') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('terA') ?>
@@ -145,12 +155,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $terB) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terB'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($terB) ? $terB : set_value('terB') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('terB') ?>
@@ -164,12 +176,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $terC) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terC'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($terC) ? $terC : set_value('terC') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('terC') ?>
@@ -183,12 +197,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $terD) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terD'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($terD) ? $terD : set_value('terD') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('terD') ?>
@@ -205,12 +221,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quaA) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaA'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quaA) ? $quaA : set_value('quaA') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quaA') ?>
@@ -224,12 +242,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quaB) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaB'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quaB) ? $quaB : set_value('quaB') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quaB') ?>
@@ -243,12 +263,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quaC) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaC'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quaC) ? $quaC : set_value('quaC') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quaC') ?>
@@ -262,12 +284,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quaD) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaD'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quaD) ? $quaD : set_value('quaD') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quaD') ?>
@@ -284,12 +308,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quiA) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiA'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quiA) ? $quiA : set_value('quiA') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quiA') ?>
@@ -303,12 +329,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quiB) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiB'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quiB) ? $quiB : set_value('quiB') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quiB') ?>
@@ -322,12 +350,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quiC) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiC'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quiC) ? $quiC : set_value('quiC') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quiC') ?>
@@ -341,12 +371,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $quiD) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiD'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($quiD) ? $quiD : set_value('quiD') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('quiD') ?>
@@ -363,12 +395,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $sexA) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexA'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($sexA) ? $sexA : set_value('sexA') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('sexA') ?>
@@ -382,12 +416,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $sexB) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexB'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($sexB) ? $sexB : set_value('sexB') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('sexB') ?>
@@ -401,12 +437,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $sexC) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexC'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($sexC) ? $sexC : set_value('sexC') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('sexC') ?>
@@ -420,12 +458,14 @@
                                     <option value="<?php echo "Não Haverá Aula"; ?>">
                                         <?php echo "Não Haverá Aula"; ?>
                                     </option>
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
                                             <?php if ($disciplinas_item['id'] !== $sexD) : ?>
-                                                <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                    <?php echo $disciplinas_item['nome']; ?>
-                                                </option>
+                                                <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexD'])) : ?>
+                                                    <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                        <?php echo $disciplinas_item['nome']; ?>
+                                                    </option>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <option selected value="<?php echo isset($sexD) ? $sexD : set_value('sexD') ?>">
                                                     <?php echo isset($disciplinas_item['nome']) ? $disciplinas_item['nome'] : set_value('sexD') ?>

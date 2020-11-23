@@ -35,7 +35,7 @@
                         <div class="p-2 bd-highlight">
                             <label for="senha">Senha:</label>
                             <div class="d-flex align-items-center">
-                                <input required class="form-control mr-3" id="senha" type="password" name="senha"></input>
+                                <input class="form-control mr-3" id="senha" type="password" name="senha"></input>
                                 <button type="button" id="setVisible" name="setVisible" class="btn btn-primary">
                                     <i id="iconVisible" class="fas fa-eye-slash"></i>
                                 </button>

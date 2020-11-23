@@ -27,9 +27,10 @@ class TurmaController extends BaseController
     public function cadastroForm()
     {
         $disciplinasModel = new Disciplinas();
-
+       
         $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas()
+            'disciplinas' => $disciplinasModel->getDisciplinas(),
+            'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
         ];
         return view('turma/turma_cadastro', $data);
     }
@@ -138,34 +139,55 @@ class TurmaController extends BaseController
         helper('form');
         $turmaModel = new Turma();
         $disciplinasModel = new Disciplinas();
-        $turma_id = $this->request->getPost('id');
-
 
         $rules = [
             'nome' => 'required',
-            'segA' => 'required|unico_entre_turmas[segA,' . $turma_id . ']',
-            'segB' => 'required|unico_entre_turmas[segB,' . $turma_id . ']',
-            'segC' => 'required|unico_entre_turmas[segC,' . $turma_id . ']',
-            'segD' => 'required|unico_entre_turmas[segD,' . $turma_id . ']',
-            'terA' => 'required|unico_entre_turmas[terA,' . $turma_id . ']',
-            'terB' => 'required|unico_entre_turmas[terB,' . $turma_id . ']',
-            'terC' => 'required|unico_entre_turmas[terC,' . $turma_id . ']',
-            'terD' => 'required|unico_entre_turmas[terD,' . $turma_id . ']',
-            'quaA' => 'required|unico_entre_turmas[quaA,' . $turma_id . ']',
-            'quaB' => 'required|unico_entre_turmas[quaB,' . $turma_id . ']',
-            'quaC' => 'required|unico_entre_turmas[quaC,' . $turma_id . ']',
-            'quaD' => 'required|unico_entre_turmas[quaD,' . $turma_id . ']',
-            'quiA' => 'required|unico_entre_turmas[quiA,' . $turma_id . ']',
-            'quiB' => 'required|unico_entre_turmas[quiB,' . $turma_id . ']',
-            'quiC' => 'required|unico_entre_turmas[quiC,' . $turma_id . ']',
-            'quiD' => 'required|unico_entre_turmas[quiD,' . $turma_id . ']',
-            'sexA' => 'required|unico_entre_turmas[sexA,' . $turma_id . ']',
-            'sexB' => 'required|unico_entre_turmas[sexB,' . $turma_id . ']',
-            'sexC' => 'required|unico_entre_turmas[sexC,' . $turma_id . ']',
-            'sexD' => 'required|unico_entre_turmas[sexD,' . $turma_id . ']',
+            'segA' => 'required',
+            'segB' => 'required',
+            'segC' => 'required',
+            'segD' => 'required',
+            'terA' => 'required',
+            'terB' => 'required',
+            'terC' => 'required',
+            'terD' => 'required',
+            'quaA' => 'required',
+            'quaB' => 'required',
+            'quaC' => 'required',
+            'quaD' => 'required',
+            'quiA' => 'required',
+            'quiB' => 'required',
+            'quiC' => 'required',
+            'quiD' => 'required',
+            'sexA' => 'required',
+            'sexB' => 'required',
+            'sexC' => 'required',
+            'sexD' => 'required',
         ];
 
-        if ($this->validate($rules)) {
+        $disIndisponiveis = $disciplinasModel->disIndisponiveis();
+        $invalidHorario = false;
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segA'),$disIndisponiveis[0]['segA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segB'),$disIndisponiveis[0]['segB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segC'),$disIndisponiveis[0]['segC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segD'),$disIndisponiveis[0]['segD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terA'),$disIndisponiveis[1]['terA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terB'),$disIndisponiveis[1]['terB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terC'),$disIndisponiveis[1]['terC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terD'),$disIndisponiveis[1]['terD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaA'),$disIndisponiveis[2]['quaA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaB'),$disIndisponiveis[2]['quaB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaC'),$disIndisponiveis[2]['quaC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaD'),$disIndisponiveis[2]['quaD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiA'),$disIndisponiveis[3]['quiA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiB'),$disIndisponiveis[3]['quiB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiC'),$disIndisponiveis[3]['quiC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiD'),$disIndisponiveis[3]['quiD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexA'),$disIndisponiveis[4]['sexA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexB'),$disIndisponiveis[4]['sexB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexC'),$disIndisponiveis[4]['sexC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexD'),$disIndisponiveis[4]['sexD']);
+
+        if ($this->validate($rules) === true && $invalidHorario === false) {
             $turmaModel->save([
                 'id' => $this->request->getPost('id'),
                 'nome' => $this->request->getPost('nome'),
@@ -194,6 +216,7 @@ class TurmaController extends BaseController
             if ($this->request->getPost('id') !== null) {
                 $data = [
                     'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
                     'success' => "Dados atualizados com sucesso!",
                     'id' => $this->request->getPost('id'),
                     'nome' => $this->request->getPost('nome'),
@@ -221,12 +244,14 @@ class TurmaController extends BaseController
 
                 return view('turma/turma_detalhes', $data);
             } else {
+
                 $data = [
                     'success' => "Cadastro realizado com sucesso!",
-                    'turmas' => $turmaModel->getTurmas()
+                    'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
                 ];
 
-                return view('turma/turma_lista', $data);
+                return view('turma/turma_cadastro', $data);
             }
         } else {
             $disciplinasModel = new Disciplinas();
@@ -234,6 +259,7 @@ class TurmaController extends BaseController
             if ($this->request->getPost('id') !== null) {
                 $data = [
                     'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
                     'fail' => "Preencha os dados corretamente e tente de novo!",
                     'id' => $this->request->getPost('id'),
                     'nome' => $this->request->getPost('nome'),
@@ -262,7 +288,8 @@ class TurmaController extends BaseController
             } else {
                 $data = [
                     'fail' => "Preencha os dados corretamente e tente de novo!",
-                    'disciplinas' => $disciplinasModel->getDisciplinas()
+                    'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
                 ];
 
                 return view('turma/turma_cadastro', $data);
@@ -279,6 +306,7 @@ class TurmaController extends BaseController
 
         $data = [
             'disciplinas' => $disciplinasModel->getDisciplinas(),
+            'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
             'id' => $turmaData['id'],
             'nome' => $turmaData['nome'],
             'segA' => $turmaData['segA'],
@@ -314,6 +342,7 @@ class TurmaController extends BaseController
         $data = [
             'turmas' => $turmaModel->getTurmas(),
             'success' => "Cadastro excluído com sucesso!",
+            'pager' => $turmaModel->pager,
         ];
         return view('turma/turma_lista', $data);
     }

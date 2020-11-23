@@ -70,9 +70,9 @@ class AtividadeController extends BaseController
                     'idDisciplina' => $this->request->getPost('idDisciplina'),
                 ]);
 
-                if($this->request->getPost('id') !== null){
+                if ($this->request->getPost('id') !== null) {
                     $msgSuccess = "Atividade atualizada com sucesso!";
-                }else{
+                } else {
                     $msgSuccess = "Cadastro realizado com sucesso!";
                 }
                 $data = [
@@ -80,19 +80,32 @@ class AtividadeController extends BaseController
                     'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
                     'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
                     'atividades' => $atividadeModel->getAtividadesTurma($this->request->getPost('idTurma'), $this->request->getPost('idDisciplina')),
-                ];
-               
-                return view('professor_panel/atividades/atividades_lista', $data);
-            } else {
-                $data = [
-                    'fail' => "A data/hora de entrega da atividade deve ser posterior a data/hora atual!",
-                    'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
-                    'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
+                    'pager' => $atividadeModel->pager
                 ];
 
-                if($this->request->getPost('id') !== null){
+                return view('professor_panel/atividades/atividades_lista', $data);
+            } else {
+
+
+                if ($this->request->getPost('id') !== null) {
+                    $data = [
+                        'fail' => "A data/hora de entrega da atividade deve ser posterior a data/hora atual!",
+                        'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
+                        'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
+                        'id' => $this->request->getPost('id'),
+                        'titulo' => $this->request->getPost('titulo'),
+                        'descricao' => $this->request->getPost('descricao'),
+                        'entrega' => $this->request->getPost('entrega'),
+                        'idTurma' => $this->request->getPost('idTurma'),
+                        'idDisciplina' => $this->request->getPost('idDisciplina'),
+                    ];
                     return view('professor_panel/atividades/atividades_detalhes', $data);
-                }else{
+                } else {
+                    $data = [
+                        'fail' => "A data/hora de entrega da atividade deve ser posterior a data/hora atual!",
+                        'turma' => $turmaModel->getTurmas($this->request->getPost('idTurma')),
+                        'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
+                    ];
                     return view('professor_panel/atividades/atividades_cadastro', $data);
                 }
             }
@@ -106,9 +119,9 @@ class AtividadeController extends BaseController
                 'disciplina' => $disciplinasModel->getDisciplinas($this->request->getPost('idDisciplina')),
             ];
 
-            if($this->request->getPost('id') !== null){
+            if ($this->request->getPost('id') !== null) {
                 return view('professor_panel/atividades/atividades_detalhes', $data);
-            }else{
+            } else {
                 return view('professor_panel/atividades/atividades_cadastro', $data);
             }
         }
@@ -145,6 +158,7 @@ class AtividadeController extends BaseController
             'turma' => $turmaModel->getTurmas($idTurma),
             'disciplina' => $disciplinasModel->getDisciplinas($idDisciplina),
             'success' => "Atividade excluída com sucesso!",
+            'pager' => $atividadeModel->pager
         ];
         return view('professor_panel/atividades/atividades_lista', $data);
     }

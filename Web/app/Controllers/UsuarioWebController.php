@@ -38,7 +38,7 @@ class UsuarioWebController extends BaseController
         $rules = [
             'nome' => 'required',
             'email' => 'required|valid_email',
-            'telefone' => 'required|max_length [14]',
+            'telefone' => 'required|max_length[14]',
             'cargo' => 'required|max_length[1]'
         ];
         if ($this->request->getPost('id') === null) {
@@ -126,6 +126,7 @@ class UsuarioWebController extends BaseController
         $data = [
             'usuarioWeb' => $userWebModel->getUsuarios(),
             'success' => "Cadastro excluído com sucesso!",
+            'pager' => $userWebModel->pager
         ];
         return view('usuarioWeb/usuarioWeb_lista', $data);
     }
