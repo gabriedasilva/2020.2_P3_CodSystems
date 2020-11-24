@@ -32,7 +32,7 @@
                         <div class="d-flex flex-row justify-content-between w-100">
                             <div class="p-2 bd-highlight" style="width: 250px;">
                                 <label class="h5" for="nome">Nome:</label>
-                                <input class="form-control" type="text" name="nome"></input>
+                                <input class="form-control" type="text" placeholder="Nome da Turma" name="nome"></input>
                             </div>
                             <div class="align-self-center mr-2">
                                 <button type="submit" class="btn btn-success text-right">Cadastrar <i class="fas fa-plus-circle"></i></button>
@@ -43,53 +43,61 @@
                                 <h5>Segunda-Feira</h5>
                                 <label for="segA">Horário A:</label>
                                 <select name="segA" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segA'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="segB">Horário B:</label>
                                 <select name="segB" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segB'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="segC">Horário C:</label>
                                 <select name="segC" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segC'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="segD">Horário D:</label>
                                 <select name="segD" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[0]['segD'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
@@ -98,53 +106,61 @@
                                 <h5>Terça-Feira</h5>
                                 <label for="terA">Horário A:</label>
                                 <select name="terA" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terA'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="terB">Horário B:</label>
                                 <select name="terB" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terB'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="terC">Horário C:</label>
                                 <select name="terC" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terC'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="terD">Horário D:</label>
                                 <select name="terD" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                    <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[1]['terD'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
@@ -153,53 +169,61 @@
                                 <h5>Quarta-Feira</h5>
                                 <label for="quaA">Horário A:</label>
                                 <select name="quaA" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaA'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="quaB">Horário B:</label>
                                 <select name="quaB" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaB'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="quaC">Horário C:</label>
                                 <select name="quaC" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaC'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="quaD">Horário D:</label>
                                 <select name="quaD" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[2]['quaD'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
@@ -208,53 +232,61 @@
                                 <h5>Quinta-Feira</h5>
                                 <label for="quiA">Horário A:</label>
                                 <select name="quiA" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiA'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="quiB">Horário B:</label>
                                 <select name="quiB" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiB'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="quiC">Horário C:</label>
                                 <select name="quiC" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiC'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="quiD">Horário D:</label>
                                 <select name="quiD" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[3]['quiD'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
@@ -263,53 +295,61 @@
                                 <h5>Sexta-Feira</h5>
                                 <label for="sexA">Horário A:</label>
                                 <select name="sexA" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexA'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="sexB">Horário B:</label>
                                 <select name="sexB" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexB'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="sexC">Horário C:</label>
                                 <select name="sexC" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexC'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <label for="sexD">Horário D:</label>
                                 <select name="sexD" class="custom-select" id="inputGroupSelect01">
-                                    <?php if (!empty($disciplinas) && is_array($disciplinas)) : ?>
+                                <?php if (!empty($disciplinas) && !empty($disIndisponiveis) && is_array($disciplinas)) : ?>
                                         <option selected value="<?php echo "Não Haverá Aula"; ?>">
                                             <?php echo "Não Haverá Aula"; ?>
                                         </option>
                                         <?php foreach ($disciplinas as $disciplinas_item) : ?>
-                                            <option value="<?php echo $disciplinas_item['id']; ?>">
-                                                <?php echo $disciplinas_item['nome']; ?>
-                                            </option>
+                                            <?php if (!in_array($disciplinas_item['id'], $disIndisponiveis[4]['sexD'])) : ?>
+                                                <option value="<?php echo $disciplinas_item['id']; ?>">
+                                                    <?php echo $disciplinas_item['nome']; ?>
+                                                </option>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>

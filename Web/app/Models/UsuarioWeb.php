@@ -11,7 +11,7 @@ class UsuarioWeb extends Model {
 
     public function getUsuarios($id = null){
         if($id === null){
-            return $this->findAll();
+            return $this->paginate(10);
         }
         return $this->asArray()->where(['id' => $id])->first();
     }

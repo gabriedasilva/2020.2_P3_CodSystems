@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Disciplinas;
+use App\Models\Notas;
 use App\Models\Turma;
 use App\Models\UsuarioMob;
 
@@ -97,46 +98,46 @@ class ApiMobile extends BaseController
 			$userRequest['id'] = $this->request->getVar('id');
 			$userRequest['matricula'] = $this->request->getVar('matricula');
 
-			$userData = $usuarioMobModel->where('matricula',$userRequest['matricula'])->first();
-			
+			$userData = $usuarioMobModel->where('matricula', $userRequest['matricula'])->first();
+
 			if ($userData !== null) {
-	
+
 				if ($userData['id'] === $userRequest['id']) {
-				    
+
 					$turmaModel = new Turma();
 					$disciplinasModel = new Disciplinas();
-					$dadosTurma = $turmaModel->where('id',$userData['turma'])->first();
-                    $horarioTurma = $dadosTurma;
-                    
+					$dadosTurma = $turmaModel->where('id', $userData['turma'])->first();
+					$horarioTurma = $dadosTurma;
+
 					unset($horarioTurma['id']); //remove o id
 					unset($horarioTurma['nome']); //remove o nome
 					unset($horarioTurma['ultima_frequencia']); //remove ultima_frequencia
 					//sort($horarioTurma);
 					$idsDisciplinas = array_unique($horarioTurma); //retira valores repetidos do array
 					sort($idsDisciplinas); //retira as chaves do array para que possa usar os valores como parametros de busca abaixo
-					
+
 					//Nesa próxima seção capturo do banco as disciplinas correspondentes a turma que estou tratando
 					$db = db_connect();
-                    $builder = $db->table('disciplinas');
-                    $builder->select('*');
-                    $builder->whereIn('id', $idsDisciplinas);
-                    $query = $builder->get();
+					$builder = $db->table('disciplinas');
+					$builder->select('*');
+					$builder->whereIn('id', $idsDisciplinas);
+					$query = $builder->get();
 					$disciplinasDados = $query->getResultArray();
-					
+
 					//Nesse foreach reestruturo o array para que o id da disciplina 
 					//corresponda como chave ao nome dela como valor
 					//para que eu possa usar com mais facilidade no próximo foreach
 					foreach ($disciplinasDados as $key => $item) {
-					    $disciplinasDados[$item['id']] = $item['nome'];
-					    unset($disciplinasDados[$key]);
+						$disciplinasDados[$item['id']] = $item['nome'];
+						unset($disciplinasDados[$key]);
 					}
-					
+
 					//Nesse foreach troco os id's dos campos de cada horario 
 					//por seu nome correspondente no array gerado acima
 					foreach ($horarioTurma as $key => $horario) {
-					    if(array_key_exists($horario,$disciplinasDados)){
-					    $horarioTurma[$key] = $disciplinasDados[$horario];
-					    }
+						if (array_key_exists($horario, $disciplinasDados)) {
+							$horarioTurma[$key] = $disciplinasDados[$horario];
+						}
 					}
 
 					$data = [
@@ -156,6 +157,37 @@ class ApiMobile extends BaseController
 			} else {
 				$data = [
 					'responseMessage' => 'Error',
+					'responseCode' => 1,
+				];
+				echo json_encode(['content' => $data, 'csrf' => csrf_hash()]);
+			}
+		}
+	}
+
+	public function notas()
+	{
+		helper('form');
+		$notasModel = new Notas();
+
+		if ($this->request->isAJAX()) {
+
+			$notasData = $notasModel->select('d.nome, notas.prova1bm, notas.prova2bm, notas.prova3bm, notas.prova4bm')
+				->join('disciplinas d', 'd.id = notas.idDisciplina')
+				->where('idAluno', $this->request->getVar('id'))
+				->findAll();
+
+
+
+			if ($notasData !== null) {
+				$data = [
+					'responseMessage' => 'Notas encontradas!',
+					'responseCode' => 2,
+					'notas' => $notasData,
+				];
+				echo json_encode(['content' => $data, 'csrf' => csrf_hash()]);
+			} else {
+				$data = [
+					'responseMessage' => 'Notas não encontradas!',
 					'responseCode' => 1,
 				];
 				echo json_encode(['content' => $data, 'csrf' => csrf_hash()]);

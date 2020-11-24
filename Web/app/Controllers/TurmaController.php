@@ -6,6 +6,8 @@ use App\Models\Disciplinas;
 use App\Models\Notas;
 use App\Models\Turma;
 use App\Models\UsuarioMob;
+use DateTime;
+use DateTimeZone;
 
 class TurmaController extends BaseController
 {
@@ -14,7 +16,8 @@ class TurmaController extends BaseController
         $turmaModel = new Turma();
 
         $data = [
-            'turmas' => $turmaModel->getTurmas()
+            'turmas' => $turmaModel->getTurmas(),
+            'pager' => $turmaModel->pager
         ];
         return view('turma/turma_lista', $data);
     }
@@ -24,9 +27,10 @@ class TurmaController extends BaseController
     public function cadastroForm()
     {
         $disciplinasModel = new Disciplinas();
-
+       
         $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas()
+            'disciplinas' => $disciplinasModel->getDisciplinas(),
+            'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
         ];
         return view('turma/turma_cadastro', $data);
     }
@@ -39,9 +43,10 @@ class TurmaController extends BaseController
 
         $data = [
             'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
-                ->findAll(),
+                ->paginate(10),
             'turma' => $turmaModel->where('id', $idTurma)
                 ->first(),
+            'pager' => $usuarioMobModel->pager
         ];
 
         if ((session()->get('cargo')) === "1") {
@@ -128,38 +133,63 @@ class TurmaController extends BaseController
         return view('professor_panel/alunoPerfil', $data);
     }
 
-    public function realizarCadastro()
+    public function saveCadastro()
     {
 
         helper('form');
         $turmaModel = new Turma();
+        $disciplinasModel = new Disciplinas();
 
         $rules = [
             'nome' => 'required',
-            'segA' => 'required|unico_entre_turmas[segA]',
-            'segB' => 'required|unico_entre_turmas[segB]',
-            'segC' => 'required|unico_entre_turmas[segC]',
-            'segD' => 'required|unico_entre_turmas[segD]',
-            'terA' => 'required|unico_entre_turmas[terA]',
-            'terB' => 'required|unico_entre_turmas[terB]',
-            'terC' => 'required|unico_entre_turmas[terC]',
-            'terD' => 'required|unico_entre_turmas[terD]',
-            'quaA' => 'required|unico_entre_turmas[quaA]',
-            'quaB' => 'required|unico_entre_turmas[quaB]',
-            'quaC' => 'required|unico_entre_turmas[quaC]',
-            'quaD' => 'required|unico_entre_turmas[quaD]',
-            'quiA' => 'required|unico_entre_turmas[quiA]',
-            'quiB' => 'required|unico_entre_turmas[quiB]',
-            'quiC' => 'required|unico_entre_turmas[quiC]',
-            'quiD' => 'required|unico_entre_turmas[quiD]',
-            'sexA' => 'required|unico_entre_turmas[sexA]',
-            'sexB' => 'required|unico_entre_turmas[sexB]',
-            'sexC' => 'required|unico_entre_turmas[sexC]',
-            'sexD' => 'required|unico_entre_turmas[sexD]',
+            'segA' => 'required',
+            'segB' => 'required',
+            'segC' => 'required',
+            'segD' => 'required',
+            'terA' => 'required',
+            'terB' => 'required',
+            'terC' => 'required',
+            'terD' => 'required',
+            'quaA' => 'required',
+            'quaB' => 'required',
+            'quaC' => 'required',
+            'quaD' => 'required',
+            'quiA' => 'required',
+            'quiB' => 'required',
+            'quiC' => 'required',
+            'quiD' => 'required',
+            'sexA' => 'required',
+            'sexB' => 'required',
+            'sexC' => 'required',
+            'sexD' => 'required',
         ];
 
-        if ($this->validate($rules)) {
+        $disIndisponiveis = $disciplinasModel->disIndisponiveis();
+        $invalidHorario = false;
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segA'),$disIndisponiveis[0]['segA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segB'),$disIndisponiveis[0]['segB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segC'),$disIndisponiveis[0]['segC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('segD'),$disIndisponiveis[0]['segD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terA'),$disIndisponiveis[1]['terA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terB'),$disIndisponiveis[1]['terB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terC'),$disIndisponiveis[1]['terC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('terD'),$disIndisponiveis[1]['terD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaA'),$disIndisponiveis[2]['quaA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaB'),$disIndisponiveis[2]['quaB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaC'),$disIndisponiveis[2]['quaC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quaD'),$disIndisponiveis[2]['quaD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiA'),$disIndisponiveis[3]['quiA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiB'),$disIndisponiveis[3]['quiB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiC'),$disIndisponiveis[3]['quiC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('quiD'),$disIndisponiveis[3]['quiD']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexA'),$disIndisponiveis[4]['sexA']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexB'),$disIndisponiveis[4]['sexB']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexC'),$disIndisponiveis[4]['sexC']);
+        ($invalidHorario === false) ?: $invalidHorario = in_array($this->request->getPost('sexD'),$disIndisponiveis[4]['sexD']);
+
+        if ($this->validate($rules) === true && $invalidHorario === false) {
             $turmaModel->save([
+                'id' => $this->request->getPost('id'),
                 'nome' => $this->request->getPost('nome'),
                 'segA' => $this->request->getPost('segA'),
                 'segB' => $this->request->getPost('segB'),
@@ -183,23 +213,87 @@ class TurmaController extends BaseController
                 'sexD' => $this->request->getPost('sexD'),
             ]);
 
-            $disciplinasModel = new Disciplinas();
+            if ($this->request->getPost('id') !== null) {
+                $data = [
+                    'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
+                    'success' => "Dados atualizados com sucesso!",
+                    'id' => $this->request->getPost('id'),
+                    'nome' => $this->request->getPost('nome'),
+                    'segA' => $this->request->getPost('segA'),
+                    'segB' => $this->request->getPost('segB'),
+                    'segC' => $this->request->getPost('segC'),
+                    'segD' => $this->request->getPost('segD'),
+                    'terA' => $this->request->getPost('terA'),
+                    'terB' => $this->request->getPost('terB'),
+                    'terC' => $this->request->getPost('terC'),
+                    'terD' => $this->request->getPost('terD'),
+                    'quaA' => $this->request->getPost('quaA'),
+                    'quaB' => $this->request->getPost('quaB'),
+                    'quaC' => $this->request->getPost('quaC'),
+                    'quaD' => $this->request->getPost('quaD'),
+                    'quiA' => $this->request->getPost('quiA'),
+                    'quiB' => $this->request->getPost('quiB'),
+                    'quiC' => $this->request->getPost('quiC'),
+                    'quiD' => $this->request->getPost('quiD'),
+                    'sexA' => $this->request->getPost('sexA'),
+                    'sexB' => $this->request->getPost('sexB'),
+                    'sexC' => $this->request->getPost('sexC'),
+                    'sexD' => $this->request->getPost('sexD'),
+                ];
 
-            $data = [];
+                return view('turma/turma_detalhes', $data);
+            } else {
 
-            $data = [
-                'success' => "Cadastro realizado com sucesso!",
-                'turmas' => $turmaModel->getTurmas()
-            ];
-            return view('turma/turma_lista', $data);
+                $data = [
+                    'success' => "Cadastro realizado com sucesso!",
+                    'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
+                ];
+
+                return view('turma/turma_cadastro', $data);
+            }
         } else {
             $disciplinasModel = new Disciplinas();
 
-            $data = [
-                'fail' => "Preencha os dados corretamente e tente de novo!",
-                'disciplinas' => $disciplinasModel->getDisciplinas()
-            ];
-            return view('turma/turma_cadastro', $data);
+            if ($this->request->getPost('id') !== null) {
+                $data = [
+                    'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
+                    'fail' => "Preencha os dados corretamente e tente de novo!",
+                    'id' => $this->request->getPost('id'),
+                    'nome' => $this->request->getPost('nome'),
+                    'segA' => $this->request->getPost('segA'),
+                    'segB' => $this->request->getPost('segB'),
+                    'segC' => $this->request->getPost('segC'),
+                    'segD' => $this->request->getPost('segD'),
+                    'terA' => $this->request->getPost('terA'),
+                    'terB' => $this->request->getPost('terB'),
+                    'terC' => $this->request->getPost('terC'),
+                    'terD' => $this->request->getPost('terD'),
+                    'quaA' => $this->request->getPost('quaA'),
+                    'quaB' => $this->request->getPost('quaB'),
+                    'quaC' => $this->request->getPost('quaC'),
+                    'quaD' => $this->request->getPost('quaD'),
+                    'quiA' => $this->request->getPost('quiA'),
+                    'quiB' => $this->request->getPost('quiB'),
+                    'quiC' => $this->request->getPost('quiC'),
+                    'quiD' => $this->request->getPost('quiD'),
+                    'sexA' => $this->request->getPost('sexA'),
+                    'sexB' => $this->request->getPost('sexB'),
+                    'sexC' => $this->request->getPost('sexC'),
+                    'sexD' => $this->request->getPost('sexD'),
+                ];
+                return view('turma/turma_detalhes', $data);
+            } else {
+                $data = [
+                    'fail' => "Preencha os dados corretamente e tente de novo!",
+                    'disciplinas' => $disciplinasModel->getDisciplinas(),
+                    'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
+                ];
+
+                return view('turma/turma_cadastro', $data);
+            }
         }
     }
 
@@ -212,6 +306,7 @@ class TurmaController extends BaseController
 
         $data = [
             'disciplinas' => $disciplinasModel->getDisciplinas(),
+            'disIndisponiveis' => $disciplinasModel->disIndisponiveis(),
             'id' => $turmaData['id'],
             'nome' => $turmaData['nome'],
             'segA' => $turmaData['segA'],
@@ -239,68 +334,6 @@ class TurmaController extends BaseController
         return view('turma/turma_detalhes', $data);
     }
 
-    public function atualizarCadastro()
-    {
-        helper('form');
-        $turmaModel = new Turma();
-        $disciplinasModel = new Disciplinas();
-
-        $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas(),
-            'id' => $this->request->getPost('id'),
-            'nome' => $this->request->getPost('nome'),
-            'segA' => $this->request->getPost('segA'),
-            'segB' => $this->request->getPost('segB'),
-            'segC' => $this->request->getPost('segC'),
-            'segD' => $this->request->getPost('segD'),
-            'terA' => $this->request->getPost('terA'),
-            'terB' => $this->request->getPost('terB'),
-            'terC' => $this->request->getPost('terC'),
-            'terD' => $this->request->getPost('terD'),
-            'quaA' => $this->request->getPost('quaA'),
-            'quaB' => $this->request->getPost('quaB'),
-            'quaC' => $this->request->getPost('quaC'),
-            'quaD' => $this->request->getPost('quaD'),
-            'quiA' => $this->request->getPost('quiA'),
-            'quiB' => $this->request->getPost('quiB'),
-            'quiC' => $this->request->getPost('quiC'),
-            'quiD' => $this->request->getPost('quiD'),
-            'sexA' => $this->request->getPost('sexA'),
-            'sexB' => $this->request->getPost('sexB'),
-            'sexC' => $this->request->getPost('sexC'),
-            'sexD' => $this->request->getPost('sexD'),
-        ];
-        $turmaModel->save($data);
-
-        $data = [
-            'disciplinas' => $disciplinasModel->getDisciplinas(),
-            'success' => "Dados atualizados com sucesso!",
-            'id' => $this->request->getPost('id'),
-            'nome' => $this->request->getPost('nome'),
-            'segA' => $this->request->getPost('segA'),
-            'segB' => $this->request->getPost('segB'),
-            'segC' => $this->request->getPost('segC'),
-            'segD' => $this->request->getPost('segD'),
-            'terA' => $this->request->getPost('terA'),
-            'terB' => $this->request->getPost('terB'),
-            'terC' => $this->request->getPost('terC'),
-            'terD' => $this->request->getPost('terD'),
-            'quaA' => $this->request->getPost('quaA'),
-            'quaB' => $this->request->getPost('quaB'),
-            'quaC' => $this->request->getPost('quaC'),
-            'quaD' => $this->request->getPost('quaD'),
-            'quiA' => $this->request->getPost('quiA'),
-            'quiB' => $this->request->getPost('quiB'),
-            'quiC' => $this->request->getPost('quiC'),
-            'quiD' => $this->request->getPost('quiD'),
-            'sexA' => $this->request->getPost('sexA'),
-            'sexB' => $this->request->getPost('sexB'),
-            'sexC' => $this->request->getPost('sexC'),
-            'sexD' => $this->request->getPost('sexD'),
-        ];
-        return view('turma/turma_detalhes', $data);
-    }
-
     public function excluirCadastro($id)
     {
         $turmaModel = new Turma();
@@ -309,6 +342,7 @@ class TurmaController extends BaseController
         $data = [
             'turmas' => $turmaModel->getTurmas(),
             'success' => "Cadastro excluído com sucesso!",
+            'pager' => $turmaModel->pager,
         ];
         return view('turma/turma_lista', $data);
     }
@@ -334,14 +368,27 @@ class TurmaController extends BaseController
         $turmaModel = new Turma();
         $usuarioMobModel = new UsuarioMob();
         $disciplinasModel = new Disciplinas();
+        $turma = $turmaModel->getTurmas($idTurma);
+
+        $fuso = new DateTimeZone('America/Sao_Paulo');
+        $hoje = new DateTime();
+        $hoje->setTimezone($fuso);
+        $ultima_frequencia = DateTime::createFromFormat('Y-m-d', $turma['ultima_frequencia']);
 
         $data = [
             'alunosTurma' => $usuarioMobModel->where('turma', $idTurma)
                 ->findAll(),
-            'turma' => $turmaModel->getTurmas($idTurma),
+            'turma' => $turma,
             'idDisciplina' => $idDisciplina,
-            'nomeDisciplina' => $disciplinasModel->select('nome')->where('id',$idDisciplina)->first(),
+            'nomeDisciplina' => $disciplinasModel->select('nome')->where('id', $idDisciplina)->first(),
         ];
+
+        if ($hoje->format('Y-m-d') > $ultima_frequencia->format('Y-m-d')) {
+            $data['frequencia'] = true;
+        } else {
+            $data['frequencia'] = false;
+        }
+
         return view('professor_panel/detalhes_turma', $data);
     }
 }

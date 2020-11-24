@@ -66,34 +66,44 @@
                                 </div>
                             </div>
                             <div class="d-flex flex-row" style="overflow:scroll; height:290px;">
-                                <?php if (!empty($notasAluno) && is_array($notasAluno)) : ?>
-                                    <table class="table table-sm table-hover table-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Disciplina</th>
-                                                <th scope="col">Prova 1ºBM</th>
-                                                <th scope="col">Prova 1ºBM</th>
-                                                <th scope="col">Media 1º Período</th>
-                                                <th scope="col">Prova 1ºBM</th>
-                                                <th scope="col">Prova 1ºBM</th>
-                                                <th scope="col">Média Final</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+
+                                <table class="table table-sm table-hover table-light">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Disciplina</th>
+                                            <th scope="col">Prova 1ºBM</th>
+                                            <th scope="col">Prova 1ºBM</th>
+                                            <th scope="col">Media 1º Período</th>
+                                            <th scope="col">Prova 1ºBM</th>
+                                            <th scope="col">Prova 1ºBM</th>
+                                            <th scope="col">Média Final</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($notasAluno) && is_array($notasAluno)) : ?>
                                             <?php foreach ($notasAluno as $notasAluno_item) : ?>
                                                 <tr class="text-center">
                                                     <td><?php echo $notasAluno_item['nomeDisciplina']; ?></td>
                                                     <td><?php echo $notasAluno_item['prova1bm']; ?></td>
                                                     <td><?php echo $notasAluno_item['prova2bm']; ?></td>
-                                                    <td <?php echo ($notasAluno_item['media1periodo']>=7) ? print 'class="text-success"' : print 'class="text-danger"'; ?>><?php echo $notasAluno_item['media1periodo']; ?></td>
+                                                    <td <?php echo ($notasAluno_item['media1periodo'] >= 7) ? print 'class="text-success"' : print 'class="text-danger"'; ?>><?php echo $notasAluno_item['media1periodo']; ?></td>
                                                     <td><?php echo $notasAluno_item['prova3bm']; ?></td>
                                                     <td><?php echo $notasAluno_item['prova4bm']; ?></td>
-                                                    <td <?php echo ($notasAluno_item['mediaFinal']>=7) ? print 'class="text-success"' : print 'class="text-danger"'; ?> ><?php echo $notasAluno_item['mediaFinal']; ?></td>
+                                                    <td <?php echo ($notasAluno_item['mediaFinal'] >= 7) ? print 'class="text-success"' : print 'class="text-danger"'; ?>><?php echo $notasAluno_item['mediaFinal']; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                <?php endif; ?>
+                                        <?php else : ?>
+                                            <tr>
+                                                <td COLSPAN="8">
+                                                    <div class="d-flex flex-column justify-content-center" style="height:210px; margin: auto; text-align:center;">
+                                                        <h3>Ops...</h3>
+                                                        <p>Por enquanto não há nenhuma nota lançada para este aluno.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

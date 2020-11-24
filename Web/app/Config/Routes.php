@@ -38,32 +38,32 @@ $routes->get('Login/logOut', 'Login::logOut');
 
 $routes->get('Home', 'Home::index');
 
-$routes->get('UsuarioWebController', 'UsuarioWebController::index');
-$routes->get('UsuarioWebController/cadastroForm', 'UsuarioWebController::cadastroForm');
-$routes->post('UsuarioWebController/realizarCadastro', 'UsuarioWebController::realizarCadastro');
-$routes->get('UsuarioWebController/detalhes/(:num)', 'UsuarioWebController::detalhes/$1');
-$routes->post('UsuarioWebController/atualizarCadastro', 'UsuarioWebController::atualizarCadastro');
-$routes->get('UsuarioWebController/excluirCadastro/(:num)', 'UsuarioWebController::excluirCadastro/$1');
+$routes->get('ProfessoresECoordenadores', 'UsuarioWebController::index');
+$routes->get('ProfessoresECoordenadores/cadastroForm', 'UsuarioWebController::cadastroForm');
+$routes->post('ProfessoresECoordenadores/realizarCadastro', 'UsuarioWebController::saveCadastro');
+$routes->get('ProfessoresECoordenadores/detalhes/(:num)', 'UsuarioWebController::detalhes/$1');
+$routes->post('ProfessoresECoordenadores/atualizarCadastro', 'UsuarioWebController::saveCadastro');
+$routes->get('ProfessoresECoordenadores/excluirCadastro/(:num)', 'UsuarioWebController::excluirCadastro/$1');
 
-$routes->get('UsuarioMobController', 'UsuarioMobController::index');
-$routes->get('UsuarioMobController/cadastroForm', 'UsuarioMobController::cadastroForm');
-$routes->post('UsuarioMobController/realizarCadastro', 'UsuarioMobController::realizarCadastro');
-$routes->get('UsuarioMobController/detalhes/(:num)', 'UsuarioMobController::detalhes/$1');
-$routes->post('UsuarioMobController/atualizarCadastro', 'UsuarioMobController::atualizarCadastro');
-$routes->get('UsuarioMobController/excluirCadastro/(:num)', 'UsuarioMobController::excluirCadastro/$1');
+$routes->get('Alunos', 'UsuarioMobController::index');
+$routes->get('Alunos/cadastroForm', 'UsuarioMobController::cadastroForm');
+$routes->post('Alunos/realizarCadastro', 'UsuarioMobController::saveCadastro');
+$routes->get('Alunos/detalhes/(:num)', 'UsuarioMobController::detalhes/$1');
+$routes->post('Alunos/atualizarCadastro', 'UsuarioMobController::saveCadastro');
+$routes->get('Alunos/excluirCadastro/(:num)', 'UsuarioMobController::excluirCadastro/$1');
 
-$routes->get('DisciplinasController', 'DisciplinasController::index');
-$routes->get('DisciplinasController/cadastroForm', 'DisciplinasController::cadastroForm');
-$routes->post('DisciplinasController/realizarCadastro', 'DisciplinasController::realizarCadastro');
-$routes->get('DisciplinasController/detalhes/(:num)', 'DisciplinasController::detalhes/$1');
-$routes->post('DisciplinasController/atualizarCadastro', 'DisciplinasController::atualizarCadastro');
-$routes->get('DisciplinasController/excluirCadastro/(:num)', 'DisciplinasController::excluirCadastro/$1');
+$routes->get('Disciplinas', 'DisciplinasController::index');
+$routes->get('Disciplinas/cadastroForm', 'DisciplinasController::cadastroForm');
+$routes->post('Disciplinas/realizarCadastro', 'DisciplinasController::saveCadastro');
+$routes->get('Disciplinas/detalhes/(:num)', 'DisciplinasController::detalhes/$1');
+$routes->post('Disciplinas/atualizarCadastro', 'DisciplinasController::saveCadastro');
+$routes->get('Disciplinas/excluirCadastro/(:num)', 'DisciplinasController::excluirCadastro/$1');
 
 $routes->get('Turmas', 'TurmaController::index');
 $routes->get('Turma/formulario', 'TurmaController::cadastroForm');
-$routes->post('Turma/cadastrar', 'TurmaController::realizarCadastro');
+$routes->post('Turma/cadastrar', 'TurmaController::saveCadastro');
 $routes->get('Turma/detalhes/(:num)', 'TurmaController::detalhes/$1');
-$routes->post('Turma/atualizar', 'TurmaController::atualizarCadastro');
+$routes->post('Turma/atualizar', 'TurmaController::saveCadastro');
 $routes->get('Turma/excluir/(:num)', 'TurmaController::excluirCadastro/$1');
 $routes->get('Turma/alunos/(:num)', 'TurmaController::turmaAlunos/$1');
 $routes->get('Turma/perfil/(:num)', 'TurmaController::perfilEscolar/$1');
@@ -88,6 +88,7 @@ $routes->post('Notas/salvar', 'NotasController::saveNotas');
 //Rotas para requisições MOBILE
 $routes->post('mob/signin', 'ApiMobile::login');
 $routes->post('mob/homeAcc', 'ApiMobile::home');
+$routes->post('mob/notas', 'ApiMobile::notas');
 
 /**
  * --------------------------------------------------------------------

@@ -41,7 +41,7 @@
         <div class="d-flex justify-content-center shadow-sm p-1 m-1 bg-white rounded">
             <h3>Frequencia da turma: <?php echo $turma['nome'] ?></h3>
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center" style="max-height:500px;">
             <div class="m-2 w-75">
                 <form action="<?php echo base_url('Frequencia/salvar') ?>" method="POST">
                     <input type="hidden" name="idTurma" id="idTurma" value="<?php echo isset($turma['id']) ? $turma['id'] : set_value('idTurma') ?>" />
@@ -82,7 +82,7 @@
                     </table>
                     <input type="hidden" name="idDisciplina" id="idDisciplina" value="<?php echo isset($idDisciplina) ? $idDisciplina : set_value('idDisciplina') ?>" />
                     <?php if (!empty($alunos) && is_array($alunos)) : ?>
-                        <div class="d-flex justify-content-end flex-fill">
+                        <div class="d-flex justify-content-end flex-fill m-2">
                             <button type="submit" onclick="return confirmFrequencia()" class="btn btn-success text-right mr-3">Realizar Frequência <i class="fas fa-check-circle"></i></button>
                         </div>
                     <?php endif; ?>

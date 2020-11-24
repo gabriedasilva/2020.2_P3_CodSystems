@@ -46,12 +46,12 @@
                                 <td><?php echo $disciplinas_item['nome']; ?></td>
                                 <td><?php echo $disciplinas_item['nomeP']; ?></td>
                                 <td>
-                                    <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('DisciplinasController/detalhes/' . $disciplinas_item['id']) ?>">
+                                    <a style="max-width: 50px;" class="btn btn-warning btn-sm btn-block" href="<?php echo base_url('Disciplinas/detalhes/' . $disciplinas_item['id']) ?>">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a style="max-width: 50px;" class="btn btn-danger btn-sm btn-block" href="<?php echo base_url('DisciplinasController/excluirCadastro/' . $disciplinas_item['id']) ?>" onclick="return excluirCadastro()">
+                                    <a style="max-width: 50px;" class="btn btn-danger btn-sm btn-block" href="<?php echo base_url('Disciplinas/excluirCadastro/' . $disciplinas_item['id']) ?>" onclick="return excluirCadastro()">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -60,6 +60,11 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-center m-1">
+            <?php if ($pager) : ?>
+                <?= $pager->links() ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

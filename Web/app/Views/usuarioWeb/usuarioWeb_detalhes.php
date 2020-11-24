@@ -6,6 +6,11 @@
         <div class="alert alert-success text-center mb-0" role="alert">
             <?php echo $success ?>
         </div>
+    <?php elseif (isset($fail)) : ?>
+        <div class="alert alert-danger text-center mb-0" role="alert">
+            <?php echo $fail ?>
+        </div>
+    <?php else : ?>
     <?php endif ?>
 </div>
 <!-- FLEX body -->
@@ -21,16 +26,16 @@
         <!-- Form of page -->
         <div class="d-flex justify-content-center">
             <div class="p-2" style="width: 450px;">
-                <form class="p-1 m-1" action="<?php echo base_url('UsuarioWebController/atualizarCadastro') ?>" method="POST">
+                <form class="p-1 m-1" action="<?php echo base_url('ProfessoresECoordenadores/atualizarCadastro') ?>" method="POST">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <input type="hidden" name="id" id="id" value="<?php echo isset($id) ? $id : set_value('id') ?>" />
                         <div class="p-2 bd-highlight">
                             <label for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" value="<?php echo isset($nome) ? $nome : set_value('nome') ?>"></input>
+                            <input class="form-control" required placeholder="Ex.: João da Silva" type="text" name="nome" value="<?php echo isset($nome) ? $nome : set_value('nome') ?>"></input>
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="cargo">Cargo:</label>
-                            <select name="cargo" class="custom-select" id="inputGroupSelect01">
+                            <select required name="cargo" class="custom-select" id="inputGroupSelect01">
                                 <?php if ($cargo === "0") : ?>
                                     <option selected value="0">Professor</option>
                                     <option value="1">Administrador</option>
@@ -42,19 +47,24 @@
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="email">E-mail:</label>
-                            <input class="form-control" type="text" name="email" value="<?php echo isset($email) ? $email : set_value('email') ?>"></input>
+                            <input class="form-control" required placeholder="Ex.: exemplo@exemplo.com" type="text" name="email" value="<?php echo isset($email) ? $email : set_value('email') ?>"></input>
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="senha">Senha:</label>
-                            <input class="form-control" type="password" name="senha"></input>
+                            <div class="d-flex align-items-center">
+                                <input class="form-control mr-3" id="senha" type="password" name="senha"></input>
+                                <button type="button" id="setVisible" class="btn btn-primary">
+                                    <i id="iconVisible" class="fas fa-eye-slash"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="p-2 bd-highlight">
                             <label for="telefone">Telefone:</label>
-                            <input class="form-control" type="text" name="telefone" value="<?php echo isset($telefone) ? $telefone : set_value('telefone') ?>"></input>
+                            <input required class="form-control" type="text" id="telefone" placeholder="(99)99999-9999" name="telefone" value="<?php echo isset($telefone) ? $telefone : set_value('telefone') ?>"></input>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end flex-fill">
-                    <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
+                        <button type="submit" class="btn btn-success text-right">Salvar Alterações <i class="fas fa-save"></i></button>
                     </div>
                 </form>
             </div>
@@ -65,5 +75,9 @@
 <div style="background-color: #2196F3;" class="d-flex">
 
 </div>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script src="<?php echo base_url('iclassweb.life/assets/js/usuarioWeb/cadastro.js') ?>"></script>
+<!-- FIM -->
 
 <?php echo $this->include('templates/footer') ?>

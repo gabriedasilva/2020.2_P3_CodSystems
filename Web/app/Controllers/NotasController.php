@@ -39,7 +39,7 @@ class NotasController extends BaseController
         unset($post['idTurma']); //retiro o idTurma dele para que fique somente os dados dos alunos
         unset($post['idDisciplina']); //retiro o idDisciplinas dele para que fique somente os dados dos alunos
 
-        $dados = array_chunk($post, 5); //reestruturo o array em sub-array's separando-os de 6 em 6
+        $dados = array_chunk($post, 5); //reestruturo o array em sub-array's separando-os de 5 em 5
 
         //nesse foreach crio outro array com as mesmas informações mas chaveando-as de forma correta para inserilas no banco
         foreach ($dados as $key => $dados_item) {
@@ -57,8 +57,8 @@ class NotasController extends BaseController
         $validation =  \Config\Services::validation();
         //abaixo defino o conjunto de regras para atualização/inserção no banco
         $rules = [
-            'idTurma' => 'required',
-            'idDisciplina' => 'required',
+            'idTurma' => 'required|is_natural_no_zero',
+            'idDisciplina' => 'required|is_natural_no_zero',
             'prova1bm' => 'decimal|less_than_equal_to[10]',
             'prova2bm' => 'decimal|less_than_equal_to[10]',
             'prova3bm' => 'decimal|less_than_equal_to[10]',
@@ -142,17 +142,5 @@ class NotasController extends BaseController
         ];
 
         return view('professor_panel/notas/notas_form', $data);
-
-        /* if (1 === null) {
-                $notasModel->save([
-                    'idAluno' => 1,
-                    'frequencia' => '1',
-                ]);
-            } else {
-
-                $notasModel->where('idAluno', 6)
-                    ->set(['frequencia' => 1 + 1])
-                    ->update();
-            } */
     }
 }
