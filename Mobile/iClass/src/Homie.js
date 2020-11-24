@@ -103,7 +103,7 @@ export default class Home extends Component {
                 source={require('./assets/icon/clock.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Atividades')}>
               <Image
                 style={styles.imageView}
                 source={require('./assets/icon/calendar.png')}
