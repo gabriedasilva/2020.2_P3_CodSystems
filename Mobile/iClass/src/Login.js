@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
-import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
+import React, { Component, useState } from 'react'
+import {
+    View, KeyboardAvoidingView, Image,
+    TextInput, TouchableOpacity, StyleSheet, Text, Alert,
+} from 'react-native';
+import qs from 'qs'
+import api from './services/api'
+import { useNavigation } from '@react-navigation/native';
+import Home from './Homie';
 
-const logar = ({navigation}) => {        //Metodo Login
-    
+var doc;
+const getLogin = async(user,senha)=>{
+    const dataUser = {'matricula':user,'senha':senha}
+    const response = await api.post('/mob/signin',qs.stringify(dataUser));
+     doc = response.data.content.data
+     if(doc == null){
+         Alert.alert("Erro",response.data.content.responseMessage)
+     }
+     return doc; 
 }
 
 const Login = ({ navigation }) => {
     const [user, setUser] = useState(''); // GANCHO
     const [senha, setSenha] = useState('');
-        return (
+    return (
         <KeyboardAvoidingView style={styles.background}>
             <View style={styles.container}>
                 <View style={styles.imgContainer}>
@@ -21,21 +35,24 @@ const Login = ({ navigation }) => {
                     onChangeText={user => setUser(user)}
                     defaultValue={user}
                     placeholder="Matrícula"
+                    keyboardType='numeric'
+                    returnKeyType='next'
                     autoCorrect={false}
                 />
                 <TextInput // Input Senha
                     style={styles.input}
                     onChangeText={senha => setSenha(senha)}
                     defaultValue={senha}
+                    secureTextEntry={true}
                     placeholder="Senha"
+
                     autoCorrect={false}
                 />
-
-                <TouchableOpacity style={styles.btnSubmit} onPress={() => console.log(user, senha), () => navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.btnSubmit}
+                    onPress={async() => await getLogin(user,senha)!=null?navigation.navigate('Home'):null}>
                     <Text style={styles.submitText}>Acessar</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('HoraDia')}>
+                <TouchableOpacity onPress={() => { }}>
                     <Text style={styles.textWhiteS}>Esqueci a Senha!</Text>
                 </TouchableOpacity>
             </View>
@@ -88,11 +105,10 @@ const styles = StyleSheet.create({ // Estilos
     },
     submitText: {
         color: '#fff',
-        fontSize: 20
+        fontSize: 20,
     },
     emptyContainer: {
-        height: '20%'
+        height: '20%',
     }
 });
-
 export default Login;
