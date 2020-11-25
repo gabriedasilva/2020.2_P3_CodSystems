@@ -1,30 +1,29 @@
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { StyleSheet, Text, Image, View,TouchableOpacity } from 'react-native';
 import React, { Component } from 'react'
 import api from './services/api'
 import qs from 'qs'
-var infosAluno = ['Luiza devolve o João', 'Inf III', 'B', 'Matutino']     
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export class Profile extends Component {
 
     state ={
-        doc:[]
+        doc:[],
     }
     componentDidMount(){
-        this.getLogin(123123,123123);
+        this.getInfos();
     }
-
- getLogin = async(user,senha)=>{
-        const dataUser = {'matricula':user,'senha':senha}
-        const response = await api.post('/mob/signin',qs.stringify(dataUser));
-         const doc = response.data.content.data
-         console.log(doc)
-         this.setState({doc})
-         if(doc == null){
-             Alert.alert("Erro",response.data.content.responseMessage)
-         } 
+    getInfos = async ()=>{
+        const usuarioJSONstr = await AsyncStorage.getItem('Usuario');
+        const usuarioJSON = await JSON.parse(usuarioJSONstr)
+        const doc = usuarioJSON
+       await this.setState({doc})
+        console.log("SAIU NO PERFIL KRL:"+usuarioJSONstr);
+        console.log(doc.id)
+       
     }
     
-    render() {
+    
+ render() {
         return (
             <View style={styles.background}>
             <View style={styles.inV}>
@@ -52,7 +51,12 @@ export class Profile extends Component {
                     </View>
                 </View>
                 <View style={styles.botV}>
-
+                    <View style={{width:'100%',justifyContent:"flex-end",flex:1}}>
+                <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate("Home")}>
+                <Text style={styles.textBtnBack}>Voltar</Text>
+              
+            </TouchableOpacity>
+            </View>
                 </View>
             </View>
         </View>
@@ -118,6 +122,19 @@ const styles = StyleSheet.create({
         backgroundColor: "#ccc",
         padding: 4,
       
+    },
+    btnBack: {
+        backgroundColor: '#2196f3',
+        alignItems: 'center',
+        padding: 10,
+        borderRadius: 10,
+        margin: 16,
+
+    },
+    textBtnBack: {
+        color: '#ffffff',
+        fontSize: 18,
+        fontWeight: "bold"
     },
     textContainerRow: {
         margin:8,

@@ -2,22 +2,33 @@ import React, { Component } from 'react'
 import { ScrollView, FlatList, TouchableOpacity, Image, Text, View } from 'react-native'
 import api from './services/api'
 import qs from 'qs'
-import { Card } from 'react-native-paper'
+import { Card,Title } from 'react-native-paper'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 export default class Home extends Component {
 
+  getUsuario = async()=>{
+    const usuarioJSONstr = await AsyncStorage.getItem('Usuario');
+    const usuarioJSON = await JSON.parse(usuarioJSONstr)
+    const user = usuarioJSON
+    const idAluno = user.id;
+    const matAluno = user.matricula;
+    console.log("SAIU NA HOME KRL:"+usuarioJSONstr);
+    console.log(user.id)
+    this.loadHorario(matAluno,idAluno);
+  }
  state = {
-    docs: [],
+    usuario:[],docs: [],
   }
  
   componentDidMount() {
-
-    this.loadHorario();
+    this.getUsuario();
+   
 
   }
-  loadHorario = async () => {
-    var dataJSON_obj = { "matricula": '123123', "id": 11 }
+  loadHorario = async (matricula,id) => {
+    var dataJSON_obj = { "matricula":matricula, "id":id}
     const response = await api.post("/mob/homeAcc", qs.stringify(dataJSON_obj));
     const docs = response.data.content.horario//DOCCCS JA é um OBJ BASTA SE REFERIRR A VARIAVEL REFENTENTE AO OBJETO
     
@@ -41,10 +52,11 @@ export default class Home extends Component {
         <ScrollView style={styles.scrollContainer} showsHorizontalScrollIndicator={false} horizontal={true}>
           <View style={styles.cardContainer}>
             <Card style={styles.cardView}>
-              <Card.Title>Segunda</Card.Title>
+              <Title>Segunda</Title>
               <Card.Content>
                 <Text>A:{this.state.docs.segA}</Text>
                 <Text>B:{this.state.docs.segB}</Text>
+                <Text>INTERVALO</Text>
                 <Text>C:{this.state.docs.segC}</Text>
                 <Text>D:{this.state.docs.segD}</Text>
               </Card.Content>
@@ -52,10 +64,11 @@ export default class Home extends Component {
           </View>
           <View style={styles.cardContainer}>
             <Card style={styles.cardView}>
-              <Card.Title>Terça</Card.Title>
+            <Title>Terça</Title>
               <Card.Content>
                 <Text>A:{this.state.docs.terA}</Text>
                 <Text>B:{this.state.docs.terB}</Text>
+                <Text>INTERVALO</Text>
                 <Text>C:{this.state.docs.terC}</Text>
                 <Text>D:{this.state.docs.terD}</Text>
               </Card.Content>
@@ -63,10 +76,11 @@ export default class Home extends Component {
           </View>
           <View style={styles.cardContainer}>
             <Card style={styles.cardView}>
-              <Card.Title>Segunda</Card.Title>
+            <Title>Quarta</Title>
               <Card.Content>
                 <Text>A:{this.state.docs.quaA}</Text>
                 <Text>B:{this.state.docs.quaB}</Text>
+                <Text>INTERVALO</Text>
                 <Text>C:{this.state.docs.quaC}</Text>
                 <Text>D:{this.state.docs.quaD}</Text>
               </Card.Content>
@@ -74,10 +88,11 @@ export default class Home extends Component {
           </View>
           <View style={styles.cardContainer}>
             <Card style={styles.cardView}>
-              <Card.Title>Segunda</Card.Title>
+            <Title>Quinta</Title>
               <Card.Content>
                 <Text>A:{this.state.docs.quiA}</Text>
                 <Text>B:{this.state.docs.quiB}</Text>
+                <Text>INTERVALO</Text>
                 <Text>C:{this.state.docs.quiC}</Text>
                 <Text>D:{this.state.docs.quiD}</Text>
               </Card.Content>
@@ -85,10 +100,11 @@ export default class Home extends Component {
           </View>
           <View style={styles.cardContainer}>
             <Card style={styles.cardView}>
-              <Card.Title>Segunda</Card.Title>
+            <Title style={{fontSize:30}}>Sexta</Title>
               <Card.Content>
                 <Text>A:{this.state.docs.sexA}</Text>
                 <Text>B:{this.state.docs.sexB}</Text>
+                <Text>INTERVALO</Text>
                 <Text>C:{this.state.docs.sexC}</Text>
                 <Text>D:{this.state.docs.sexD}</Text>
               </Card.Content>
@@ -97,12 +113,6 @@ export default class Home extends Component {
         </ScrollView>
         <View style={{ backgroundColor: '#2196f3' }}>
           <View style={{ padding: 11, flexDirection: 'row' }}>
-            <TouchableOpacity onPress={() => console.log("SOCORRO")}>
-              <Image
-                style={styles.imageView}
-                source={require('./assets/icon/clock.png')}
-              />
-            </TouchableOpacity>
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('Atividades')}>
               <Image
                 style={styles.imageView}

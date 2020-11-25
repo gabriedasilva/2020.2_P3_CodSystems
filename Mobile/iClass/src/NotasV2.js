@@ -1,72 +1,78 @@
 import React, { Component } from 'react'
-import {  ScrollView, StyleSheet, Text, TouchableOpacity, View, Image  } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Image, FlatList } from 'react-native'
 import { DataTable } from 'react-native-paper';
 import api from './services/api'
 import qs from 'qs'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const titles = ['Matéria', 'Bimestres'];
 const subtitles = ['1º', '2º', '3º', '4º'];
 const testeJSON = ['Matématica', '10', '7.6', '8', '9'];
 export default class NotasV2 extends Component {
-    
-   componentDidMount(){
-        this.setNotas();
-    
+
+    componentDidMount() {
+        this.getUsuario();
+
     }
-
-    state={
-        docs:[],
+    getUsuario = async () => {
+        const usuarioJSONstr = await AsyncStorage.getItem('Usuario');
+        const usuarioJSON = await JSON.parse(usuarioJSONstr)
+        const user = usuarioJSON
+        const idAluno = user.id;
+        const matAluno = user.matricula;
+        console.log("SAIU NA HOME KRL:" + usuarioJSONstr);
+        console.log(idAluno)
+        this.setNotas(idAluno);
     }
-     setNotas = async() =>{
-        var dataUser = {'id':11};
-        const response = await api.post('/mob/notas',qs.stringify(dataUser));
-         const doc = response.data.content.notas;
-         const docs = doc[0];
-         this.setState({docs})
-         console.log(docs.nome)
+    state = {
+        docs: [],
     }
-    render() {
-        return (
-            <View style={{ flex: 1 }}>
-            <View style={styles.topViewBar}>
-                <Image style={styles.imageTopView} source={require('./assets/icon/checklist.png')} />
-                <Text style={styles.textTopView}>Notas</Text>
-            </View>
-            <View>
-                <DataTable.Row>
-                    <DataTable.Cell>{titles[0]}</DataTable.Cell>
-                    <DataTable.Cell>{titles[1]}</DataTable.Cell>
-                </DataTable.Row>
-                <DataTable.Header>
-                    <DataTable.Title></DataTable.Title>
-                    <DataTable.Title>{subtitles[0]}</DataTable.Title>
-                    <DataTable.Title>{subtitles[1]}</DataTable.Title>
-                    <DataTable.Title>{subtitles[2]}</DataTable.Title>
-                    <DataTable.Title>{subtitles[3]}</DataTable.Title>
-                </DataTable.Header>
-            </View>
-            <ScrollView style={styles.backgroundScrollView}>
-                <View style={styles.tableView}>
-                    <DataTable>
-                        <DataTable.Row>
-                            <DataTable.Cell>{this.state.docs.nome}</DataTable.Cell>
-                            <DataTable.Cell>{this.state.docs.prova1bm}</DataTable.Cell>
-                            <DataTable.Cell>{this.state.docs.prova2bm}</DataTable.Cell>
-                            <DataTable.Cell>{this.state.docs.prova3bm}</DataTable.Cell>
-                            <DataTable.Cell>{this.state.docs.prova4bm}</DataTable.Cell>
-                        </DataTable.Row>
-                  
+    setNotas = async (id) => {
+        var dataUser = { 'id': id };
+        const response = await api.post('/mob/notas', qs.stringify(dataUser));
+        const doc = response.data.content.notas;
+        const docs = doc;
+        this.setState({ docs })
+        console.log(docs)
+    }
+    renderiTem = ({ item }) => (
+        <View>
+            <DataTable.Row>
 
-                    </DataTable>
-                </View>
-
-            </ScrollView>
-
-            <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate("Home")}>
-                <Text style={styles.textBtnBack}>Voltar</Text>
-            </TouchableOpacity>
+                <DataTable.Cell>{item.nome}</DataTable.Cell>
+                <DataTable.Cell numeric>{item.prova1bm}</DataTable.Cell>
+                <DataTable.Cell numeric>{item.prova2bm}</DataTable.Cell>
+                <DataTable.Cell numeric>{item.prova3bm}</DataTable.Cell>
+                <DataTable.Cell numeric>{item.prova4bm}</DataTable.Cell>
+            </DataTable.Row>
 
         </View>
-              )
+
+    )
+
+    render() {
+        return (
+            <View style={styles.backgroundScrollView}>
+                <DataTable.Header>
+                    <DataTable.Title></DataTable.Title>
+                    <DataTable.Title >Bimestes</DataTable.Title>
+                </DataTable.Header>
+                <DataTable.Header>
+                    <DataTable.Title>Matéria</DataTable.Title>
+                    <DataTable.Title numeric>1º</DataTable.Title>
+                    <DataTable.Title numeric>2º</DataTable.Title>
+                    <DataTable.Title numeric>3º</DataTable.Title>
+                    <DataTable.Title numeric>4º</DataTable.Title>
+                </DataTable.Header>
+                <FlatList
+                    data={this.state.docs}
+                    keyExtractor={item => item.id}
+                    renderItem={this.renderiTem}
+                />
+                    <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate("Home")}>
+                <Text style={styles.textBtnBack}>Voltar</Text>
+            </TouchableOpacity>
+            </View>
+        );
     }
 }
 const styles = StyleSheet.create({
@@ -97,6 +103,7 @@ const styles = StyleSheet.create({
         padding: 4,
         borderColor: '#f6f6f6',
         margin: 8,
+        flex:1,
 
     },
     tableFontHeader: {

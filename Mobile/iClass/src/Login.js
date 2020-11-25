@@ -5,19 +5,28 @@ import {
 } from 'react-native';
 import qs from 'qs'
 import api from './services/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native';
-import Home from './Homie';
+
 
 var doc;
 const getLogin = async(user,senha)=>{
     const dataUser = {'matricula':user,'senha':senha}
     const response = await api.post('/mob/signin',qs.stringify(dataUser));
      doc = response.data.content.data
+     string_OBJ = JSON.stringify(doc)
+   await AsyncStorage.setItem('Usuario',string_OBJ);
+   
+     console.log(doc)
+     console.log(string_OBJ)
      if(doc == null){
+
          Alert.alert("Erro",response.data.content.responseMessage)
-     }
+
+        }
      return doc; 
 }
+
 
 const Login = ({ navigation }) => {
     const [user, setUser] = useState(''); // GANCHO
@@ -53,7 +62,7 @@ const Login = ({ navigation }) => {
                     <Text style={styles.submitText}>Acessar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { }}>
-                    <Text style={styles.textWhiteS}>Esqueci a Senha!</Text>
+                    <Text style={styles.textWhiteS}></Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
