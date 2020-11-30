@@ -1,65 +1,67 @@
-import { StyleSheet, Text, Image, View,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
 import React, { Component } from 'react'
-import api from './services/api'
-import qs from 'qs'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export class Profile extends Component {
 
-    state ={
-        doc:[],
+    state = {
+        doc: [],
     }
-    componentDidMount(){
+    componentDidMount() {
         this.getInfos();
     }
-    getInfos = async ()=>{
+    getInfos = async () => {
         const usuarioJSONstr = await AsyncStorage.getItem('Usuario');
         const usuarioJSON = await JSON.parse(usuarioJSONstr)
         const doc = usuarioJSON
-       await this.setState({doc})
-        console.log("SAIU NO PERFIL KRL:"+usuarioJSONstr);
+        await this.setState({ doc })
+        console.log("PERFIL:" + usuarioJSONstr);
         console.log(doc.id)
-       
+
     }
-    
-    
- render() {
+
+
+    render() {
         return (
+            <View style={{flex:1,backgroundColor:'#2196f3'}}>
+                <View style={{width:'100%',alignItems:'flex-end'}}>
+          <TouchableOpacity onPress={()=> this.props.navigation.navigate('Login')} style={{margin:2,backgroundColor:'#262626',padding:4,borderRadius:8}}><Text style={{fontSize:18,color:'#fff'}}>SAIR</Text></TouchableOpacity>
+          </View>
             <View style={styles.background}>
-            <View style={styles.inV}>
-                <View style={styles.topV}>
-                    <Image source={require('./assets/profileBg.jpg')}/>
-                </View>
-                <View style={styles.midV}>
-                    <View style={styles.imageContainer}>
-                        <Image style={styles.imageView} source={require('./assets/user.jpg')} />
+                <Text style={{fontSize:50,color:'#fff',fontWeight:'bold',textTransform:'uppercase'}}>Perfil</Text>
+                <View style={styles.infosContainer}>
+                    <Text style={styles.inf}>Nome:</Text>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.textInfo}>{this.state.doc.nomeAluno}</Text>
                     </View>
-                    <View style={styles.infosContainer}>
-                        <View style={styles.textContainer}>
-                            <Text style={{fontSize:20,fontWeight:'800'}}>Nome:{this.state.doc.nomeAluno}</Text>
-                        </View>
-                        <View style={styles.textContainerRow}>
-        <Text style={{fontSize:20,fontWeight:'800'}}>Turma:{this.state.doc.turma}</Text>
-                            <Text style={{marginLeft:42,fontSize:20,fontWeight:'800'}}>Faltas:{this.state.doc.faltas}</Text>
-                        </View>
-                        <View style={styles.textContainer}>
-                            <Text style={{alignSelf:"center",fontSize:20,fontWeight:'800'}}>Telefone:{this.state.doc.telefone}</Text>
-                        </View>
-                        <View style={styles.textContainer}>
-                            <Text style={{alignSelf:"center",fontSize:20,fontWeight:'800'}}>Responsável:{this.state.doc.nomeResponsavel}</Text>
-                        </View>
+                    <Text style={styles.inf}>Turma:</Text>
+                      <View style={styles.textContainer}>
+                        <Text style={styles.textInfo}>{this.state.doc.turma}</Text>
+                    </View>
+                    <Text style={styles.inf}>Total de Faltas:</Text>
+                      <View style={styles.textContainer}>
+                        <Text style={styles.textInfo}>{this.state.doc.faltas}</Text>
+                    </View>
+                    <Text style={styles.inf}>Responsável</Text>
+                      <View style={styles.textContainer}>
+                        <Text style={styles.textInfo}>{this.state.doc.nomeResponsavel}</Text>
+                    </View>
+                    <Text style={styles.inf}>Telefone:</Text>
+                      <View style={styles.textContainer}>
+                        <Text style={styles.textInfo}>{this.state.doc.telefone}</Text>
                     </View>
                 </View>
-                <View style={styles.botV}>
-                    <View style={{width:'100%',justifyContent:"flex-end",flex:1}}>
-                <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate("Home")}>
-                <Text style={styles.textBtnBack}>Voltar</Text>
-              
-            </TouchableOpacity>
-            </View>
+                <View style={{height:100}}>
+
                 </View>
-            </View>
-        </View>
+                </View>
+                <View style={{ width: '100%'}}>
+                    <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate("Home")}>
+                        <Text style={styles.textBtnBack}>Voltar</Text>
+
+                    </TouchableOpacity>
+                </View>
+                </View>
         )
     }
 }
@@ -68,60 +70,29 @@ export default Profile
 
 
 const styles = StyleSheet.create({
-    inV: {
-        flex: 1
-    },
-    imageContainer: {
-        padding: 8,
-        borderRadius: 32,
-        backgroundColor: '#fff',
-        position: 'relative',
-        marginTop: '-35%',
-
-    },
-    imageView: {
-        width: 120,
-        height: 120,
-        borderRadius: 24,
-    },
     background: {
         flex: 1,
-        backgroundColor: '#FF0213'
-    },
-    topV: {
-        flex: 1,
-        backgroundColor: '#ffaa00'
-    },
-    midV: {
-        alignItems: 'center',
-        justifyContent: "center",
-        flex: 2.0,
         backgroundColor: '#2196f3',
-        borderTopColor: '#fff',
-        borderTopWidth: 8,
-        borderBottomEndRadius:16,
-        borderBottomStartRadius:16
-    },
-    botV: {
-        alignItems: 'center',
-        justifyContent: "center",
-        flex: 1.5,
-        backgroundColor: '#f332aa',
-    },
+        alignItems:'center',
+        justifyContent:'center',
+        borderBottomLeftRadius:20,
+        borderBottomRightRadius:20
+ },
     textInfo: {
         fontSize: 22,
-        fontWeight: "400",
+        fontWeight: "500",
+        color:'#262626'
     },
-    subTextInfo: {
-        fontSize: 22,
-        fontWeight: "400",
-        marginRight: 110
+    inf:{
+        color:'#fff'
     },
     textContainer: {
-        margin:8,
-        backgroundColor: "#ccc",
-        padding: 4,
-      
+        margin: 8,
+        backgroundColor: "#fff",
+        padding:4,
+        borderRadius: 8,
+        width:300
+
     },
     btnBack: {
         backgroundColor: '#2196f3',
@@ -136,15 +107,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold"
     },
-    textContainerRow: {
-        margin:8,
-        backgroundColor: "#ccc",
-        padding: 4,
-        flexDirection:"row"
-    },
     infosContainer: {
         padding: 10,
-        backgroundColor: '#fff',
-        margin:16
+        backgroundColor: '#2196f3',
+        margin: 16,
+        borderRadius: 16,
+        justifyContent:'center'
     }
 });

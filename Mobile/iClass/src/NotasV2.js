@@ -4,9 +4,6 @@ import { DataTable } from 'react-native-paper';
 import api from './services/api'
 import qs from 'qs'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-const titles = ['Matéria', 'Bimestres'];
-const subtitles = ['1º', '2º', '3º', '4º'];
-const testeJSON = ['Matématica', '10', '7.6', '8', '9'];
 export default class NotasV2 extends Component {
 
     componentDidMount() {
@@ -19,7 +16,7 @@ export default class NotasV2 extends Component {
         const user = usuarioJSON
         const idAluno = user.id;
         const matAluno = user.matricula;
-        console.log("SAIU NA HOME KRL:" + usuarioJSONstr);
+        console.log("Notas:" + usuarioJSONstr);
         console.log(idAluno)
         this.setNotas(idAluno);
     }
@@ -37,12 +34,11 @@ export default class NotasV2 extends Component {
     renderiTem = ({ item }) => (
         <View>
             <DataTable.Row>
-
-                <DataTable.Cell>{item.nome}</DataTable.Cell>
-                <DataTable.Cell numeric>{item.prova1bm}</DataTable.Cell>
-                <DataTable.Cell numeric>{item.prova2bm}</DataTable.Cell>
-                <DataTable.Cell numeric>{item.prova3bm}</DataTable.Cell>
-                <DataTable.Cell numeric>{item.prova4bm}</DataTable.Cell>
+                <DataTable.Cell ><Text style={styles.textCellMateria}>{item.nome}</Text></DataTable.Cell>
+                <DataTable.Cell numeric><Text style={styles.textCellNotas}>{item.prova1bm}</Text></DataTable.Cell>
+                <DataTable.Cell numeric><Text style={styles.textCellNotas} >{item.prova2bm}</Text></DataTable.Cell>
+                <DataTable.Cell  numeric><Text style={styles.textCellNotas}>{item.prova3bm}</Text></DataTable.Cell>
+                <DataTable.Cell  numeric><Text style={styles.textCellNotas}>{item.prova4bm}</Text></DataTable.Cell>
             </DataTable.Row>
 
         </View>
@@ -51,17 +47,21 @@ export default class NotasV2 extends Component {
 
     render() {
         return (
+          
             <View style={styles.backgroundScrollView}>
-                <DataTable.Header>
+                <View style={{backgroundColor:'#2196f3'}}>
+                <Text style={{fontSize:50,color:'#fff',fontWeight:'bold',textTransform:'uppercase',alignSelf:'center'}}>Notas</Text>
+                </View>
+                     <DataTable.Header style={{backgroundColor:'#2196f3'}}>
                     <DataTable.Title></DataTable.Title>
-                    <DataTable.Title >Bimestes</DataTable.Title>
+                    <DataTable.Title ><Text style={styles.textHeaders}>Bimestres</Text></DataTable.Title>
                 </DataTable.Header>
-                <DataTable.Header>
-                    <DataTable.Title>Matéria</DataTable.Title>
-                    <DataTable.Title numeric>1º</DataTable.Title>
-                    <DataTable.Title numeric>2º</DataTable.Title>
-                    <DataTable.Title numeric>3º</DataTable.Title>
-                    <DataTable.Title numeric>4º</DataTable.Title>
+                <DataTable.Header style={{backgroundColor:'#2196f3'}}>
+                    <DataTable.Title><Text style={styles.textHeaders}>Matéria</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text style={styles.textHeaders}>1º</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text style={styles.textHeaders}>2º</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text style={styles.textHeaders}>3º</Text></DataTable.Title>
+                    <DataTable.Title numeric><Text style={styles.textHeaders}>4º</Text></DataTable.Title>
                 </DataTable.Header>
                 <FlatList
                     data={this.state.docs}
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         margin: 16,
-
     },
     textBtnBack: {
         color: '#ffffff',
@@ -104,7 +103,6 @@ const styles = StyleSheet.create({
         borderColor: '#f6f6f6',
         margin: 8,
         flex:1,
-
     },
     tableFontHeader: {
         color: '#FFFFFF',
@@ -123,6 +121,18 @@ const styles = StyleSheet.create({
         fontSize: 72,
         fontWeight: "500",
         textTransform: "capitalize"
-    }
-
+    },
+    textCellMateria:{
+        fontSize:16,
+        fontWeight:'bold',
+        color:'#161616'
+    },
+    textCellNotas:{
+        fontSize:22,
+        color:'#161616'
+      },
+      textHeaders:{
+          fontSize:22,
+          color:'#fff'
+      }
 });

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import {
     View, KeyboardAvoidingView, Image,
     TextInput, TouchableOpacity, StyleSheet, Text, Alert,
@@ -6,26 +6,31 @@ import {
 import qs from 'qs'
 import api from './services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useNavigation } from '@react-navigation/native';
-
 
 var doc;
-const getLogin = async(user,senha)=>{
-    const dataUser = {'matricula':user,'senha':senha}
-    const response = await api.post('/mob/signin',qs.stringify(dataUser));
-     doc = response.data.content.data
-     string_OBJ = JSON.stringify(doc)
-   await AsyncStorage.setItem('Usuario',string_OBJ);
-   
-     console.log(doc)
-     console.log(string_OBJ)
-     if(doc == null){
+const getLogin = async (user, senha) => {
 
-         Alert.alert("Erro",response.data.content.responseMessage)
+    const dataUser = { 'matricula': user, 'senha': senha }
+    const response = await api.post('/mob/signin', qs.stringify(dataUser));
+    doc = response.data.content.data
+    const string_OBJ = JSON.stringify(doc)
 
-        }
-     return doc; 
+
+    console.log(doc)
+    console.log(string_OBJ)
+    if (doc == null) {
+        const erro = (response.data.content.responseMessage)
+        console.log(erro)
+        const erroMat_Str = JSON.stringify(erro.matriculaError)
+        const erroSen_Str = JSON.stringify(erro.senhaError)
+        Alert.alert("Alerta!", "Confira As Credenciais!")
+
+    } else {
+        await AsyncStorage.setItem('Usuario', string_OBJ);
+    }
+    return doc;
 }
+
 
 
 const Login = ({ navigation }) => {
@@ -54,15 +59,14 @@ const Login = ({ navigation }) => {
                     defaultValue={senha}
                     secureTextEntry={true}
                     placeholder="Senha"
-
                     autoCorrect={false}
                 />
                 <TouchableOpacity style={styles.btnSubmit}
-                    onPress={async() => await getLogin(user,senha)!=null?navigation.navigate('Home'):null}>
+                    onPress={async () => await getLogin(user, senha) != null ? navigation.navigate('Home') : null}>
                     <Text style={styles.submitText}>Acessar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { }}>
-                    <Text style={styles.textWhiteS}></Text>
+                    <Text style={styles.textWhiteS}> iClass - CODSystems 2020 </Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -102,7 +106,8 @@ const styles = StyleSheet.create({ // Estilos
     },
     textWhiteS: {
         color: '#fff',
-        textDecorationLine: 'underline'
+        marginTop: 10,
+        textDecorationLine: 'none',
     },
     btnSubmit: {
         backgroundColor: '#009900',

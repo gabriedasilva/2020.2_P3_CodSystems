@@ -38,11 +38,14 @@ export class Atividades extends Component {
   renderiTem=({item})=>(
     <View style={styles.cardView}>
     <Card style={styles.cardModel}>
-      <Card.Content >
-  <Title style={styles.cardTitle}>{item.disciplina}</Title>
-  <Text >{item.titulo}</Text>
-  <Text>{item.descricao}</Text>
-  <Text>{item.entrega}</Text>
+      <Card.Actions>
+      <Title style={styles.cardTitle}>{item.disciplina}</Title>
+      </Card.Actions>
+      <Card.Content style={styles.cardContent}>
+  
+  <Text style={styles.cardText}>{item.titulo}</Text>
+  <Text style={styles.cardText}>{item.descricao}</Text>
+  <Text style={styles.cardText}>Entrega:{item.entrega}</Text>
       </Card.Content>
     </Card>
     </View>
@@ -52,6 +55,9 @@ export class Atividades extends Component {
   render() {
     return(
       <View style={{flex:1}}>
+         <View style={{backgroundColor:'#2196f3'}}>
+                <Text style={{fontSize:50,color:'#fff',fontWeight:'bold',textTransform:'uppercase',alignSelf:'center'}}>atividades</Text>
+                </View>
       <View style={styles.background}>
     
        <FlatList
@@ -71,15 +77,25 @@ export class Atividades extends Component {
   }
 const styles = StyleSheet.create({
   cardModel:{
-    padding:20,
+    padding:10,
+    margin:0,
+    borderRadius:12,
+  },
+  cardContent:{
+backgroundColor:'#fff',
+alignItems:"baseline",
   },
   cardView:{
-    margin:10
+    margin:8
+  },
+  cardText:{
+    fontSize:16,
+    color:'#262626'
   },
   cardTitle:{
     fontSize:24,
     fontWeight:'bold',
-    alignSelf:"center"
+    color:'#262626'
   }
   ,btnBack: {
     backgroundColor: '#2196f3',
