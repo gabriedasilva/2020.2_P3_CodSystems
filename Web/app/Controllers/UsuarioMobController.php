@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Turma;
 use App\Models\UsuarioMob;
+use App\Models\Notas;
 
 class UsuarioMobController extends BaseController
 {
@@ -54,7 +55,7 @@ class UsuarioMobController extends BaseController
                 $matriculaExistente = $userMobModel->where('matricula', $matriculaNovo)
                     ->first();
                 if (isset($matriculaExistente)) {
-
+                    $data['turmas'] = $turmaModel->getTurmas();
                     $data['fail'] = "Matrícula já cadastrada, tente outra!";
                     return view('usuarioMob/usuarioMob_cadastro', $data);
                 } else {
@@ -65,6 +66,7 @@ class UsuarioMobController extends BaseController
                         'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
                         'turma' => $this->request->getPost('turma'),
                         'telefone' => $this->request->getPost('telefone'),
+                        'turmas' => $turmaModel->getTurmas(),
                     ]);
 
                     $data['success'] = "Cadastro realizado com sucesso!";
@@ -78,6 +80,7 @@ class UsuarioMobController extends BaseController
                     'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
                     'turma' => $this->request->getPost('turma'),
                     'telefone' => $this->request->getPost('telefone'),
+                    'turmas' => $turmaModel->getTurmas(),
                 ];
                 if($this->request->getPost('senha') !== null && $this->request->getPost('senha') !== "")
                 {
@@ -99,6 +102,7 @@ class UsuarioMobController extends BaseController
                     'nomeAluno' => $this->request->getPost('nomeAluno'),
                     'matricula' => $this->request->getPost('matricula'),
                     'nomeResponsavel' => $this->request->getPost('nomeResponsavel'),
+                    'turmas' => $turmaModel->getTurmas(),
                     'turma' => $this->request->getPost('turma'),
                     'telefone' => $this->request->getPost('telefone'),
                 ];
@@ -133,10 +137,13 @@ class UsuarioMobController extends BaseController
     public function excluirCadastro($id)
     {
         $userMobModel = new UsuarioMob();
+        $notasModel = new Notas();
+        
         $userMobModel->delete($id);
+        $notasModel->where('idAluno', $id)->delete();
 
         $data = [
-            'usuarioMob' => $userMobModel->getUsuarios(),
+            'usuarioMob' => $userMobModel->getUsuariosTurma(),
             'success' => "Cadastro excluído com sucesso!",
             'pager' => $userMobModel->pager
         ];

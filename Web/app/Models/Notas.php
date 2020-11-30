@@ -35,9 +35,9 @@ class Notas extends Model
         $db = db_connect();
         $builder = $db->table('usuariomob u');
         $builder->whereIn('u.id', $idsAlunos);
-        $builder->where('n.idDisciplina', $idDisciplina);
+        //$builder->where('n.idDisciplina', $idDisciplina); //adicionei essa comparação ao ON do join para que ela fosse feita somente dentro da tabela de notas
         $builder->select('u.id, u.nomeAluno, n.prova1bm, n.prova2bm, n.prova3bm, n.prova4bm');
-        $builder->join('notas n', 'n.idAluno = u.id');
+        $builder->join('notas n', 'n.idAluno = u.id AND n.idDisciplina ='.$idDisciplina,'left');
 
         $query = $builder->get();
         //Fim Bloco

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Atividade;
 use App\Models\Disciplinas;
 use App\Models\Notas;
 use App\Models\Turma;
@@ -188,6 +189,37 @@ class ApiMobile extends BaseController
 			} else {
 				$data = [
 					'responseMessage' => 'Notas não encontradas!',
+					'responseCode' => 1,
+				];
+				echo json_encode(['content' => $data, 'csrf' => csrf_hash()]);
+			}
+		}
+	}
+
+	public function atividades()
+	{
+		helper('form');
+		$AtividadesModel = new Atividade();
+
+		if ($this->request->isAJAX()) {
+
+			$AtividadesData = $AtividadesModel->select(' d.nome as disciplina,atividades.titulo,atividades.descricao,atividades.entrega')
+			->join('disciplinas d','d.id = atividades.idDisciplina')
+			->where('idTurma', $this->request->getVar('turma'))
+				->findAll();
+
+
+
+			if ($AtividadesData !== null) {
+				$data = [
+					'responseMessage' => 'Atividades encontradas!',
+					'responseCode' => 2,
+					'atividades' => $AtividadesData,
+				];
+				echo json_encode(['content' => $data, 'csrf' => csrf_hash()]);
+			} else {
+				$data = [
+					'responseMessage' => 'Atividades não encontradas!',
 					'responseCode' => 1,
 				];
 				echo json_encode(['content' => $data, 'csrf' => csrf_hash()]);
