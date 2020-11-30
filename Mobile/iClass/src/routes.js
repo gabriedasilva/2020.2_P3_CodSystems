@@ -1,41 +1,63 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
+/*global require*/
+import api from './services/api.js';
+import qs from 'qs'
+import { Alert } from 'react-native';
 
-const connection = mysql.createPool({ // CONNECTOR MYSQL
-  host     : '108.179.252.49',
-  user     : 'iclass60_mobAcc', //<<<<<<<
-  password : 'DR1hIDVO5,,Z',  //<<<<<<<
+var matricula = '';
+var senha = '';
+var customToken = '';
 
 
-  database : 'iclass60_iclassbd'
-});
-
-// Starting our app.
-const app = express();
-const teste =()=>{
-  console.log(connection.getConnection())
+//var dataJson_string = "data=" + JSON.stringify(dataJSON_obj);
+const loginAction = async (matricula,senha) =>{
+    var usuario_OBJ;
+var dataJSON_obj = {"matricula": matricula,"senha":senha}
+   await api.post("/mob/signin", qs.stringify(dataJSON_obj))  ///POST REFERENTE AO LOGIN
+        .then(function (response) {
+if(response.data.content !== null){            
+   if(response.data.content.data != null){
+    usuario_OBJ = (response.data.content.data)
+        if(usuario_OBJ != null){
+        console.log('Usuário Coletado Com Sucesso!')
+        console.log(usuario_OBJ)
+        return usuario_OBJ
+    }else{
+        console.error('Falha ao Coletar O Usuário')
+    }
+    console.warn('OBJETO COLETADO');
+    console.log(response.data.content.data)
+   
+   }else{
+       console.log('Erro >>>')
+       var ex = (response.data.content.responseMessage);
+       Alert.alert('Erro!',ex);
+       console.log(response.data.content.responseMessage);
+   }
+}else{
+    console.error('ERRO CONTENT DATA NULO??')
+    console.log(response.data.content.data)
 }
-teste();
-// Criando Um GET da rota que retorna os dados da Tabela Usuarios
-app.get('/users', function (req, res) {
-    //Conectando ao Banco
-    connection.getConnection(function (err, connection) {
-     console.log(connection)
-     
-    //Executando a query MySQL (select * from the 'users').
-    connection.query('SELECT * FROM usuariomob', function (error, results, fields) {
-      // Caso Aconteça Erros.
-      if (error) throw error;
+        })
+        .catch((err) => {
+            console.error(err);
+        });     
+}
 
-      // Getting the 'response' from the database and sending it to our route. This is were the data is.
-      res.send(results)
-      console.log(results)
-    });
-  });
-});
 
-app.listen(2083, () => {
- console.log('Vá para dominio:3306/users e você ve os Dados.');
-
-})
+async function homeInfos(matricula, idAluno) {
+    console.log(matricula + " " + idAluno);
+    var dataHomeJSON_obj = { "matricula": matricula, "id": idAluno };
+   await api.post("/mob/homeAcc", qs.stringify(dataHomeJSON_obj))
+        .then(function (response) {
+            console.log(idAluno + "  " + matricula);
+            const aulasMateria = Object.values(response.data.content.horario);
+            console.log(aulasMateria);
+            return this.response.data.content.horario;
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+export{
+    loginAction,
+    homeInfos}
