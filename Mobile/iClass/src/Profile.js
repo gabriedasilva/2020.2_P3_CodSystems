@@ -17,9 +17,7 @@ export class Profile extends Component {
         await this.setState({ doc })
         console.log("PERFIL:" + usuarioJSONstr);
         console.log(doc.id)
-
     }
-
 
     render() {
         return (

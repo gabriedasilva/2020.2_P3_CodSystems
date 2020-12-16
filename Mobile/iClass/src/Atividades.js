@@ -29,9 +29,7 @@ export class Atividades extends Component {
     const ativString = JSON.stringify(docc);
     const ativOBJ = JSON.parse(ativString);
     const docs = ativOBJ;
-   
     this.setState({ docs })
-
     console.log(docs)
   }
  
@@ -49,9 +47,7 @@ export class Atividades extends Component {
       </Card.Content>
     </Card>
     </View>
-
   )
-
   render() {
     return(
       <View style={{flex:1}}>
@@ -66,10 +62,11 @@ export class Atividades extends Component {
        renderItem={this.renderiTem}
        />
        </View>
-       <View style={{width:'100%'}}>
+       <View style={{width:'100%',backgroundColor:'#fff'}}>
        <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate("Home")}>
             <Text style={styles.textBtnBack}>Voltar</Text>
         </TouchableOpacity>
+        
         </View>
         </View>
      );
